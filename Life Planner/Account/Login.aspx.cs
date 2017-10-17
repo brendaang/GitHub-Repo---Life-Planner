@@ -7,40 +7,128 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using Life_Planner.Models;
+using System.Configuration;
+using System.Data.SqlClient;
+using System.Security.Cryptography;
+using System.Text;
+using System.Web.Security;
 
 namespace Life_Planner.Account
 {
     public partial class Login : Page
     {
-        //protected void Page_Load(object sender, EventArgs e)
-        //{
-        //    RegisterHyperLink.NavigateUrl = "Register";
-        //    OpenAuthLogin.ReturnUrl = Request.QueryString["ReturnUrl"];
-        //    var returnUrl = HttpUtility.UrlEncode(Request.QueryString["ReturnUrl"]);
-        //    if (!String.IsNullOrEmpty(returnUrl))
-        //    {
-        //        RegisterHyperLink.NavigateUrl += "?ReturnUrl=" + returnUrl;
-        //    }
-        //}
-
-        protected void LogIn(object sender, EventArgs e)
+        protected void Page_Load(object sender, EventArgs e)
         {
-            if (IsValid)
+
+        }
+
+        protected void btn_submit_Click(object sender, EventArgs e)
+        {
+            if (Page.IsValid)
             {
-                // Validate the user password
-                var manager = new UserManager();
-                ApplicationUser user = manager.Find(UserName.Text, Password.Text);
-                if (user != null)
+                string salt = RetrieveSalt(tb_username.Text);
+                if (salt.Equals("-1"))
                 {
-                    IdentityHelper.SignIn(manager, user, RememberMe.Checked);
-                    IdentityHelper.RedirectToReturnUrl(Request.QueryString["ReturnUrl"], Response);
+                    alert_placeholder.Visible = true;
+                    alert_placeholder.Attributes["class"] = "alert alert-danger alert-dismissable";
+                    alertText.Text = "Username or password is incorrect.";
                 }
                 else
                 {
-                    FailureText.Text = "Invalid username or password.";
-                    ErrorMessage.Visible = true;
+                    if (AuthenticateUser(tb_username.Text, tb_password.Text, salt))
+                    {
+                        // Perform a redirect to Home page
+                        Session["username"] = tb_username.Text;
+                        Session["accountID"] = GetAccountID(tb_username.Text, tb_password.Text, salt);
+                        FormsAuthentication.RedirectFromLoginPage(tb_username.Text, true);
+
+                        //alert_placeholder.Visible = true;
+                        //alert_placeholder.Attributes["class"] = "alert alert-success alert-dismissable";
+                        //alertText.Text = "Login successful! Account ID is " + Session["accountID"].ToString();
+                    }
+                    else
+                    {
+                        alert_placeholder.Visible = true;
+                        alert_placeholder.Attributes["class"] = "alert alert-danger alert-dismissable";
+                        alertText.Text = "Username or password is incorrect.";
+                    }
                 }
             }
         }
+
+        private static string RetrieveSalt(string username)
+        {
+            string salt = "";
+            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["CZ2006 - Life Planner"].ConnectionString))
+            {
+                string sql = "SELECT passwordSalt FROM dbo.AccCreds WHERE username=@username";
+                SqlCommand cmd = new SqlCommand(sql, con);
+                cmd.Parameters.AddWithValue("@username", username);
+
+                con.Open();
+                object result = cmd.ExecuteScalar();
+
+                if (result == null)
+                    salt = "-1";
+                else
+                    salt = result.ToString();
+            }
+            return salt;
+        }
+
+        private static bool AuthenticateUser(string username, string password, string salt)
+        {
+            bool isValid = false;
+            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["CZ2006 - Life Planner"].ConnectionString))
+            {
+                //Generate hash from salted password
+                var hash = new SHA1Managed().ComputeHash(Encoding.UTF8.GetBytes(salt + password));
+                string hashedPwd = Convert.ToBase64String(hash);
+
+                string sql = "SELECT COUNT(*) FROM dbo.AccCreds WHERE username=@username AND passwordHash=@passwordHash";
+                SqlCommand cmd = new SqlCommand(sql, con);
+                cmd.Parameters.AddWithValue("@username", username);
+                cmd.Parameters.AddWithValue("@passwordHash", hashedPwd);
+
+                con.Open();
+                int result = int.Parse(cmd.ExecuteScalar().ToString());
+                if (result == 1)
+                    isValid = true;
+                else
+                    isValid = false;
+            }
+            return isValid;
+        }
+
+        private static int GetAccountID(string username, string password, string salt)
+        {
+            int accountID = 0;
+            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["CZ2006 - Life Planner"].ConnectionString))
+            {
+                //Generate hash from salted password
+                var hash = new SHA1Managed().ComputeHash(Encoding.UTF8.GetBytes(salt + password));
+                string hashedPwd = Convert.ToBase64String(hash);
+
+                string sql = "SELECT accountID FROM dbo.AccCreds WHERE username=@username AND passwordHash=@passwordHash";
+                SqlCommand cmd = new SqlCommand(sql, con);
+                cmd.Parameters.AddWithValue("@username", username);
+                cmd.Parameters.AddWithValue("@passwordHash", hashedPwd);
+
+                con.Open();
+                int result = int.Parse(cmd.ExecuteScalar().ToString());
+                if (result != null)
+                    accountID = result;
+                else
+                    accountID = 0;
+            }
+            return accountID;
+        }
+
+        protected void btn_clear_Click(object sender, EventArgs e)
+        {
+            tb_username.Text = string.Empty;
+            tb_password.Text = string.Empty;
+        }
     }
 }
+    
