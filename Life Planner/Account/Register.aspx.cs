@@ -26,6 +26,7 @@ namespace Life_Planner.Account
             tb_email.Text = String.Empty;
             tb_password.Text = String.Empty;
             tb_rePassword.Text = String.Empty;
+            tb_datepicker.Text = String.Empty;
         }
 
         protected void btn_submit_Click(object sender, EventArgs e)
@@ -51,7 +52,7 @@ namespace Life_Planner.Account
                     using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["CZ2006 - Life Planner"].ConnectionString))
                     {
                         
-                        string sql = "INSERT INTO dbo.Account1(fName, lName, email, birthdate, role) VALUES (@fName, @lName, @email, @date, 0);";
+                        string sql = "INSERT INTO dbo.Account(fName, lName, email, birthdate, role) VALUES (@fName, @lName, @email, @date, 0);";
 
                         SqlCommand cmd = new SqlCommand(sql, con);
                         cmd.Parameters.AddWithValue("@fName", tb_fName.Text);
@@ -94,6 +95,7 @@ namespace Life_Planner.Account
                         tb_email.Text = String.Empty;
                         tb_password.Text = String.Empty;
                         tb_rePassword.Text = String.Empty;
+                        tb_datepicker.Text = String.Empty;
 
                         alert_placeholder.Visible = true;
                         alert_placeholder.Attributes["class"] = "alert alert-success alert-dismissable";
@@ -155,7 +157,7 @@ namespace Life_Planner.Account
 
             using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["CZ2006 - Life Planner"].ConnectionString))
             {
-                SqlCommand cmd = new SqlCommand("SELECT COUNT(*) FROM dbo.Account1 WHERE email=@email", con);
+                SqlCommand cmd = new SqlCommand("SELECT COUNT(*) FROM dbo.Account WHERE email=@email", con);
                 cmd.Parameters.AddWithValue("@email", email);
                 con.Open();
 
@@ -179,7 +181,7 @@ namespace Life_Planner.Account
 
             using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["CZ2006 - Life Planner"].ConnectionString))
             {
-                string sql = "SELECT accountID FROM dbo.Account1 WHERE email=@email";
+                string sql = "SELECT accountID FROM dbo.Account WHERE email=@email";
                 SqlCommand cmd = new SqlCommand(sql, con);
                 cmd.Parameters.AddWithValue("@email", email);
 
