@@ -4,48 +4,70 @@
 
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
     <h2><%: Title %>.</h2>
+    <h3>Login to <%: Title %>.</h3>
 
-    <div class="row">
-        <div class="col-md-8">
-            <section id="loginForm">
-                <div class="form-horizontal">
-                    <h4>Use a local account to log in.</h4>
-                    <hr />
-                      <asp:PlaceHolder runat="server" ID="ErrorMessage" Visible="false">
-                        <p class="text-danger">
-                            <asp:Literal runat="server" ID="FailureText" />
-                        </p>
-                    </asp:PlaceHolder>
-                    <div class="form-group">
-                        <asp:Label runat="server" AssociatedControlID="UserName" CssClass="col-md-2 control-label">User name</asp:Label>
-                        <div class="col-md-10">
-                            <asp:TextBox runat="server" ID="UserName" CssClass="form-control" />
-                            <asp:RequiredFieldValidator runat="server" ControlToValidate="UserName"
-                                CssClass="text-danger" ErrorMessage="The user name field is required." />
-                        </div>
+    <div class="container">
+
+        <!-- Alert placeholder, alter attributes in CodeBehind -->
+        <div id="alert_placeholder" runat="server" visible="false">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <asp:Literal runat="server" ID="alertText" />
+        </div>
+
+        <div class="well">
+            <fieldset class="form-horizontal">
+                <div class="row"> 
+                    <legend class="col-lg-offset-4 col-lg-3">Member's Login</legend>
+                </div>
+               
+                <div class="form-group">
+                    <asp:Label ID="lbl_username" CssClass="col-lg-4 control-label" runat="server">Username:</asp:Label>
+                    <div class="col-lg-4">
+                        <asp:Panel ID="pan_username" runat="server" DefaultButton="btn_submit">
+                            <asp:TextBox ID="tb_username" CssClass="form-control" runat="server"></asp:TextBox>
+                        </asp:Panel>
                     </div>
-                    <div class="form-group">
-                        <asp:Label runat="server" AssociatedControlID="Password" CssClass="col-md-2 control-label">Password</asp:Label>
-                        <div class="col-md-10">
-                            <asp:TextBox runat="server" ID="Password" TextMode="Password" CssClass="form-control" />
-                            <asp:RequiredFieldValidator runat="server" ControlToValidate="Password" CssClass="text-danger" ErrorMessage="The password field is required." />
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-md-offset-2 col-md-10">
-                            <div class="checkbox">
-                                <asp:CheckBox runat="server" ID="RememberMe" />
-                                <asp:Label runat="server" AssociatedControlID="RememberMe">Remember me?</asp:Label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-md-offset-2 col-md-10">
-                            <asp:Button runat="server" OnClick="LogIn" Text="Login" CssClass="btn btn-default" />
-                        </div>
+                    <div class="col-lg-1">
+                        <asp:RequiredFieldValidator ID="rfv_username" runat="server" ErrorMessage="Username required" ControlToValidate="tb_username" ForeColor="Red">*</asp:RequiredFieldValidator>
                     </div>
                 </div>
-            </section>
+
+                <div class="form-group">
+                    <asp:Label ID="lbl_password" CssClass="col-lg-4 control-label" runat="server">Password:</asp:Label>
+                    <div class="col-lg-4">
+                        <asp:Panel ID="pan_password" runat="server" DefaultButton="btn_submit">
+                            <asp:TextBox ID="tb_password" TextMode="Password" CssClass="form-control" runat="server"></asp:TextBox>
+                        </asp:Panel>
+                    </div>
+                    <div class="col-lg-1">
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Password required" ControlToValidate="tb_password" ForeColor="Red">*</asp:RequiredFieldValidator>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <asp:Label ID="Label1" CssClass="col-lg-4 control-label" runat="server"></asp:Label>
+                    <div class="col-lg-4">
+                        <a href="/Account/ForgetPassword.aspx">Forget Password</a>
+                    </div>
+                    <div class="col-lg-1">
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Username required" ControlToValidate="tb_username" ForeColor="Red">*</asp:RequiredFieldValidator>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-lg-offset-4">
+                        <asp:ValidationSummary ID="vs_all" runat="server" ForeColor="Red" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-lg-4 col-lg-offset-4">
+                        <asp:Button ID="btn_claer" CssClass="btn btn-default" Text="Clear" runat="server" OnClick="btn_clear_Click" CausesValidation="false" />
+                        <asp:Button ID="btn_submit" CssClass="btn btn-primary" Text="Login" runat="server" OnClick="btn_submit_Click" />
+                    </div>
+                </div>
+
+            </fieldset>
         </div>
-    </div>
+        
 </asp:Content>

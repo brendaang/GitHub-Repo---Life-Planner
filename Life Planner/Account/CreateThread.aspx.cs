@@ -23,7 +23,7 @@ namespace Life_Planner.Account
 
             String accID;
             SqlConnection con1 = new DBManager().getConnection();
-            string sql1 = "SELECT [accID] FROM [CZ2006 - Life Planner].[dbo].[Account] WHERE userName = @userName;";
+            string sql1 = "SELECT [accountID] FROM[CZ2006 - Life Planner].[dbo].[AccCreds] WHERE username = @userName; ";
             SqlCommand cmd1 = new SqlCommand(sql1, con1);
             cmd1.Parameters.AddWithValue("@userName", acctName);
             con1.Open();
