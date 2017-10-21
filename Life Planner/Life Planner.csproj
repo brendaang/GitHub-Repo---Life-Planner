@@ -337,10 +337,7 @@
     <Compile Include="Startup.cs" />
     <Compile Include="Test.aspx.cs">
       <DependentUpon>Test.aspx</DependentUpon>
-<<<<<<< HEAD
       <SubType>ASPXCodeBehind</SubType>
-=======
->>>>>>> f6e423c137678bfc045b63a33542ac7b34eee90a
     </Compile>
     <Compile Include="Test.aspx.designer.cs">
       <DependentUpon>Test.aspx</DependentUpon>
