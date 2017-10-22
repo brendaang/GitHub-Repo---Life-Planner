@@ -19,6 +19,8 @@ namespace Life_Planner.Account
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            
+            //Response.Write("Version: " + System.Environment.Version.ToString());
 
         }
 
@@ -41,6 +43,7 @@ namespace Life_Planner.Account
                         Session["username"] = tb_username.Text;
                         Session["accountID"] = GetAccountID(tb_username.Text, tb_password.Text, salt);
                         FormsAuthentication.RedirectFromLoginPage(tb_username.Text, true);
+                        //Response.Redirect("~/ViewFeedback.aspx");
 
                         //alert_placeholder.Visible = true;
                         //alert_placeholder.Attributes["class"] = "alert alert-success alert-dismissable";
