@@ -22,15 +22,6 @@ namespace Life_Planner {
         protected global::System.Web.UI.WebControls.Label countFeedbacks;
         
         /// <summary>
-        /// NumRecordLoaded control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList NumRecordLoaded;
-        
-        /// <summary>
         /// lblSearch control.
         /// </summary>
         /// <remarks>
@@ -56,6 +47,15 @@ namespace Life_Planner {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnSearch;
+        
+        /// <summary>
+        /// NumRecordLoaded control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList NumRecordLoaded;
         
         /// <summary>
         /// feedbackGridView control.

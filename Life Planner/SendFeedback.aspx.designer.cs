@@ -13,13 +13,22 @@ namespace Life_Planner {
     public partial class Feedback {
         
         /// <summary>
+        /// alert_placeholder control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl alert_placeholder;
+        
+        /// <summary>
         /// feedbackACK control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label feedbackACK;
+        protected global::System.Web.UI.WebControls.Literal feedbackACK;
         
         /// <summary>
         /// lblDate control.

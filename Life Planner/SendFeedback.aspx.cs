@@ -53,8 +53,7 @@ namespace Life_Planner
 
         protected void submitFeedback_Click(object sender, EventArgs e)
         {
-            feedbackACK.Text = "Thank you for your feedback! We will try our best to resolve your issues.";
-            
+                      
             DateTime feedbackDateTime = DateTime.Now;
             String feedbackIssue = txtfeedbackIssue.Text;
             String feedbackContent = txtFeedbackContent.Text;
@@ -73,6 +72,10 @@ namespace Life_Planner
             con1.Open();
             cmd1.ExecuteNonQuery();
             con1.Close();
+
+            alert_placeholder.Visible = true;
+            alert_placeholder.Attributes["class"] = "alert alert-success alert-dismissable";
+            feedbackACK.Text = "Thank you for your feedback! We will try our best to resolve your issues.";
 
             txtfeedbackIssue.Text = string.Empty;
             txtFeedbackContent.Text = string.Empty;
