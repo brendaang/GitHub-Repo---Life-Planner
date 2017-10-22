@@ -5,12 +5,7 @@
     <hr />
     <table class="nav-justified">
         <tr>
-            <td style="width: 595px;">All (
-                <asp:Label ID="countFeedbacks" runat="server"></asp:Label>
-                )&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Records per page: 
-                <asp:DropDownList ID="NumRecordLoaded" runat="server">
-                </asp:DropDownList>
-            </td>
+            <td style="width: 595px;">All (<b><asp:Label ID="countFeedbacks" runat="server"></asp:Label></b>)</td>
             <td>
                 <section>
                     <div class="form-group">
@@ -19,8 +14,6 @@
                             <asp:TextBox ID="fbkSearch" runat="server" CssClass="col-md-4 form-control" placeholder="Search feedback"></asp:TextBox>
                             <div>
                                 <asp:Button ID="btnSearch" runat="server" Text="Search" CssClass="btn btn-primary" />
-                                <br />
-                                <br />
                             </div>
                         </div>
                     </div>
@@ -31,7 +24,18 @@
     <br />
     <section>
         <div class="form-group">
-            <asp:GridView ID="feedbackGridView" runat="server" AutoGenerateColumns="False" BackColor="White" CssClass="table table-striped table-hover" EnableTheming="False" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="3" Width="1166px">
+            Records per page: 
+                <asp:DropDownList ID="NumRecordLoaded" runat="server" AutoPostBack="true" OnSelectedIndexChanged="NumRecordLoaded_SelectedIndexChanged">
+                    <asp:ListItem Value="5">5</asp:ListItem>
+                    <asp:ListItem Value="10">10</asp:ListItem>
+                    <asp:ListItem Value="20">20</asp:ListItem>
+                    <asp:ListItem Value="50">50</asp:ListItem>
+                    <asp:ListItem Value="100">100</asp:ListItem>
+                    <asp:ListItem Value="100000">ALL</asp:ListItem>
+                </asp:DropDownList>
+            <br />
+            <br />
+            <asp:GridView ID="feedbackGridView" runat="server" AutoGenerateColumns="False" BackColor="White" CssClass="table table-striped table-hover" EnableTheming="False" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="3" Width="1166px" AllowPaging="true" OnPageIndexChanging="feedbackGridView_PageIndexChanging" PageSize="5">
                 <FooterStyle BackColor="White" ForeColor="#000066" />
                 <HeaderStyle BackColor="#006699" Font-Bold="True" ForeColor="White" />
                 <PagerStyle BackColor="White" ForeColor="#000066" HorizontalAlign="Left" />
@@ -56,6 +60,7 @@
                         </ItemTemplate>
                     </asp:TemplateField>
                 </Columns>
+                <PagerStyle HorizontalAlign="Center"/>
             </asp:GridView>
         </div>
     </section>

@@ -1,12 +1,15 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="SendFeedback.aspx.cs" Inherits="Life_Planner.Feedback" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <h3></>We value your feedback !</h3>
-    <b>
-        <br>Thank you for taking your time to fill in our feedback form.</br>
-        <p>Your feedback is very important to us!</p>
-    </b>
-    <asp:Label ID="feedbackACK" runat="server" Width="1000px" Style="background-color: #044586; color: #ffffff; font-size: large; text-align: center;"></asp:Label>
+    <h2></>We value your feedback !</h2>
+    
+        <h5>Thank you for taking your time to fill in our feedback form.
+        <br/>Your feedback is very important to us!</h5>
+   
+    <div id="alert_placeholder" runat="server" visible="false">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <asp:Literal runat="server" ID="feedbackACK" />
+        </div>
     <hr />
     <div class="form-group">
         <asp:Label ID="lblDate" runat="server" CssClass="col-md-2 control-label">Date and Time</asp:Label>
@@ -70,7 +73,7 @@
                     <td style="width: 88px">
                         <asp:Button ID="clearBtn" runat="server" CssClass="form-control" Text="Clear Feedback" Width="200px" OnClick="clearBtn_Click" CausesValidation="false" /></td>
                     <td class="modal-sm" style="width: 297px">
-                        <asp:Button ID="submitFeedback" runat="server" CssClass="form-control" Text="Submit Feedback" Width="200px" OnClick="submitFeedback_Click" Style="background-color: #044586; color: #ffffff" /></td>
+                        <asp:Button ID="submitFeedback" runat="server" CssClass="form-control" Text="Submit Feedback" Width="200px" OnClick="submitFeedback_Click" Style="background-color: #4ab0ea; color: #ffffff" /></td>
                 </tr>
             </table>
             <hr />

@@ -16,6 +16,23 @@ namespace Life_Planner
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            BindGrid();
+        }
+
+        protected void feedbackGridView_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            feedbackGridView.PageIndex = e.NewPageIndex;
+            BindGrid();
+        }
+
+        protected void NumRecordLoaded_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            feedbackGridView.PageSize = Convert.ToInt32(NumRecordLoaded.SelectedValue);
+            BindGrid();
+        }
+
+        private void BindGrid()
+        {
             DataTable ViewAllFeedbacks = new DataTable();
             SqlConnection con = new DBManager().getConnection();
 
@@ -23,6 +40,7 @@ namespace Life_Planner
             string sql1 = "SELECT COUNT ([feedbackID]) FROM [CZ2006 - Life Planner].[dbo].[Feedback]";
             SqlCommand cmd = new SqlCommand(sql, con);
             SqlCommand cmd1 = new SqlCommand(sql1, con);
+
             con.Open();
             int FbkCount = (int)cmd1.ExecuteScalar();
             countFeedbacks.Text = FbkCount.ToString();
@@ -31,14 +49,8 @@ namespace Life_Planner
             adapter.Fill(ViewAllFeedbacks);
             feedbackGridView.DataSource = ViewAllFeedbacks;
             feedbackGridView.DataBind();
-            
-            con.Close();
 
-            NumRecordLoaded.Items.Add("5");
-            NumRecordLoaded.Items.Add("10");
-            NumRecordLoaded.Items.Add("20");
-            NumRecordLoaded.Items.Add("50");
-            NumRecordLoaded.Items.Add("100");
+            con.Close();
         }
     }
 }
