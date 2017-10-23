@@ -43,6 +43,7 @@ namespace Life_Planner.Account
                         Session["username"] = tb_username.Text;
                         Session["accountID"] = GetAccountID(tb_username.Text, tb_password.Text, salt);
                         FormsAuthentication.RedirectFromLoginPage(tb_username.Text, true);
+                        //Response.Redirect("~404.aspx");
                         //Response.Redirect("~/ViewFeedback.aspx");
 
                         //alert_placeholder.Visible = true;

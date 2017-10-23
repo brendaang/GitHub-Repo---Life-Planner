@@ -11,7 +11,7 @@ namespace Life_Planner.Account
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            Response.AddHeader("REFRESH", "3;URL=/Default.aspx");
         }
     }
 }
