@@ -62,7 +62,7 @@ namespace Life_Planner.Account
             string threadID = (string)(Session["ThreadID"]);
             DataTable viewPostsTable = new DataTable();
             SqlConnection con2 = new DBManager().getConnection();
-            string sql2 = "SELECT p.[postID],p. [postText],a.[userName], p.[datePosted] FROM [CZ2006 - Life Planner].[dbo].[Posts] p INNER JOIN [CZ2006 - Life Planner].[dbo].[Account] a ON p.accID = a.accID WHERE p.[threadID] = @threadID ORDER BY p.[datePosted] DESC;";
+            string sql2 = "SELECT p.[postID],p. [postText],a.[userName], p.[datePosted] FROM [CZ2006 - Life Planner].[dbo].[Posts] p INNER JOIN [CZ2006 - Life Planner].[dbo].[AccCreds] a ON p.accID = a.accountID WHERE p.[threadID] = @threadID ORDER BY p.[datePosted] DESC;";
             SqlCommand cmd2 = new SqlCommand(sql2, con2);
             cmd2.Parameters.AddWithValue("@threadID", threadID);
             con2.Open();
@@ -203,7 +203,7 @@ namespace Life_Planner.Account
 
             String accID;
             SqlConnection con4 = new DBManager().getConnection();
-            string sql4 = "SELECT [accID] FROM [CZ2006 - Life Planner].[dbo].[Account] WHERE userName = @userName;";
+            string sql4 = "SELECT [accountID] FROM [CZ2006 - Life Planner].[dbo].[AccCreds] WHERE username = @userName;";
             SqlCommand cmd4 = new SqlCommand(sql4, con4);
             cmd4.Parameters.AddWithValue("@userName", acctName);
             con4.Open();
