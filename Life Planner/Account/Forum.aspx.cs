@@ -18,7 +18,7 @@ namespace Life_Planner.Account
         {
             DataTable ViewThreadsTable = new DataTable();
             SqlConnection con = new DBManager().getConnection();
-            string sql = "SELECT t.[threadID],t.[threadName],t.[threadDesc],a.[userName],t.[dateCreated] FROM [CZ2006 - Life Planner].[dbo].[Threads] t INNER JOIN [CZ2006 - Life Planner].[dbo].[AccCreds] a ON t.accID = a.accountID;";
+            string sql = "SELECT t.[threadID],t.[threadName],t.[threadDesc],a.[username],t.[dateCreated] FROM [CZ2006 - Life Planner].[dbo].[Threads] t INNER JOIN [CZ2006 - Life Planner].[dbo].[AccCreds] a ON t.accID = a.accountID;";
             SqlCommand cmd = new SqlCommand(sql, con);
             con.Open();
             SqlDataAdapter adapter = new SqlDataAdapter(cmd);

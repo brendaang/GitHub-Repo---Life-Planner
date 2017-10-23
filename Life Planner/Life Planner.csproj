@@ -155,10 +155,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="About.aspx" />
-    <Content Include="Account\404.aspx" />
+    <Content Include="404.aspx" />
     <Content Include="Account\CreateThread.aspx" />
-    <Content Include="Account\EditProfile.aspx" />
-    <Content Include="Account\Error.aspx" />
+    <Content Include="Error.aspx" />
     <Content Include="Account\Forum.aspx" />
     <Content Include="Account\Login.aspx" />
     <Content Include="Account\Manage.aspx" />
@@ -166,8 +165,6 @@
     <Content Include="Account\Posts.aspx" />
     <Content Include="Account\Register.aspx" />
     <Content Include="Account\RegisterExternalLogin.aspx" />
-    <Content Include="Account\ViewMyProfile.aspx" />
-    <Content Include="Account\ViewOtherProfile.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
@@ -234,11 +231,11 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Account\404.aspx.cs">
+    <Compile Include="404.aspx.cs">
       <DependentUpon>404.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Account\404.aspx.designer.cs">
+    <Compile Include="404.aspx.designer.cs">
       <DependentUpon>404.aspx</DependentUpon>
     </Compile>
     <Compile Include="Account\CreateThread.aspx.cs">
@@ -248,18 +245,11 @@
     <Compile Include="Account\CreateThread.aspx.designer.cs">
       <DependentUpon>CreateThread.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Account\EditProfile.aspx.cs">
-      <DependentUpon>EditProfile.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Account\EditProfile.aspx.designer.cs">
-      <DependentUpon>EditProfile.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Account\Error.aspx.cs">
+    <Compile Include="Error.aspx.cs">
       <DependentUpon>Error.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Account\Error.aspx.designer.cs">
+    <Compile Include="Error.aspx.designer.cs">
       <DependentUpon>Error.aspx</DependentUpon>
     </Compile>
     <Compile Include="Account\Forum.aspx.cs">
@@ -311,20 +301,6 @@
     <Compile Include="Account\RegisterExternalLogin.aspx.designer.cs">
       <DependentUpon>RegisterExternalLogin.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Account\ViewMyProfile.aspx.cs">
-      <DependentUpon>ViewMyProfile.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Account\ViewMyProfile.aspx.designer.cs">
-      <DependentUpon>ViewMyProfile.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Account\ViewOtherProfile.aspx.cs">
-      <DependentUpon>ViewOtherProfile.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Account\ViewOtherProfile.aspx.designer.cs">
-      <DependentUpon>ViewOtherProfile.aspx</DependentUpon>
-    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="About.aspx.cs">
       <DependentUpon>About.aspx</DependentUpon>
@@ -350,6 +326,7 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Module.cs" />
     <Compile Include="SendFeedback.aspx.cs">
       <DependentUpon>SendFeedback.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
