@@ -90,17 +90,40 @@
                         <asp:TextBox ID="tb_datepicker" CssClass="form-control" runat="server"></asp:TextBox>
                     </div>
 
+
+
                 </div>
 
-                <div class="form-group">
-                    <div class="col-lg-4 col-lg-offset-4">
-                        <asp:Button ID="btn_cancel" CssClass="btn btn-default" Text="Cancel" runat="server" OnClick="btn_cancel_Click" />
-                        <asp:Button ID="btn_submit" CssClass="btn btn-primary" Text="Submit" runat="server" OnClick="btn_submit_Click" />
-                    </div>
-                </div>
+               <%-- <div class="form-group">
+                    <div class="btn-group">
 
-            </fieldset>
+       
+                            <asp:DropDownList CssClass="btn btn-default " ID="DPCID" runat="server">
+
+                                <asp:ListItem>Allahabad</asp:ListItem>
+                                <asp:ListItem>Kanpur</asp:ListItem>
+                                <asp:ListItem>Rewa</asp:ListItem>
+                                <asp:ListItem>Bhopal</asp:ListItem>
+                                <asp:ListItem>Indore</asp:ListItem>
+                                <asp:ListItem>Jabalpur</asp:ListItem>
+                            </asp:DropDownList>
+                        </div>
+                </div>
+        </div>--%>
+       
+        <div class="form-group">
+            <div class="col-lg-4 col-lg-offset-4">
+                <asp:Button ID="btn_cancel" CssClass="btn btn-default" Text="Cancel" runat="server" OnClick="btn_cancel_Click" />
+                <asp:Button ID="btn_submit" CssClass="btn btn-primary" Text="Submit" runat="server" OnClick="btn_submit_Click" />
+
+            </div>
+
         </div>
+
+                 <asp:Label ID="Label123" CssClass="col-lg-4 control-label" runat="server"></asp:Label>
+
+        </fieldset>
+    </div>
     </div>
 
 </asp:Content>

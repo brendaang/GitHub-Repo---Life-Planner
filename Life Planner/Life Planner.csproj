@@ -157,6 +157,9 @@
     <Content Include="About.aspx" />
     <Content Include="404.aspx" />
     <Content Include="Account\CreateThread.aspx" />
+    <Content Include="Account\EditProfile.aspx" />
+    <Content Include="Account\ViewMyProfile.aspx" />
+    <Content Include="Account\ViewOtherProfile.aspx" />
     <Content Include="Error.aspx" />
     <Content Include="Account\Forum.aspx" />
     <Content Include="Account\Login.aspx" />
@@ -244,6 +247,27 @@
     </Compile>
     <Compile Include="Account\CreateThread.aspx.designer.cs">
       <DependentUpon>CreateThread.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\EditProfile.aspx.cs">
+      <DependentUpon>EditProfile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\EditProfile.aspx.designer.cs">
+      <DependentUpon>EditProfile.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\ViewMyProfile.aspx.cs">
+      <DependentUpon>ViewMyProfile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\ViewMyProfile.aspx.designer.cs">
+      <DependentUpon>ViewMyProfile.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\ViewOtherProfile.aspx.cs">
+      <DependentUpon>ViewOtherProfile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\ViewOtherProfile.aspx.designer.cs">
+      <DependentUpon>ViewOtherProfile.aspx</DependentUpon>
     </Compile>
     <Compile Include="Error.aspx.cs">
       <DependentUpon>Error.aspx</DependentUpon>
