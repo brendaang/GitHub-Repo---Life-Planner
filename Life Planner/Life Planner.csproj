@@ -326,6 +326,7 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Module.cs" />
     <Compile Include="SendFeedback.aspx.cs">
       <DependentUpon>SendFeedback.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
