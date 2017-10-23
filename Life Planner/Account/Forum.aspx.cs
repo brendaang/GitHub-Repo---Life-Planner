@@ -84,7 +84,7 @@ namespace Life_Planner.Account
             LinkButton lb = (LinkButton)sender;
             string authorName = lb.Text;
             Session["AuthorName"] = authorName;
-            //Response.Redirect("~/ViewProfiles.aspx");
+            Response.Redirect("~/Account/ViewOtherProfile.aspx");
         }
 
         protected void createThread_Click(object sender, EventArgs e)
