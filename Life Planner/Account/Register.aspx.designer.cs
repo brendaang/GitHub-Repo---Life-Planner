@@ -166,6 +166,24 @@ namespace Life_Planner.Account {
         protected global::System.Web.UI.WebControls.TextBox tb_datepicker;
         
         /// <summary>
+        /// rfv_dob control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_dob;
+        
+        /// <summary>
+        /// rev_validDob control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator rev_validDob;
+        
+        /// <summary>
         /// lbl_password control.
         /// </summary>
         /// <remarks>

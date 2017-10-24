@@ -85,11 +85,13 @@
                 </div>
 
                 <div class="form-group">
-                    <%--<label>Date Of Birth</label>--%>
                      <asp:Label ID="lbl_dob" CssClass="col-lg-4 control-label" runat="server">Date Of Birth:</asp:Label>
                     <div class="col-lg-6">
-                       <%--<input type="text" id="tb_datepicker" class="form-control">--%>
-                         <asp:TextBox ID="tb_datepicker" CssClass="form-control" runat="server"></asp:TextBox>
+                         <asp:TextBox ID="tb_datepicker" CssClass="form-control" runat="server" max="<%DateTime.Now.Date %>"></asp:TextBox>
+                    </div>
+                     <div class="col-lg-1">
+                        <asp:RequiredFieldValidator ID="rfv_dob" runat="server" ErrorMessage="Date of Birth Required" ControlToValidate="tb_datepicker" ForeColor="Red">*</asp:RequiredFieldValidator>
+                         <asp:RegularExpressionValidator ID="rev_validDob" runat="server" ErrorMessage="Not a valid date" ControlToValidate="tb_datepicker" ForeColor="Red" Display="Dynamic" ValidationExpression="^(19[5-9][0-9]|20[0-4][0-9]|2050)[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$">*</asp:RegularExpressionValidator>
                     </div>
                     
                 </div>
