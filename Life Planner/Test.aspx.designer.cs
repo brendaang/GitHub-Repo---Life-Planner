@@ -10,24 +10,24 @@
 namespace Life_Planner {
     
     
-    public partial class SiteMaster {
+    public partial class Test {
         
         /// <summary>
-        /// btn_logout control.
+        /// Button1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlButton btn_logout;
+        protected global::System.Web.UI.WebControls.Button Button1;
         
         /// <summary>
-        /// MainContent control.
+        /// Table1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder MainContent;
+        protected global::System.Web.UI.WebControls.Table Table1;
     }
 }

@@ -66,7 +66,6 @@
                         <asp:Button ID="btn_submit" CssClass="btn btn-primary" Text="Login" runat="server" OnClick="btn_submit_Click" />
                     </div>
                 </div>
-
             </fieldset>
         </div>
         
