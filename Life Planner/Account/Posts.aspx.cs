@@ -147,21 +147,12 @@ namespace Life_Planner.Account
 
         protected void btnPost_Click(object sender, EventArgs e)
         {
-            //if (Session["username"] == null)
-            //{
-            //    Page.ClientScript.RegisterStartupScript(this.GetType(), "Alert!", "alert('You must be a registered user to be able to post.');", true);
-            //    return;
-            //}
-            //else
-            //{
                 //checking if textbox is empty.
                 //if there is no post content, do not allow user to proceed.
                 if (txtEditor.Text == "")
                 {
                     Page.ClientScript.RegisterStartupScript(this.GetType(), "Alert!", "alert('Please type a post or reply before clicking the 'Post' button.');", true);
                     return;
-                    //lblWarningMsg.Text = "Please type a post or reply before clicking the 'Post' button.";
-                    //Editor1.Focus();
                 }
 
                 //pass content from rich textbox through the vulgarity checking method.
@@ -190,16 +181,13 @@ namespace Life_Planner.Account
                     con3.Close();
                     Response.Redirect("Posts.aspx");
                 }
-            //}
 
         }
 
         //method to get userID by the username that was saved in the session
         protected string getAccID()
         {
-            //hardcoded for now
-            String acctName = "tingle";
-            //String acctName = Session["username"].ToString();
+            String acctName = Session["username"].ToString();
 
             String accID;
             SqlConnection con4 = new DBManager().getConnection();
@@ -216,7 +204,7 @@ namespace Life_Planner.Account
 
         protected void btnCancel_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Posts.aspx");
+            Response.Redirect("~/Account/Posts.aspx");
         }
 
         //method to get the userID of a post's author
@@ -238,13 +226,6 @@ namespace Life_Planner.Account
         //voting system
         protected void btnLikeOnClick(object sender, EventArgs e)
         {
-            //if (Session["username"] == null)
-            //{
-            //    Page.ClientScript.RegisterStartupScript(this.GetType(), "Alert!", "alert('You must be a registered user to be able to like a post.');", true);
-            //    return;
-            //}
-            //else
-            //{
                 Panel pl = ((Button)sender).Parent as Panel;
                 if (pl != null)
                 {
@@ -252,6 +233,7 @@ namespace Life_Planner.Account
                     Label postID = pl.FindControl("postID") as Label;
 
                     string authorID = getAcc(postID.Text);
+
 
                     if (votingChecker(authorName.Text))
                     {
@@ -329,18 +311,10 @@ namespace Life_Planner.Account
                     Page.ClientScript.RegisterStartupScript(this.GetType(), "Alert!", "alert('Not found!');", true);
                     return;
                 }
-            //}
         }
 
         protected void btnDislikeOnClick(object sender, EventArgs e)
         {
-            //if (Session["username"] == null)
-            //{
-            //    Page.ClientScript.RegisterStartupScript(this.GetType(), "Alert!", "alert('You must be a registered user to be able to dislike a post.');", true);
-            //    return;
-            //}
-            //else
-            //{
                 Panel pl = ((Button)sender).Parent as Panel;
                 if (pl != null)
                 {
@@ -421,18 +395,10 @@ namespace Life_Planner.Account
                     Page.ClientScript.RegisterStartupScript(this.GetType(), "Alert!", "alert('Not found!');", true);
                     return;
                 }
-            //}
         }
 
         protected void btnEdit_Click(object sender, EventArgs e)
         {
-            //if (Session["username"] == null)
-            //{
-            //    Page.ClientScript.RegisterStartupScript(this.GetType(), "Alert!", "alert('You must be logged in to edit your own posts!);", true);
-            //    return;
-            //}
-            //else
-            //{
                 Panel pl = ((Button)sender).Parent as Panel;
                 if (pl != null)
                 {
@@ -449,23 +415,13 @@ namespace Life_Planner.Account
                     else
                     {
                         Session["postID"] = postID.Text;
-                        Response.Redirect("Editing-Posts.aspx");
-                        //Page.ClientScript.RegisterStartupScript(this.GetType(), "Alert!", "alert('You cannot vote on your own post.');", true);
-                        //return;
+                        //Response.Redirect("Editing-Posts.aspx");
                     }
                 }
-            //}
         }
 
         protected void btnQuote_Click(object sender, EventArgs e)
         {
-            //if (Session["username"] == null)
-            //{
-            //    Page.ClientScript.RegisterStartupScript(this.GetType(), "Alert!", "alert('You must be logged in to quote a post!);", true);
-            //    return;
-            //}
-            //else
-            //{
                 Panel pl = ((Button)sender).Parent as Panel;
                 if (pl != null)
                 {
@@ -475,21 +431,13 @@ namespace Life_Planner.Account
                     string authorID = getAcc(postID.Text);
                     string quote = getQuote(postID.Text, authorID);
 
-                    txtEditor.Text = "@ " + authorName.Text + "<br />" + "<span style=\"background-color: #c5c3c6;\">" + quote + "</span><br /><br /><br />";
+                    txtEditor.Text = "@ " + authorName.Text + ": " + quote + "\n\n";
                     btnPost.Focus();
                 }
-            //}
         }
 
         protected void btnReport_Click(object sender, EventArgs e)
         {
-            //if (Session["username"] == null)
-            //{
-            //    Page.ClientScript.RegisterStartupScript(this.GetType(), "Alert!", "alert('You must be logged in to report a post!);", true);
-            //    return;
-            //}
-            //else
-            //{
                 Panel pl = ((Button)sender).Parent as Panel;
                 if (pl != null)
                 {
@@ -576,17 +524,15 @@ namespace Life_Planner.Account
                         return;
                     }
                 }
-            //}
         }
 
         //voting checker disallow users to like/dislike their own posts
         protected bool votingChecker(String username)
         {
-            //if (Session["username"].ToString() != username)
-            //    return true;
-            //else
-            //    return false;
-            return true;
+            if (Session["username"].ToString() != username)
+                return true;
+            else
+                return false;
         }
 
         protected void rptPages_ItemCommand(object source, RepeaterCommandEventArgs e)
