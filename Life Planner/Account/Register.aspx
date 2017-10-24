@@ -17,7 +17,7 @@
             $("[id$=tb_datepicker]").datepicker({
                 showOn: 'button',
                 buttonImageOnly: true,
-                buttonImage: 'http://jqueryui.com/demos/datepicker/images/calendar.gif',
+                buttonImage: '/Images/button_calendar.png',
                 dateFormat: 'yy/mm/dd',
                 changeMonth: true,
                 changeYear: true,
@@ -40,10 +40,10 @@
 
         <div class="well">
             <fieldset class="form-horizontal">
-                <div class="row">
+                <div class="row"> 
+                    <legend class="col-lg-offset-4 col-lg-3">Register a new account</legend>
                      </div>
-                     <legend class="col-lg-offset-4 col-lg-3">Register a new account</legend>
-                </div>
+
                 <div class="form-group">
                     <asp:Label ID="lbl_username" CssClass="col-lg-4 control-label" runat="server">Username:</asp:Label>
                     <div class="col-lg-6">
@@ -95,6 +95,16 @@
                          <asp:RegularExpressionValidator ID="rev_validDob" runat="server" ErrorMessage="Not a valid date" ControlToValidate="tb_datepicker" ForeColor="Red" Display="Dynamic" ValidationExpression="^(19[5-9][0-9]|20[0-4][0-9]|2050)[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$">*</asp:RegularExpressionValidator>
                     </div>
                     
+                </div>
+                
+                 <div class="form-group">
+                    <asp:Label ID="lbl_gender" CssClass="col-lg-4 control-label" runat="server">Gender:</asp:Label>
+                    <div class="col-lg-6">
+                        <asp:RadioButtonList ID="rbl_gender" RepeatLayout="Flow" RepeatDirection="Horizontal" runat="server">
+                            <asp:ListItem class="radio-inline" Value="1" Text="Male" Selected="True"></asp:ListItem>
+                            <asp:ListItem class="radio-inline" Value="0" Text="Female"></asp:ListItem>
+                        </asp:RadioButtonList>
+                    </div>
                 </div>
 
                 <div class="form-group">

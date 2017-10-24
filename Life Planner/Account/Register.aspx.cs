@@ -27,6 +27,7 @@ namespace Life_Planner.Account
             tb_password.Text = String.Empty;
             tb_rePassword.Text = String.Empty;
             tb_datepicker.Text = String.Empty;
+            rbl_gender.SelectedIndex = 0;
         }
 
         protected void btn_submit_Click(object sender, EventArgs e)
@@ -52,13 +53,14 @@ namespace Life_Planner.Account
                     using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["CZ2006 - Life Planner"].ConnectionString))
                     {
                         
-                        string sql = "INSERT INTO dbo.Account(fName, lName, email, birthdate, role) VALUES (@fName, @lName, @email, @date, 0);";
+                        string sql = "INSERT INTO dbo.Account(fName, lName, email, birthdate, gender, role) VALUES (@fName, @lName, @email, @date, @gender, 0);";
 
                         SqlCommand cmd = new SqlCommand(sql, con);
                         cmd.Parameters.AddWithValue("@fName", tb_fName.Text);
                         cmd.Parameters.AddWithValue("@lName", tb_lName.Text);
                         cmd.Parameters.AddWithValue("@email", tb_email.Text);
                         cmd.Parameters.AddWithValue("@date", tb_datepicker.Text);
+                        cmd.Parameters.AddWithValue("@gender", rbl_gender.Text);
 
                         con.Open();
                         cmd.ExecuteNonQuery();
@@ -96,6 +98,7 @@ namespace Life_Planner.Account
                         tb_password.Text = String.Empty;
                         tb_rePassword.Text = String.Empty;
                         tb_datepicker.Text = String.Empty;
+                        rbl_gender.SelectedIndex = 0;
 
                         alert_placeholder.Visible = true;
                         alert_placeholder.Attributes["class"] = "alert alert-success alert-dismissable";
