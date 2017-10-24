@@ -13,7 +13,7 @@
                         <div class="col-md-8">
                             <asp:TextBox ID="fbkSearch" runat="server" CssClass="col-md-4 form-control" placeholder="Search feedback issues"></asp:TextBox>
                             <div>
-                                <asp:Button ID="btnSearch" runat="server" Text="Search" <a href="ViewFeedback.aspx">ViewFeedback.aspx</a> CssClass="btn btn-primary" OnClick="btnSearch_Click" />
+                                <asp:Button ID="btnSearch" runat="server" Text="Search" CssClass="btn btn-primary" OnClick="btnSearch_Click" />
                             </div>
                         </div>
                     </div>
