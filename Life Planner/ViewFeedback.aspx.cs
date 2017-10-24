@@ -52,5 +52,25 @@ namespace Life_Planner
 
             con.Close();
         }
+
+        protected void btnSearch_Click(object sender, EventArgs e)
+        {
+            searchFunction();
+        }
+        protected void searchFunction()
+        {
+            DataTable ViewAllFeedbacks = new DataTable();
+            SqlConnection con = new DBManager().getConnection();
+
+            string sql = "SELECT t.[feedbackID],t.[feedbackDatetime],t.[feedbackIssue],t.[feedbackContent], t.[submittedBy], t.[feedbackStatus] FROM [CZ2006 - Life Planner].[dbo].[Feedback] t WHERE t.[feedbackIssue] LIKE '%' + @pSearch + '%';";
+            SqlCommand cmd = new SqlCommand(sql, con);
+            cmd.Parameters.Add("@pSearch", SqlDbType.NVarChar).Value = fbkSearch.Text;
+            con.Open();
+            SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+            adapter.Fill(ViewAllFeedbacks);
+            feedbackGridView.DataSource = ViewAllFeedbacks;
+            feedbackGridView.DataBind();
+            con.Close();
+        }
     }
 }
