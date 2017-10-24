@@ -41,6 +41,7 @@
         <div class="well">
             <fieldset class="form-horizontal">
                 <div class="row">
+                     </div>
                      <legend class="col-lg-offset-4 col-lg-3">Register a new account</legend>
                 </div>
                 <div class="form-group">
