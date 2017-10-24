@@ -10,61 +10,25 @@
 namespace Life_Planner {
     
     
-    public partial class Feedback {
+    public partial class ResolveFeedback {
         
         /// <summary>
-        /// alert_placeholder control.
+        /// lblFbkTime control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl alert_placeholder;
+        protected global::System.Web.UI.WebControls.Label lblFbkTime;
         
         /// <summary>
-        /// feedbackACK control.
+        /// fbkDatetime control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal feedbackACK;
-        
-        /// <summary>
-        /// lblDate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblDate;
-        
-        /// <summary>
-        /// txtDatetime control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDatetime;
-        
-        /// <summary>
-        /// lblAuthor control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblAuthor;
-        
-        /// <summary>
-        /// submittedBy control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox submittedBy;
+        protected global::System.Web.UI.WebControls.TextBox fbkDatetime;
         
         /// <summary>
         /// txtfeedbackIssue control.
@@ -76,48 +40,93 @@ namespace Life_Planner {
         protected global::System.Web.UI.WebControls.TextBox txtfeedbackIssue;
         
         /// <summary>
-        /// lblThreadDesc control.
+        /// lblFbkcontent control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblThreadDesc;
+        protected global::System.Web.UI.WebControls.Label lblFbkcontent;
         
         /// <summary>
-        /// txtFeedbackContent control.
+        /// fbkContent control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtFeedbackContent;
+        protected global::System.Web.UI.WebControls.TextBox fbkContent;
         
         /// <summary>
-        /// lbl control.
+        /// lblNotes control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl;
+        protected global::System.Web.UI.WebControls.Label lblNotes;
         
         /// <summary>
-        /// clearBtn control.
+        /// txtAddnotes control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button clearBtn;
+        protected global::System.Web.UI.WebControls.TextBox txtAddnotes;
         
         /// <summary>
-        /// submitFeedback control.
+        /// lblResolvedBy control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button submitFeedback;
+        protected global::System.Web.UI.WebControls.Label lblResolvedBy;
+        
+        /// <summary>
+        /// resolvedBy control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox resolvedBy;
+        
+        /// <summary>
+        /// lblDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblDate;
+        
+        /// <summary>
+        /// resolvedOn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox resolvedOn;
+        
+        /// <summary>
+        /// lblDropdown control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblDropdown;
+        
+        /// <summary>
+        /// DropDownListStatus control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList DropDownListStatus;
     }
 }

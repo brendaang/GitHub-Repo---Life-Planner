@@ -157,6 +157,9 @@
     <Content Include="About.aspx" />
     <Content Include="404.aspx" />
     <Content Include="Account\CreateThread.aspx" />
+    <Content Include="Account\EditProfile.aspx" />
+    <Content Include="Account\ViewMyProfile.aspx" />
+    <Content Include="Account\ViewOtherProfile.aspx" />
     <Content Include="Error.aspx" />
     <Content Include="Account\Forum.aspx" />
     <Content Include="Account\Login.aspx" />
@@ -171,13 +174,16 @@
     <Content Include="Content\Site.css" />
     <Content Include="Images\404.png" />
     <Content Include="Images\error.png" />
-    <Content Include="SendFeedback.aspx" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="packages.config" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Account\Web.config" />
+    <Content Include="Account\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="ResolveFeedback.aspx" />
+    <Content Include="SendFeedback.aspx" />
     <Content Include="Test.aspx" />
     <Content Include="ViewFeedback.aspx" />
     <Content Include="WordList\WordList.txt" />
@@ -244,6 +250,27 @@
     </Compile>
     <Compile Include="Account\CreateThread.aspx.designer.cs">
       <DependentUpon>CreateThread.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\EditProfile.aspx.cs">
+      <DependentUpon>EditProfile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\EditProfile.aspx.designer.cs">
+      <DependentUpon>EditProfile.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\ViewMyProfile.aspx.cs">
+      <DependentUpon>ViewMyProfile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\ViewMyProfile.aspx.designer.cs">
+      <DependentUpon>ViewMyProfile.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\ViewOtherProfile.aspx.cs">
+      <DependentUpon>ViewOtherProfile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\ViewOtherProfile.aspx.designer.cs">
+      <DependentUpon>ViewOtherProfile.aspx</DependentUpon>
     </Compile>
     <Compile Include="Error.aspx.cs">
       <DependentUpon>Error.aspx</DependentUpon>
@@ -327,6 +354,18 @@
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
     <Compile Include="Module.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ResolveFeedback.aspx.cs">
+      <DependentUpon>ResolveFeedback.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ResolveFeedback.aspx.designer.cs">
+      <DependentUpon>ResolveFeedback.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SendFeedback.aspx.cs">
       <DependentUpon>SendFeedback.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -334,11 +373,6 @@
     <Compile Include="SendFeedback.aspx.designer.cs">
       <DependentUpon>SendFeedback.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Global.asax.cs">
-      <DependentUpon>Global.asax</DependentUpon>
-    </Compile>
-    <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

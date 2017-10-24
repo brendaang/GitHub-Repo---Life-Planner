@@ -7,117 +7,99 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Life_Planner {
+namespace Life_Planner.Account {
     
     
-    public partial class Feedback {
+    public partial class ViewMyProfile {
         
         /// <summary>
-        /// alert_placeholder control.
+        /// fname control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl alert_placeholder;
+        protected global::System.Web.UI.WebControls.Label fname;
         
         /// <summary>
-        /// feedbackACK control.
+        /// tbFirstName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal feedbackACK;
+        protected global::System.Web.UI.WebControls.TextBox tbFirstName;
         
         /// <summary>
-        /// lblDate control.
+        /// lname control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblDate;
+        protected global::System.Web.UI.WebControls.Label lname;
         
         /// <summary>
-        /// txtDatetime control.
+        /// tbLname control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDatetime;
+        protected global::System.Web.UI.WebControls.TextBox tbLname;
         
         /// <summary>
-        /// lblAuthor control.
+        /// email control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblAuthor;
+        protected global::System.Web.UI.WebControls.Label email;
         
         /// <summary>
-        /// submittedBy control.
+        /// tbEmail control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox submittedBy;
+        protected global::System.Web.UI.WebControls.TextBox tbEmail;
         
         /// <summary>
-        /// txtfeedbackIssue control.
+        /// birthdate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtfeedbackIssue;
+        protected global::System.Web.UI.WebControls.Label birthdate;
         
         /// <summary>
-        /// lblThreadDesc control.
+        /// tbBirthDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblThreadDesc;
+        protected global::System.Web.UI.WebControls.TextBox tbBirthDate;
         
         /// <summary>
-        /// txtFeedbackContent control.
+        /// gender control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtFeedbackContent;
+        protected global::System.Web.UI.WebControls.Label gender;
         
         /// <summary>
-        /// lbl control.
+        /// tbGender control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl;
-        
-        /// <summary>
-        /// clearBtn control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button clearBtn;
-        
-        /// <summary>
-        /// submitFeedback control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button submitFeedback;
+        protected global::System.Web.UI.WebControls.TextBox tbGender;
     }
 }
