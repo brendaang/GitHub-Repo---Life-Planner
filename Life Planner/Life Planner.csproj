@@ -48,6 +48,9 @@
       <HintPath>..\packages\HtmlAgilityPack.1.4.9\lib\Net45\HtmlAgilityPack.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Recaptcha">
+      <HintPath>..\packages\recaptcha.1.0.5.0\lib\.NetFramework 4.0\Recaptcha.dll</HintPath>
+    </Reference>
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -159,8 +162,10 @@
     <Content Include="Account\CreatePlan.aspx" />
     <Content Include="Account\CreateThread.aspx" />
     <Content Include="Account\EditProfile.aspx" />
+    <Content Include="Account\ResetPassword.aspx" />
     <Content Include="Account\ViewMyProfile.aspx" />
     <Content Include="Account\ViewOtherProfile.aspx" />
+    <Content Include="Account\ChangePassword.aspx" />
     <Content Include="Error.aspx" />
     <Content Include="Account\Forum.aspx" />
     <Content Include="Account\Login.aspx" />
@@ -173,6 +178,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="Account\ForgetPassword.aspx" />
     <Content Include="Images\404.png" />
     <Content Include="Images\button_calendar.png" />
     <Content Include="Images\error.png" />
@@ -267,6 +273,13 @@
     <Compile Include="Account\EditProfile.aspx.designer.cs">
       <DependentUpon>EditProfile.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Account\ResetPassword.aspx.cs">
+      <DependentUpon>ResetPassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\ResetPassword.aspx.designer.cs">
+      <DependentUpon>ResetPassword.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Account\ViewMyProfile.aspx.cs">
       <DependentUpon>ViewMyProfile.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -280,6 +293,13 @@
     </Compile>
     <Compile Include="Account\ViewOtherProfile.aspx.designer.cs">
       <DependentUpon>ViewOtherProfile.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\ChangePassword.aspx.cs">
+      <DependentUpon>ChangePassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\ChangePassword.aspx.designer.cs">
+      <DependentUpon>ChangePassword.aspx</DependentUpon>
     </Compile>
     <Compile Include="Error.aspx.cs">
       <DependentUpon>Error.aspx</DependentUpon>
@@ -362,6 +382,13 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Account\ForgetPassword.aspx.cs">
+      <DependentUpon>ForgetPassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\ForgetPassword.aspx.designer.cs">
+      <DependentUpon>ForgetPassword.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Module.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -420,6 +447,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
