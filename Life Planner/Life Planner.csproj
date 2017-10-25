@@ -156,6 +156,7 @@
   <ItemGroup>
     <Content Include="About.aspx" />
     <Content Include="404.aspx" />
+    <Content Include="Account\CreatePlan.aspx" />
     <Content Include="Account\CreateThread.aspx" />
     <Content Include="Account\EditProfile.aspx" />
     <Content Include="Account\ViewMyProfile.aspx" />
@@ -173,6 +174,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Images\404.png" />
+    <Content Include="Images\button_calendar.png" />
     <Content Include="Images\error.png" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="packages.config" />
@@ -243,6 +245,13 @@
     </Compile>
     <Compile Include="404.aspx.designer.cs">
       <DependentUpon>404.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\CreatePlan.aspx.cs">
+      <DependentUpon>CreatePlan.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\CreatePlan.aspx.designer.cs">
+      <DependentUpon>CreatePlan.aspx</DependentUpon>
     </Compile>
     <Compile Include="Account\CreateThread.aspx.cs">
       <DependentUpon>CreateThread.aspx</DependentUpon>
