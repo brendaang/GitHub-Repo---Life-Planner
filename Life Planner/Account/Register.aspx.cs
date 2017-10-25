@@ -20,17 +20,13 @@ namespace Life_Planner.Account
 {
     public partial class Register : Page
     {
+        validateUser vu = new validateUser();
+        
         protected void btn_cancel_Click(object sender, EventArgs e)
         {
             // Resets all form fields
-            tb_username.Text = String.Empty;
-            tb_fName.Text = String.Empty;
-            tb_lName.Text = String.Empty;
-            tb_email.Text = String.Empty;
-            tb_password.Text = String.Empty;
-            tb_rePassword.Text = String.Empty;
-            tb_datepicker.Text = String.Empty;
-            rbl_gender.SelectedIndex = 0;
+            resetField();
+            
         }
 
         protected void btn_submit_Click(object sender, EventArgs e)
@@ -49,9 +45,9 @@ namespace Life_Planner.Account
                  * React accordingly to results
                  */
 
-                    int usernameValid = UsernameValid(tb_username.Text);
-                    int emailValid = EmailValid(tb_email.Text);
-
+                    int usernameValid = vu.UsernameValid(tb_username.Text);
+                    int emailValid = vu.EmailValid(tb_email.Text);
+                    
                     // If both checks are true
                     if (usernameValid + emailValid == 3)
                     {
@@ -87,7 +83,7 @@ namespace Life_Planner.Account
                             cmd.Parameters.AddWithValue("@Username", tb_username.Text);
                             cmd.Parameters.AddWithValue("@PasswordSalt", salt);
                             cmd.Parameters.AddWithValue("@PasswordHash", hashedPwd);
-                            cmd.Parameters.AddWithValue("@accountID", retrieveAccID(tb_email.Text));
+                            cmd.Parameters.AddWithValue("@accountID", vu.retrieveAccID(tb_email.Text));
 
                             con.Open();
                             cmd.ExecuteNonQuery();
@@ -96,14 +92,7 @@ namespace Life_Planner.Account
                             cmd.Dispose();
 
                             // Resets all form fields
-                            tb_username.Text = String.Empty;
-                            tb_fName.Text = String.Empty;
-                            tb_lName.Text = String.Empty;
-                            tb_email.Text = String.Empty;
-                            tb_password.Text = String.Empty;
-                            tb_rePassword.Text = String.Empty;
-                            tb_datepicker.Text = String.Empty;
-                            rbl_gender.SelectedIndex = 0;
+                            resetField();
 
                             alert_placeholder.Visible = true;
                             alert_placeholder.Attributes["class"] = "alert alert-success alert-dismissable";
@@ -142,72 +131,6 @@ namespace Life_Planner.Account
         }
 
 
-        private static int UsernameValid(string username)
-        {
-            int valid = 0;
-
-            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["CZ2006 - Life Planner"].ConnectionString))
-            {
-                SqlCommand cmd = new SqlCommand("SELECT COUNT(*) FROM dbo.AccCreds WHERE username=@username", con);
-                cmd.Parameters.AddWithValue("@username", username);
-                con.Open();
-
-                int result = int.Parse(cmd.ExecuteScalar().ToString());
-
-                if (result == 0)
-                    valid = 1;
-                else
-                    valid = 0;
-
-                con.Close();
-                con.Dispose();
-                cmd.Dispose();
-            }
-            return valid;
-        }
-
-        private static int EmailValid(string email)
-        {
-            int valid = 0;
-
-            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["CZ2006 - Life Planner"].ConnectionString))
-            {
-                SqlCommand cmd = new SqlCommand("SELECT COUNT(*) FROM dbo.Account WHERE email=@email", con);
-                cmd.Parameters.AddWithValue("@email", email);
-                con.Open();
-
-                int result = int.Parse(cmd.ExecuteScalar().ToString());
-
-                if (result == 0)
-                    valid = 2;
-                else
-                    valid = 0;
-
-                con.Close();
-                con.Dispose();
-                cmd.Dispose();
-            }
-            return valid;
-        }
-
-        private static int retrieveAccID(string email)
-        {
-            int result = new int();
-
-            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["CZ2006 - Life Planner"].ConnectionString))
-            {
-                string sql = "SELECT accountID FROM dbo.Account WHERE email=@email";
-                SqlCommand cmd = new SqlCommand(sql, con);
-                cmd.Parameters.AddWithValue("@email", email);
-
-                con.Open();
-                result = int.Parse(cmd.ExecuteScalar().ToString());
-                con.Close();
-                con.Dispose();
-                cmd.Dispose();
-            }
-            return result;
-        }
 
         public bool ValidateRC()
         {
@@ -244,6 +167,18 @@ namespace Life_Planner.Account
         public class MyObject
         {
             public string success { get; set; }
+        }
+
+        public void resetField()
+        {
+            tb_username.Text = String.Empty;
+            tb_fName.Text = String.Empty;
+            tb_lName.Text = String.Empty;
+            tb_email.Text = String.Empty;
+            tb_password.Text = String.Empty;
+            tb_rePassword.Text = String.Empty;
+            tb_datepicker.Text = String.Empty;
+            rbl_gender.SelectedIndex = 0;
         }
     }
 }
