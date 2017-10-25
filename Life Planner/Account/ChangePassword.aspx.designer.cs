@@ -7,10 +7,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Life_Planner {
+namespace Life_Planner.Account {
     
     
-    public partial class Feedback {
+    public partial class ChangePassword {
         
         /// <summary>
         /// alert_placeholder control.
@@ -22,102 +22,120 @@ namespace Life_Planner {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl alert_placeholder;
         
         /// <summary>
-        /// feedbackACK control.
+        /// alertText control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal feedbackACK;
+        protected global::System.Web.UI.WebControls.Literal alertText;
         
         /// <summary>
-        /// lblDate control.
+        /// lbl_CurrentPassword control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblDate;
+        protected global::System.Web.UI.WebControls.Label lbl_CurrentPassword;
         
         /// <summary>
-        /// txtDatetime control.
+        /// tb_CurrentPassword control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDatetime;
+        protected global::System.Web.UI.WebControls.TextBox tb_CurrentPassword;
         
         /// <summary>
-        /// lblAuthor control.
+        /// rfv_CurrentPassword control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblAuthor;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_CurrentPassword;
         
         /// <summary>
-        /// submittedBy control.
+        /// lbl_NewPassword control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox submittedBy;
+        protected global::System.Web.UI.WebControls.Label lbl_NewPassword;
         
         /// <summary>
-        /// txtfeedbackIssue control.
+        /// tb_NewPassword control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtfeedbackIssue;
+        protected global::System.Web.UI.WebControls.TextBox tb_NewPassword;
         
         /// <summary>
-        /// lblThreadDesc control.
+        /// rfv_NewPassword control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblThreadDesc;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_NewPassword;
         
         /// <summary>
-        /// txtFeedbackContent control.
+        /// lbl_ConfirmPassword control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtFeedbackContent;
+        protected global::System.Web.UI.WebControls.Label lbl_ConfirmPassword;
         
         /// <summary>
-        /// lbl control.
+        /// tb_ConfirmPassword control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl;
+        protected global::System.Web.UI.WebControls.TextBox tb_ConfirmPassword;
         
         /// <summary>
-        /// clearBtn control.
+        /// rfv_ConfirmPassword control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button clearBtn;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_ConfirmPassword;
         
         /// <summary>
-        /// submitFeedback control.
+        /// vs_all control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button submitFeedback;
+        protected global::System.Web.UI.WebControls.ValidationSummary vs_all;
+        
+        /// <summary>
+        /// btn_Change control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_Change;
+        
+        /// <summary>
+        /// lb_EndInfo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lb_EndInfo;
     }
 }

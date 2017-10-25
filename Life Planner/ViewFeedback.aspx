@@ -11,9 +11,9 @@
                     <div class="form-group">
                         &nbsp;<asp:Label ID="lblSearch" runat="server" Text="Search : " CssClass="col-md-2 control-label"></asp:Label>
                         <div class="col-md-8">
-                            <asp:TextBox ID="fbkSearch" runat="server" CssClass="col-md-4 form-control" placeholder="Search feedback"></asp:TextBox>
+                            <asp:TextBox ID="fbkSearch" runat="server" CssClass="col-md-4 form-control" placeholder="Search feedback issues"></asp:TextBox>
                             <div>
-                                <asp:Button ID="btnSearch" runat="server" Text="Search" CssClass="btn btn-primary" />
+                                <asp:Button ID="btnSearch" runat="server" Text="Search" CssClass="btn btn-primary" OnClick="btnSearch_Click" />
                             </div>
                         </div>
                     </div>
@@ -26,16 +26,16 @@
         <div class="form-group">
             Records per page: 
                 <asp:DropDownList ID="NumRecordLoaded" runat="server" AutoPostBack="true" OnSelectedIndexChanged="NumRecordLoaded_SelectedIndexChanged">
+                    <asp:ListItem Value="100000">All</asp:ListItem>
                     <asp:ListItem Value="5">5</asp:ListItem>
                     <asp:ListItem Value="10">10</asp:ListItem>
                     <asp:ListItem Value="20">20</asp:ListItem>
                     <asp:ListItem Value="50">50</asp:ListItem>
                     <asp:ListItem Value="100">100</asp:ListItem>
-                    <asp:ListItem Value="100000">ALL</asp:ListItem>
                 </asp:DropDownList>
             <br />
             <br />
-            <asp:GridView ID="feedbackGridView" runat="server" AutoGenerateColumns="False" BackColor="White" CssClass="table table-striped table-hover" EnableTheming="False" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="3" Width="1166px" AllowPaging="true" OnPageIndexChanging="feedbackGridView_PageIndexChanging" PageSize="5">
+            <asp:GridView ID="feedbackGridView" runat="server" AutoGenerateColumns="False" BackColor="White" CssClass="table table-striped table-hover" EnableTheming="False" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="3" Width="1166px" AllowPaging="true" OnPageIndexChanging="feedbackGridView_PageIndexChanging" PageSize="100000">
                 <FooterStyle BackColor="White" ForeColor="#000066" />
                 <HeaderStyle BackColor="#006699" Font-Bold="True" ForeColor="White" />
                 <PagerStyle BackColor="White" ForeColor="#000066" HorizontalAlign="Left" />
