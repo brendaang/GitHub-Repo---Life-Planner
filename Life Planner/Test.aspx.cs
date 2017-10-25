@@ -86,7 +86,7 @@ namespace Life_Planner {
 			//Fetch WEBDATA
 			System.Net.WebClient webFetcher = new System.Net.WebClient();
 			string jsonforSecSch = "https://data.gov.sg/api/action/datastore_search?resource_id=ede26d32-01af-4228-b1ed-f05c45a1d8ee&limit=362";
-			string json = webFetcher.DownloadString("https://data.gov.sg/api/action/datastore_search?resource_id=ede26d32-01af-4228-b1ed-f05c45a1d8ee");
+			string json = webFetcher.DownloadString("https://data.gov.sg/api/action/datastore_search?resource_id=ede26d32-01af-4228-b1ed-f05c45a1d8ee&limit=362");
 			//parse into object
 			JObject jObject = JObject.Parse(json);
 			JToken jFields = jObject["result"]["fields"];
