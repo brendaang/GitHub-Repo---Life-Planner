@@ -117,7 +117,7 @@ namespace Life_Planner {
 				//onclikc
 				String OLevelPoints = TextBox1.Text;
 
-				string query = "SELECT * FROM dbo.OLevelCOP WHERE gceo_cut_off < @OLevelPoints";
+				string query = "SELECT * FROM dbo.OLevelCOP WHERE gceo_cut_off >= @OLevelPoints";
 				//OLevelModule[] modules = new OLevelModule[256]; // how to get count of query??
 
 				cmd = new SqlCommand(query, con);
