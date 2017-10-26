@@ -75,7 +75,7 @@ namespace Life_Planner {
 
 				//DEBUG
 				//delete all data in table
-				cmd = new SqlCommand("DELETE FROM dbo.SecSch", con);
+				cmd = new SqlCommand("DELETE FROM dbo.OLevelCOP", con);
 				cmd.ExecuteNonQuery();
 
 
