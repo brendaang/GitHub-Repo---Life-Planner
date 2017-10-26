@@ -157,6 +157,7 @@
     <Content Include="About.aspx" />
     <Content Include="404.aspx" />
     <Content Include="Account\CreatePlan.aspx" />
+    <Content Include="Account\CreatePlanFromPrimary.aspx" />
     <Content Include="Account\CreateThread.aspx" />
     <Content Include="Account\EditProfile.aspx" />
     <Content Include="Account\ViewMyProfile.aspx" />
@@ -252,6 +253,13 @@
     </Compile>
     <Compile Include="Account\CreatePlan.aspx.designer.cs">
       <DependentUpon>CreatePlan.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\CreatePlanFromPrimary.aspx.cs">
+      <DependentUpon>CreatePlanFromPrimary.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\CreatePlanFromPrimary.aspx.designer.cs">
+      <DependentUpon>CreatePlanFromPrimary.aspx</DependentUpon>
     </Compile>
     <Compile Include="Account\CreateThread.aspx.cs">
       <DependentUpon>CreateThread.aspx</DependentUpon>

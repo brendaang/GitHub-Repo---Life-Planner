@@ -40,7 +40,7 @@
         <section id="createPlan">
             <h2></>Create Plan</h2>
 
-            <h5>Please enter your child's details</h5>
+            <h5>Step 1: Please enter your child's details</h5>
 
 
             <div id="alert_placeholder" runat="server" visible="false">
@@ -98,6 +98,9 @@
                         </asp:RadioButtonList>
                     </div>
                 </div>
+                <br />
+                <br />
+                <br />
 
                 <div class="form-group">
                     <asp:Label ID="lblCreatePlanDOB" runat="server" CssClass="col-md-2 control-label" Text="Date Of Birth:"></asp:Label>
@@ -120,6 +123,7 @@
                     </div>
                 </div>
 
+                
 
                 <div class="form-group">
                     <div class="dropdown">
@@ -135,6 +139,7 @@
                     <div class="col-lg-10 col-lg-offset-4">
                         <br />
                         <asp:Button ID="btnClearChild" CssClass="btn btn-default" Text="Clear" runat="server" OnClick="clearBtn_Click" CausesValidation="false" />
+                        &nbsp;
                         <asp:Button ID="btnSubmitChild" CssClass="btn btn-primary" Text="Submit" runat="server" OnClick="submitFeedback_Click" />
                     </div>
                 </div>
