@@ -2,6 +2,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <h2>Feedback Details</h2>
+    <h5>Resolve this feedback.</h5>
     <hr />
     <table class="nav-justified">
         <tr>
@@ -9,7 +10,7 @@
                 <div class="form-group">
                     <asp:Label ID="lblFbkTime" runat="server" CssClass="col-md-2 control-label">Feedback Date and Time :</asp:Label>
                     <div class="col-md-10">
-                        <asp:TextBox runat="server" ID="fbkDatetime" CssClass="form-control" />
+                        <asp:TextBox runat="server" ID="fbkDatetime" CssClass="form-control" ReadOnly="True"/>
                         <br />
                     </div>
                 </div>
@@ -20,8 +21,7 @@
                 <div class="form-group">
                     <asp:Label runat="server" CssClass="col-md-2 control-label">Feedback Issue :</asp:Label>
                     <div class="col-md-10">
-                        <asp:TextBox runat="server" ID="txtfeedbackIssue" CssClass="form-control" />
-                        <asp:RequiredFieldValidator runat="server" ControlToValidate="txtfeedbackIssue" />
+                        <asp:TextBox runat="server" ID="txtfeedbackIssue" CssClass="form-control" ReadOnly="True"/>
                         <br />
                     </div>
                 </div>
@@ -32,7 +32,7 @@
                 <div class="form-group">
                     <asp:Label ID="lblFbkcontent" runat="server" CssClass="col-md-2 control-label">Content :</asp:Label>
                     <div class="col-md-10">
-                        <asp:TextBox ID="fbkContent" runat="server" Rows="5" TextMode="MultiLine" CssClass="form-control" Width="500px"></asp:TextBox>
+                        <asp:TextBox ID="fbkContent" runat="server" Rows="5" TextMode="MultiLine" CssClass="form-control" Width="500px" ReadOnly="True"></asp:TextBox>
                         <br />
                     </div>
                 </div>
@@ -41,7 +41,7 @@
         <tr>
             <td>
                 <div class="form-group">
-                    <asp:Label ID="lblNotes" runat="server" CssClass="col-md-2 control-label">Notes :</asp:Label>
+                    <asp:Label ID="lblNotes" runat="server" CssClass="col-md-2 control-label">Additional Notes :</asp:Label>
                     <div class="col-md-10">
                         <asp:TextBox ID="txtAddnotes" runat="server" Rows="5" TextMode="MultiLine" CssClass="form-control" Width="500px" onkeyup="textCounter(this,'counter',10000);"></asp:TextBox>
                         <table class="nav-justified">

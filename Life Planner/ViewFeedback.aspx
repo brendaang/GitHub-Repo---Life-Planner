@@ -35,7 +35,7 @@
                 </asp:DropDownList>
             <br />
             <br />
-            <asp:GridView ID="feedbackGridView" runat="server" AutoGenerateColumns="False" BackColor="White" CssClass="table table-striped table-hover" EnableTheming="False" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="3" Width="1166px" AllowPaging="true" OnPageIndexChanging="feedbackGridView_PageIndexChanging" PageSize="100000">
+            <asp:GridView ID="feedbackGridView" runat="server" AutoGenerateColumns="False" DataKeyNames="feedbackID" BackColor="White" CssClass="table table-striped table-hover" EnableTheming="False" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="3" Width="1166px" AllowPaging="true" OnPageIndexChanging="feedbackGridView_PageIndexChanging" PageSize="100000" OnRowCommand="feedbackGridView_RowCommand">
                 <FooterStyle BackColor="White" ForeColor="#000066" />
                 <HeaderStyle BackColor="#006699" Font-Bold="True" ForeColor="White" />
                 <PagerStyle BackColor="White" ForeColor="#000066" HorizontalAlign="Left" />
@@ -55,7 +55,7 @@
                     <%-- <asp:BoundField DataField="acctName" HeaderText="Author" SortExpression="acctName"/>--%>
                     <asp:TemplateField HeaderText="Action">
                         <ItemTemplate>
-                            <asp:LinkButton ID="feedbackAction" runat="server" CommandArgument='<%#Eval("feedbackID")%>' Text="View Details">
+                            <asp:LinkButton ID="feedbackAction" runat="server" CommandName="viewFbkDetail" CommandArgument='<%# Container.DataItemIndex %>' Text="View Details">
                             </asp:LinkButton>
                         </ItemTemplate>
                     </asp:TemplateField>
