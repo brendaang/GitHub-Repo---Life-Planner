@@ -2,14 +2,15 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <h2></>We value your feedback !</h2>
-    
-        <h5>Thank you for taking your time to fill in our feedback form.
-        <br/>Your feedback is very important to us!</h5>
-   
+
+    <h5>Thank you for taking your time to fill in our feedback form.
+        <br />
+        Your feedback is very important to us!</h5>
+
     <div id="alert_placeholder" runat="server" visible="false">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-            <asp:Literal runat="server" ID="feedbackACK" />
-        </div>
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <asp:Literal runat="server" ID="feedbackACK" />
+    </div>
     <hr />
     <div class="form-group">
         <asp:Label ID="lblDate" runat="server" CssClass="col-md-2 control-label">Date and Time</asp:Label>
