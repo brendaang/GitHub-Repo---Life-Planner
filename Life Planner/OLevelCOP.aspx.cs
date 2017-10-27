@@ -108,6 +108,15 @@ namespace Life_Planner {
 
 		protected void Button1_Click(object sender, EventArgs e) {
 
+			//HOW TO CLEAR <table> !?!?
+
+			TableRow tableRow = new TableRow();
+			Table1.Rows.Add(tableRow);
+			TableCell aa = new TableCell();
+			aa.Text = "Cut off point > " + TextBox1.Text;
+			tableRow.Cells.Add(aa);
+			tableRow = new TableRow();
+			Table1.Rows.Add(tableRow);
 			//get which one is lesser
 			OLevelModule[] modules = new OLevelModule[256]; // how to get count of query??
 			using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["CZ2006 - Life Planner"].ConnectionString)) {
@@ -117,7 +126,7 @@ namespace Life_Planner {
 				//onclikc
 				String OLevelPoints = TextBox1.Text;
 
-				string query = "SELECT * FROM dbo.OLevelCOP WHERE gceo_cut_off >= @OLevelPoints";
+				string query = "SELECT * FROM dbo.OLevelCOP WHERE gceo_cut_off >= @OLevelPoints ORDER BY gceo_cut_off ASC";
 				//OLevelModule[] modules = new OLevelModule[256]; // how to get count of query??
 
 				cmd = new SqlCommand(query, con);
@@ -127,18 +136,36 @@ namespace Life_Planner {
 				int i = 0;
 				//save creds to array
 				while (dr.Read()) {
-					modules[i].academic_year = (string)dr["academic_year"];
-					modules[i].school = (string)dr["school"];
-					modules[i].course_name = (string)dr["course_name"];
-					modules[i].jae_cluster = (string)dr["jae_cluster"];
-					modules[i].jae_course_code = (string)dr["jae_course_code"];
-					modules[i].gceo_cut_off = (int) dr["gceo_cut_off"];
+					OLevelModule temp = new OLevelModule();
+					temp.academic_year = (string)dr["academic_year"];
+					temp.school = (string)dr["school"];
+					temp.course_name = (string)dr["course_name"];
+					temp.jae_cluster = (string)dr["jae_cluster"];
+					temp.jae_course_code = (string)dr["jae_course_code"];
+					temp.gceo_cut_off = Convert.ToInt32((byte)dr["gceo_cut_off"]);
+					modules[i] = temp;
 					
-					TableRow tableRow = new TableRow();
+					tableRow = new TableRow();
 					Table1.Rows.Add(tableRow);
 					//for <table>
 					TableCell tableCell = new TableCell();
-					tableCell.Text = modules[0].academic_year.ToString();
+					tableCell.Text = modules[i].academic_year.ToString();
+					tableRow.Cells.Add(tableCell);
+					tableCell = new TableCell();
+					tableCell.Text = modules[i].school.ToString();
+					tableRow.Cells.Add(tableCell);
+					tableCell = new TableCell();
+					tableCell.Text = modules[i].course_name.ToString();
+					tableRow.Cells.Add(tableCell);
+					tableCell = new TableCell();
+					tableCell.Text = modules[i].jae_cluster.ToString();
+					tableRow.Cells.Add(tableCell);
+					tableCell = new TableCell();
+					tableCell.Text = modules[i].jae_course_code.ToString();
+					tableRow.Cells.Add(tableCell);
+					tableCell = new TableCell();
+					tableCell.Text = modules[i].gceo_cut_off.ToString();
+					tableRow.Cells.Add(tableCell);
 					tableCell.Height = 12;
 					tableRow.Cells.Add(tableCell);
 
