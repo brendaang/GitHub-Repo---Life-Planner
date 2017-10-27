@@ -72,5 +72,18 @@ namespace Life_Planner
             feedbackGridView.DataBind();
             con.Close();
         }
+
+        protected void feedbackGridView_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            if (e.CommandName == "viewFbkDetail")
+            {
+                int rowIndex = Convert.ToInt32(e.CommandArgument);
+                GridViewRow row = feedbackGridView.Rows[rowIndex];
+
+                string feedbackID = row.Cells[0].Text;
+                Session["Feedback_ID"] = feedbackID;
+                Response.Redirect("ResolveFeedback.aspx", false);
+            }
+        }
     }
 }

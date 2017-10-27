@@ -13,6 +13,24 @@ namespace Life_Planner {
     public partial class ResolveFeedback {
         
         /// <summary>
+        /// alert_placeholder control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl alert_placeholder;
+        
+        /// <summary>
+        /// resolveACK control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal resolveACK;
+        
+        /// <summary>
         /// lblFbkTime control.
         /// </summary>
         /// <remarks>
@@ -121,6 +139,15 @@ namespace Life_Planner {
         protected global::System.Web.UI.WebControls.Label lblDropdown;
         
         /// <summary>
+        /// fbkStatusLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label fbkStatusLabel;
+        
+        /// <summary>
         /// DropDownListStatus control.
         /// </summary>
         /// <remarks>
@@ -128,5 +155,32 @@ namespace Life_Planner {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList DropDownListStatus;
+        
+        /// <summary>
+        /// lbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl;
+        
+        /// <summary>
+        /// cancelBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button cancelBtn;
+        
+        /// <summary>
+        /// resolvedBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button resolvedBtn;
     }
 }
