@@ -87,7 +87,24 @@ namespace Life_Planner.Account
                     string edLevel = ddlCreatePlanChildCurrentEdLevel.Text;
                     if (edLevel == "Kindergarten")
                     {
+                        string newChildNRIC = txtCreatePlanNRIC.Text;
+                        Session["newChildPlanKindergarten"] = newChildNRIC;
                         Response.AddHeader("REFRESH", "3;URL=/Account/CreatePlanFromPrimary.aspx");
+                    }
+
+                    else if (edLevel == "Primary")
+                    {
+                        string newChildNRIC = txtCreatePlanNRIC.Text;
+                        Session["newChildPlanPrimary"] = newChildNRIC;
+                        Response.AddHeader("REFRESH", "3;URL=/Account/CreatePlanFromSecondary.aspx");
+                    }
+
+                    else if (edLevel == "Secondary")
+                    {
+                        string newChildNRIC = txtCreatePlanNRIC.Text;
+                        Session["newChildPlanSecondary"] = newChildNRIC;
+                        //2 choices - poly/jc
+                        Response.AddHeader("REFRESH", "3;URL=/Account/CreatePlanFromJC.aspx");
                     }
 
 

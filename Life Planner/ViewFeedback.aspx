@@ -35,7 +35,7 @@
                 </asp:DropDownList>
             <br />
             <br />
-            <asp:GridView ID="feedbackGridView" runat="server" AutoGenerateColumns="False" BackColor="White" CssClass="table table-striped table-hover" EnableTheming="False" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="3" Width="1166px" AllowPaging="true" OnPageIndexChanging="feedbackGridView_PageIndexChanging" PageSize="100000">
+            <asp:GridView ID="feedbackGridView" runat="server" AutoGenerateColumns="False" BackColor="White" CssClass="table table-striped table-hover" EnableTheming="False" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="3" Width="1166px" AllowPaging="true" OnPageIndexChanging="feedbackGridView_PageIndexChanging" PageSize="100000" OnSelectedIndexChanged="feedbackGridView_SelectedIndexChanged">
                 <FooterStyle BackColor="White" ForeColor="#000066" />
                 <HeaderStyle BackColor="#006699" Font-Bold="True" ForeColor="White" />
                 <PagerStyle BackColor="White" ForeColor="#000066" HorizontalAlign="Left" />

@@ -10,7 +10,7 @@
 namespace Life_Planner.Account {
     
     
-    public partial class CreatePlanFromPrimary {
+    public partial class CreatePlanFromSecondary {
         
         /// <summary>
         /// Panel1 control.
@@ -40,67 +40,76 @@ namespace Life_Planner.Account {
         protected global::System.Web.UI.WebControls.Literal alertText;
         
         /// <summary>
-        /// lblSelectPriSch control.
+        /// lblSelectSecSch control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblSelectPriSch;
+        protected global::System.Web.UI.WebControls.Label lblSelectSecSch;
         
         /// <summary>
-        /// lblPriSchFilterLoc control.
+        /// lblPSLEScore control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPriSchFilterLoc;
+        protected global::System.Web.UI.WebControls.Label lblPSLEScore;
         
         /// <summary>
-        /// btnPriNorth control.
+        /// lblSecSchFilterLoc control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnPriNorth;
+        protected global::System.Web.UI.WebControls.Label lblSecSchFilterLoc;
         
         /// <summary>
-        /// btnPriSouth control.
+        /// btnSecNorth control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnPriSouth;
+        protected global::System.Web.UI.WebControls.Button btnSecNorth;
         
         /// <summary>
-        /// btnPriEast control.
+        /// btnSecSouth control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnPriEast;
+        protected global::System.Web.UI.WebControls.Button btnSecSouth;
         
         /// <summary>
-        /// btnPriWest control.
+        /// btnSecEast control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnPriWest;
+        protected global::System.Web.UI.WebControls.Button btnSecEast;
         
         /// <summary>
-        /// priSchTable control.
+        /// btnSecWest control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView priSchTable;
+        protected global::System.Web.UI.WebControls.Button btnSecWest;
+        
+        /// <summary>
+        /// secSchTable control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView secSchTable;
         
         /// <summary>
         /// Label1 control.

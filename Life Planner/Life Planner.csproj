@@ -170,7 +170,9 @@
     <Content Include="About.aspx" />
     <Content Include="404.aspx" />
     <Content Include="Account\CreatePlan.aspx" />
+    <Content Include="Account\CreatePlanFromJC.aspx" />
     <Content Include="Account\CreatePlanFromPrimary.aspx" />
+    <Content Include="Account\CreatePlanFromSecondary.aspx" />
     <Content Include="Account\CreateThread.aspx" />
     <Content Include="Account\EditProfile.aspx" />
     <Content Include="Account\ForgetPassword.aspx" />
@@ -204,6 +206,7 @@
     <Content Include="ResolveFeedback.aspx" />
     <Content Include="SendFeedback.aspx" />
     <Content Include="Test.aspx" />
+    <Content Include="Account\test2.aspx" />
     <Content Include="ViewFeedback.aspx" />
     <Content Include="WordList\WordList.txt" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
@@ -270,12 +273,26 @@
     <Compile Include="Account\CreatePlan.aspx.designer.cs">
       <DependentUpon>CreatePlan.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Account\CreatePlanFromJC.aspx.cs">
+      <DependentUpon>CreatePlanFromJC.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\CreatePlanFromJC.aspx.designer.cs">
+      <DependentUpon>CreatePlanFromJC.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Account\CreatePlanFromPrimary.aspx.cs">
       <DependentUpon>CreatePlanFromPrimary.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Account\CreatePlanFromPrimary.aspx.designer.cs">
       <DependentUpon>CreatePlanFromPrimary.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\CreatePlanFromSecondary.aspx.cs">
+      <DependentUpon>CreatePlanFromSecondary.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\CreatePlanFromSecondary.aspx.designer.cs">
+      <DependentUpon>CreatePlanFromSecondary.aspx</DependentUpon>
     </Compile>
     <Compile Include="Account\CreateThread.aspx.cs">
       <DependentUpon>CreateThread.aspx</DependentUpon>
@@ -448,6 +465,13 @@
     </Compile>
     <Compile Include="Test.aspx.designer.cs">
       <DependentUpon>Test.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\test2.aspx.cs">
+      <DependentUpon>test2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\test2.aspx.designer.cs">
+      <DependentUpon>test2.aspx</DependentUpon>
     </Compile>
     <Compile Include="ViewFeedback.aspx.cs">
       <DependentUpon>ViewFeedback.aspx</DependentUpon>
