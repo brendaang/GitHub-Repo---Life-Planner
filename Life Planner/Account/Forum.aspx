@@ -10,8 +10,8 @@
                 <div class="col-md-8">
                     <asp:TextBox ID="tbSearch" runat="server" CssClass="col-md-4 form-control" placeholder="Search"></asp:TextBox>
                     <div>
-                        <asp:Button ID="btnSearch" runat="server" Text="Search" OnClick="btnSearch_Click" CssClass="btn btn-primary" />
-                        <asp:Button ID="createThread" runat="server" Text="Create New Thread" CssClass="btn btn-primary" OnClick="createThread_Click" style="margin-left:20px" />
+                        <asp:Button ID="btnSearch" runat="server" Text="Search" OnClick="btnSearch_Click" CssClass="btn btn-primary" Width="70px" />
+                        <asp:Button ID="createThread" runat="server" Text="Create New Thread" CssClass="btn btn-primary" OnClick="createThread_Click" style="margin-left:20px" Width="150px" />
                         <br />
                         <br />
                     </div>
