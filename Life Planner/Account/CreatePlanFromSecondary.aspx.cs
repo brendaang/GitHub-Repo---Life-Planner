@@ -104,7 +104,7 @@ namespace Life_Planner.Account
 
             string secSchName = (string)secSchTable.DataKeys[secSchTable.SelectedIndex].Value;
             Session["secSchName"] = secSchName;
-            Response.Redirect("test2.aspx"); //
+          //  Response.Redirect("test2.aspx"); //
             //string threadID = intThreadID.ToString();
             //  lblThreadID.Text = threadID;
             //int index = Convert.ToInt16(priSchTable.SelectedDataKey.Value);
