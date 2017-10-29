@@ -132,7 +132,7 @@
                     <td style="width: 88px">
                         <asp:Button ID="cancelBtn" runat="server" CssClass="form-control" Text="Cancel" Width="200px" OnClick="cancelBtn_Click" CausesValidation="false" /></td>
                     <td class="modal-sm" style="width: 297px">
-                        <asp:Button ID="resolvedBtn" runat="server" CssClass="form-control" Text="Feedback Resolved" Width="200px" OnClick="resolvedBtn_Click" Style="background-color: #4ab0ea; color: #ffffff" />
+                        <asp:Button ID="resolvedBtn" runat="server" CssClass="form-control" Text="Feedback Resolved" Width="200px" OnClick="resolvedBtn_Click" Style="background-color: #4ab0ea; color: #ffffff"/>
                     </td>
                 </tr>
             </table>

@@ -48,6 +48,19 @@
                 <Columns>
                     <asp:BoundField DataField="feedbackID" HeaderText="Feedback ID" InsertVisible="False" SortExpression="feedbackID" ReadOnly="True" Visible="true" />
                     <asp:BoundField DataField="feedbackStatus" HeaderText="Status" SortExpression="feedbackStatus" />
+                    <%-- <asp:TemplateField>
+                        <HeaderTemplate> Status:
+                        <asp:DropDownList ID="fbkStatusID" runat="server" OnSelectedIndexChanged="fbkStatus_SelectedIndexChanged" AutoPostBack="true" style="color:black;">
+                            <asp:ListItem Value="All">All</asp:ListItem>
+                            <asp:ListItem Value="Open">Open</asp:ListItem>
+                            <asp:ListItem Value="Pending">Pending</asp:ListItem>
+                            <asp:ListItem Value="Resolved">Resolved</asp:ListItem>
+                        </asp:DropDownList>
+                        </HeaderTemplate>
+                        <ItemTemplate>
+                            <%# Eval("feedbackStatus") %>
+                        </ItemTemplate>
+                    </asp:TemplateField>--%>
                     <asp:BoundField DataField="feedbackIssue" HeaderText="Issue" SortExpression="feedbackIssue" />
                     <asp:BoundField DataField="feedbackDatetime" HeaderText="Created Date" SortExpression="feedbackDatetime" />
                     <%-- <asp:BoundField DataField="feedbackContent" HeaderText="Content" SortExpression="feedbackContent" />--%>
@@ -60,7 +73,7 @@
                         </ItemTemplate>
                     </asp:TemplateField>
                 </Columns>
-                <PagerStyle HorizontalAlign="Center"/>
+                <PagerStyle HorizontalAlign="Center" />
             </asp:GridView>
         </div>
     </section>

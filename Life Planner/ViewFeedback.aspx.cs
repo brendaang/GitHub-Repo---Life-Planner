@@ -81,9 +81,35 @@ namespace Life_Planner
                 GridViewRow row = feedbackGridView.Rows[rowIndex];
 
                 string feedbackID = row.Cells[0].Text;
+                string feedbackStts = row.Cells[1].Text;
+                
                 Session["Feedback_ID"] = feedbackID;
+                Session["Feedback_Status"] = feedbackStts;
                 Response.Redirect("ResolveFeedback.aspx", false);
             }
         }
+
+        //private void BindStatusList(DropDownList fbkStatusID)
+        //{
+        //    SqlConnection con = new DBManager().getConnection();
+        //    string sql = "SELECT feedbackStatus FROM dbo.Feedback WHERE feedbackStatus =  @feedbackStatus";
+        //    SqlCommand cmd = new SqlCommand(sql, con);
+
+        //    cmd.Parameters.Add("@feedbackStatus", fbkStatusID.SelectedValue.ToString());
+        //    con.Open();
+        //    fbkStatusID.DataSource = cmd.ExecuteReader();
+        //    fbkStatusID.DataTextField = "feedbackStatus";
+        //    fbkStatusID.DataValueField = "feedbackStatus";
+        //    fbkStatusID.DataBind();
+        //    con.Close();
+        //    fbkStatusID.Items.FindByValue(ViewState["test"].ToString()).Selected = true;
+        //}
+
+        //protected void fbkStatus_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    DropDownList fbkStatusID = (DropDownList)sender;
+        //    ViewState["test"] = fbkStatusID.SelectedValue;
+        //    this.BindGrid();
+        //}
     }
 }
