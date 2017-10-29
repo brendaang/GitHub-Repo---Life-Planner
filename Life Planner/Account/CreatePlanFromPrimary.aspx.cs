@@ -106,7 +106,7 @@ namespace Life_Planner.Account
 
             string priSchName = (string)priSchTable.DataKeys[priSchTable.SelectedIndex].Value;
             Session["priSchName"] = priSchName;
-            Response.Redirect("test2.aspx"); //
+            //Response.Redirect("test2.aspx"); //
             //string threadID = intThreadID.ToString();
             //  lblThreadID.Text = threadID;
             //int index = Convert.ToInt16(priSchTable.SelectedDataKey.Value);

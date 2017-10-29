@@ -104,7 +104,7 @@ namespace Life_Planner.Account
 
             string JCName = (string)JCTable.DataKeys[JCTable.SelectedIndex].Value;
             Session["JCName"] = JCName;
-            Response.Redirect("test2.aspx"); //
+           // Response.Redirect("test2.aspx"); //
             //string threadID = intThreadID.ToString();
             //  lblThreadID.Text = threadID;
             //int index = Convert.ToInt16(priSchTable.SelectedDataKey.Value);
