@@ -81,7 +81,7 @@ namespace Life_Planner {
 
 			//Initialise SQL Query
 			string sql = "";
-			sql += "INSERT INTO dbo.SecSch(";
+			sql += "INSERT INTO dbo.Schools(";
 
 			//Fetch WEBDATA
 			System.Net.WebClient webFetcher = new System.Net.WebClient();
@@ -129,7 +129,7 @@ namespace Life_Planner {
 				
 				//DEBUG
 				//delete all data in table
-				cmd = new SqlCommand("DELETE FROM dbo.SecSch", con);
+				cmd = new SqlCommand("DELETE FROM dbo.Schools", con);
 				cmd.ExecuteNonQuery();
 
 

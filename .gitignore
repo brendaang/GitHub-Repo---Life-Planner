@@ -260,3 +260,6 @@ paket-files/
 __pycache__/
 *.pyc
 Life Planner/Web.config
+/Life Planner/Account/test2.aspx
+/Life Planner/Account/test2.aspx.cs
+/Life Planner/Account/test2.aspx.designer.cs
