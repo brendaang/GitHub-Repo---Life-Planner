@@ -15,12 +15,14 @@ using System.Data;
 using System.Collections.Generic;
 using System.Net;
 using System.Web.Script.Serialization;
+using Life_Planner.Data;
 
 namespace Life_Planner.Account
 {
     public partial class Register : Page
     {
         validateUser vu = new validateUser();
+        //private DBManager dm;
         
         protected void btn_cancel_Click(object sender, EventArgs e)
         {
@@ -51,55 +53,17 @@ namespace Life_Planner.Account
                     // If both checks are true
                     if (usernameValid + emailValid == 3)
                     {
-                        using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["CZ2006 - Life Planner"].ConnectionString))
-                        {
+                        vu.Register(tb_fName.Text, tb_lName.Text, tb_email.Text, tb_datepicker.Text, rbl_gender.Text, tb_password.Text, tb_username.Text);
 
-                            string sql = "INSERT INTO dbo.Account(fName, lName, email, birthdate, gender, role) VALUES (@fName, @lName, @email, @date, @gender, 0);";
-
-                            SqlCommand cmd = new SqlCommand(sql, con);
-                            cmd.Parameters.AddWithValue("@fName", tb_fName.Text);
-                            cmd.Parameters.AddWithValue("@lName", tb_lName.Text);
-                            cmd.Parameters.AddWithValue("@email", tb_email.Text);
-                            cmd.Parameters.AddWithValue("@date", tb_datepicker.Text);
-                            cmd.Parameters.AddWithValue("@gender", rbl_gender.Text);
-
-                            con.Open();
-                            cmd.ExecuteNonQuery();
-                            con.Close();
-
-                            // Generate random salt
-                            RandomNumberGenerator rng = new RNGCryptoServiceProvider();
-                            byte[] tokenData = new byte[4];
-                            rng.GetBytes(tokenData);
-                            string salt = Convert.ToBase64String(tokenData);
-
-                            // Generate hash from salted password
-                            var hash = new SHA1Managed().ComputeHash(Encoding.UTF8.GetBytes(salt + tb_password.Text));
-                            string hashedPwd = Convert.ToBase64String(hash);
-
-                            string sql2 = "INSERT INTO dbo.AccCreds(username, passwordSalt, passwordHash, accountID) VALUES (@Username, @PasswordSalt, @PasswordHash, @accountID);";
-                            cmd = new SqlCommand(sql2, con);
-
-                            cmd.Parameters.AddWithValue("@Username", tb_username.Text);
-                            cmd.Parameters.AddWithValue("@PasswordSalt", salt);
-                            cmd.Parameters.AddWithValue("@PasswordHash", hashedPwd);
-                            cmd.Parameters.AddWithValue("@accountID", vu.retrieveAccID(tb_email.Text));
-
-                            con.Open();
-                            cmd.ExecuteNonQuery();
-                            con.Close();
-                            con.Dispose();
-                            cmd.Dispose();
-
-                            // Resets all form fields
-                            resetField();
+                        // Resets all form fields
+                        resetField();
 
                             alert_placeholder.Visible = true;
                             alert_placeholder.Attributes["class"] = "alert alert-success alert-dismissable";
                             alertText.Text = "User account successfully created! You will be redirected to the login page shortly.";
 
                             Response.AddHeader("REFRESH", "3;URL=/Account/Login.aspx");
-                        }
+                        //}
                     }
                     else if (usernameValid + emailValid == 2)
                     {

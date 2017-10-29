@@ -15,6 +15,7 @@ using System.Data;
 using System.Collections.Generic;
 using System.Net;
 using System.Web.Script.Serialization;
+using Life_Planner.Data;
 
 namespace Life_Planner.Account
 {
@@ -94,7 +95,62 @@ namespace Life_Planner.Account
             return AuthenticatePassword1(password, salt);
         }
 
+        public void Register(string fn, string ln, string email, string birthdate, string gender, string password, string username)
+        {
+            DBManager dm = new DBManager();
+            SqlConnection con = dm.getConnection();
+            //dm = new DBManager();
 
+            SqlParameter[] sqlParameters = new SqlParameter[5];
+
+            string sql = "INSERT INTO dbo.Account(fName, lName, email, birthdate, gender, role) VALUES (@fName, @lName, @email, @date, @gender, 0);";
+            sqlParameters[0] = new SqlParameter("@fName", SqlDbType.NVarChar);
+            sqlParameters[0].Value = fn;
+            sqlParameters[1] = new SqlParameter("@lName", SqlDbType.NVarChar);
+            sqlParameters[1].Value = ln;
+            sqlParameters[2] = new SqlParameter("@email", SqlDbType.NVarChar);
+            sqlParameters[2].Value = email;
+            sqlParameters[3] = new SqlParameter("@date", SqlDbType.Date);
+            sqlParameters[3].Value = birthdate;
+            sqlParameters[4] = new SqlParameter("@gender", SqlDbType.TinyInt);
+            sqlParameters[4].Value = gender;
+
+            dm.executeInsertQuery(sql, sqlParameters);
+
+            //SqlCommand cmd = new SqlCommand(sql, con);
+            //    cmd.Parameters.AddWithValue("@fName", tb_fName.Text);
+            //    cmd.Parameters.AddWithValue("@lName", tb_lName.Text);
+            //    cmd.Parameters.AddWithValue("@email", tb_email.Text);
+            //    cmd.Parameters.AddWithValue("@date", tb_datepicker.Text);
+            //    cmd.Parameters.AddWithValue("@gender", rbl_gender.Text);
+
+            //    con.Open();
+            //    cmd.ExecuteNonQuery();
+            //    con.Close();
+
+            // Generate random salt
+            RandomNumberGenerator rng = new RNGCryptoServiceProvider();
+            byte[] tokenData = new byte[4];
+            rng.GetBytes(tokenData);
+            string salt = Convert.ToBase64String(tokenData);
+
+            // Generate hash from salted password
+            var hash = new SHA1Managed().ComputeHash(Encoding.UTF8.GetBytes(salt + password));
+            string hashedPwd = Convert.ToBase64String(hash);
+
+            string sql2 = "INSERT INTO dbo.AccCreds(username, passwordSalt, passwordHash, accountID) VALUES (@Username, @PasswordSalt, @PasswordHash, @accountID);";
+            SqlParameter[] sqlParameters2 = new SqlParameter[4];
+            sqlParameters2[0] = new SqlParameter("@Username", SqlDbType.NVarChar);
+            sqlParameters2[0].Value = username;
+            sqlParameters2[1] = new SqlParameter("@PasswordSalt", SqlDbType.NVarChar);
+            sqlParameters2[1].Value = salt;
+            sqlParameters2[2] = new SqlParameter("@PasswordHash", SqlDbType.NVarChar);
+            sqlParameters2[2].Value = hashedPwd;
+            sqlParameters2[3] = new SqlParameter("@accountID", SqlDbType.Int);
+            sqlParameters2[3].Value = retrieveAccID(email);
+
+            dm.executeInsertQuery(sql2, sqlParameters2);
+        }
 
         // private methods
         private static bool AuthenticatePassword1(string password, string salt)
@@ -104,9 +160,10 @@ namespace Life_Planner.Account
             var hash = new SHA1Managed().ComputeHash(Encoding.UTF8.GetBytes(salt + password));
             string hashedPwd = Convert.ToBase64String(hash);
 
-            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["CZ2006 - Life Planner"].ConnectionString))
-            {
-                string sql = "SELECT COUNT(*) FROM dbo.AccCreds WHERE passwordHash=@password";
+            //using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["CZ2006 - Life Planner"].ConnectionString))
+            //{
+            SqlConnection con = new DBManager().getConnection();
+            string sql = "SELECT COUNT(*) FROM dbo.AccCreds WHERE passwordHash=@password";
                 SqlCommand cmd = new SqlCommand(sql, con);
                 cmd.Parameters.AddWithValue("@password", hashedPwd);
 
@@ -124,7 +181,7 @@ namespace Life_Planner.Account
                     con.Close();
                     con.Dispose();
                 }
-            }
+            //}
 
             return isValid;
         }
@@ -136,9 +193,10 @@ namespace Life_Planner.Account
             var hash = new SHA1Managed().ComputeHash(Encoding.UTF8.GetBytes(salt + password));
             string hashedPwd = Convert.ToBase64String(hash);
 
-            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["CZ2006 - Life Planner"].ConnectionString))
-            {
-                string sql = "UPDATE dbo.AccCreds SET passwordHash=@passwordHash WHERE accountID=@accID";
+            //using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["CZ2006 - Life Planner"].ConnectionString))
+            //{
+            SqlConnection con = new DBManager().getConnection();
+            string sql = "UPDATE dbo.AccCreds SET passwordHash=@passwordHash WHERE accountID=@accID";
                 SqlCommand cmd = new SqlCommand(sql, con);
 
                 cmd.Parameters.AddWithValue("@passwordHash", hashedPwd);
@@ -161,7 +219,7 @@ namespace Life_Planner.Account
                     con.Close();
                     con.Dispose();
                 }
-            }
+            //}
 
             return isValid;
         }
@@ -169,9 +227,10 @@ namespace Life_Planner.Account
         private string[] getCredsByEmail(string email)
         {
             //get creds by email
-            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["CZ2006 - Life Planner"].ConnectionString))
-            {
-                string query = "SELECT * FROM dbo.Account WHERE email=@email";
+            //using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["CZ2006 - Life Planner"].ConnectionString))
+            //{
+            SqlConnection con = new DBManager().getConnection();
+            string query = "SELECT * FROM dbo.Account WHERE email=@email";
                 string[] creds = new string[2];
 
                 con.Open();
@@ -191,14 +250,15 @@ namespace Life_Planner.Account
                 con.Dispose();
 
                 return creds;
-            }
+            //}
         }
         private string[] getCredsByUsername(string username)
         {
             //get credentials by username
-            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["CZ2006 - Life Planner"].ConnectionString))
-            {
-                string query = "SELECT * FROM dbo.AccCreds WHERE username=@username";
+            //using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["CZ2006 - Life Planner"].ConnectionString))
+            //{
+            SqlConnection con = new DBManager().getConnection();
+            string query = "SELECT * FROM dbo.AccCreds WHERE username=@username";
                 string[] creds = new string[3];
 
                 con.Open();
@@ -218,14 +278,15 @@ namespace Life_Planner.Account
                 con.Dispose();
 
                 return creds;
-            }
+            //}
         }
 
         private static string getUsername1(string accID)
         {
-            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["CZ2006 - Life Planner"].ConnectionString))
-            {
-                string query = "SELECT * FROM dbo.AccCreds WHERE accountID=@accID";
+            //using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["CZ2006 - Life Planner"].ConnectionString))
+            //{
+            SqlConnection con = new DBManager().getConnection();
+            string query = "SELECT * FROM dbo.AccCreds WHERE accountID=@accID";
                 string[] username = new string[1];
 
                 con.Open();
@@ -242,14 +303,15 @@ namespace Life_Planner.Account
                 con.Close();
                 con.Dispose();
                 return name;
-            }
+           // }
 
         }
         private static string getEmail1(string accID)
         {
-            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["CZ2006 - Life Planner"].ConnectionString))
-            {
-                string query = "SELECT * FROM dbo.Account WHERE accountID=@accID";
+            //using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["CZ2006 - Life Planner"].ConnectionString))
+            //{
+            SqlConnection con = new DBManager().getConnection();
+            string query = "SELECT * FROM dbo.Account WHERE accountID=@accID";
                 string[] email = new string[1];
 
                 con.Open();
@@ -267,7 +329,7 @@ namespace Life_Planner.Account
                 con.Close();
                 con.Dispose();
                 return add;
-            }
+            //}
 
         }
 
@@ -278,9 +340,10 @@ namespace Life_Planner.Account
             var hash = new SHA1Managed().ComputeHash(Encoding.UTF8.GetBytes(salt + password));
             string hashedPwd = Convert.ToBase64String(hash);
 
-            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["CZ2006 - Life Planner"].ConnectionString))
-            {
-                string sql = "UPDATE dbo.AccCreds SET passwordHash=@passwordHash WHERE username=@username";
+            //using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["CZ2006 - Life Planner"].ConnectionString))
+            //{
+            SqlConnection con = new DBManager().getConnection();
+            string sql = "UPDATE dbo.AccCreds SET passwordHash=@passwordHash WHERE username=@username";
                 SqlCommand cmd = new SqlCommand(sql, con);
 
                 cmd.Parameters.AddWithValue("@passwordHash", hashedPwd);
@@ -303,7 +366,7 @@ namespace Life_Planner.Account
                     con.Close();
                     con.Dispose();
                 }
-            }
+           // }
 
             return isValid;
         }
@@ -311,9 +374,10 @@ namespace Life_Planner.Account
         private static bool AuthenticateEmail1(string email)
         {
             bool isValid = false;
-            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["CZ2006 - Life Planner"].ConnectionString))
-            {
-                string sql = "SELECT COUNT(*) FROM dbo.Account WHERE email=@email";
+            //using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["CZ2006 - Life Planner"].ConnectionString))
+            //{
+            SqlConnection con = new DBManager().getConnection();
+            string sql = "SELECT COUNT(*) FROM dbo.Account WHERE email=@email";
                 SqlCommand cmd = new SqlCommand(sql, con);
                 cmd.Parameters.AddWithValue("@email", email);
 
@@ -332,17 +396,18 @@ namespace Life_Planner.Account
                     con.Close();
                     con.Dispose();
                 }
-            }
+            //}
             return isValid;
         }
 
         private static int GetAccountID1(string username, string password, string salt)
         {
             int accountID = 0;
-            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["CZ2006 - Life Planner"].ConnectionString))
-            {
-                //Generate hash from salted password
-                var hash = new SHA1Managed().ComputeHash(Encoding.UTF8.GetBytes(salt + password));
+            //using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["CZ2006 - Life Planner"].ConnectionString))
+            //{
+            SqlConnection con = new DBManager().getConnection();
+            //Generate hash from salted password
+            var hash = new SHA1Managed().ComputeHash(Encoding.UTF8.GetBytes(salt + password));
                 string hashedPwd = Convert.ToBase64String(hash);
 
                 string sql = "SELECT accountID FROM dbo.AccCreds WHERE username=@username AND passwordHash=@passwordHash";
@@ -356,17 +421,19 @@ namespace Life_Planner.Account
                     accountID = result;
                 else
                     accountID = 0;
-            }
+           // }
             return accountID;
         }
 
         private static bool AuthenticateUser1(string username, string password, string salt)
         {
             bool isValid = false;
-            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["CZ2006 - Life Planner"].ConnectionString))
-            {
-                //Generate hash from salted password
-                var hash = new SHA1Managed().ComputeHash(Encoding.UTF8.GetBytes(salt + password));
+            //using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["CZ2006 - Life Planner"].ConnectionString))
+            //{
+            SqlConnection con = new DBManager().getConnection();
+
+            //Generate hash from salted password
+            var hash = new SHA1Managed().ComputeHash(Encoding.UTF8.GetBytes(salt + password));
                 string hashedPwd = Convert.ToBase64String(hash);
 
                 string sql = "SELECT COUNT(*) FROM dbo.AccCreds WHERE username=@username AND passwordHash=@passwordHash";
@@ -380,16 +447,17 @@ namespace Life_Planner.Account
                     isValid = true;
                 else
                     isValid = false;
-            }
+           // }
             return isValid;
         }
 
         private static bool AuthenticateUsername1(string username)
         {
             bool isValid = false;
-            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["CZ2006 - Life Planner"].ConnectionString))
-            {
-                string sql = "SELECT COUNT(*) FROM dbo.AccCreds WHERE username=@username";
+            //using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["CZ2006 - Life Planner"].ConnectionString))
+            //{
+            SqlConnection con = new DBManager().getConnection();
+            string sql = "SELECT COUNT(*) FROM dbo.AccCreds WHERE username=@username";
                 SqlCommand cmd = new SqlCommand(sql, con);
                 cmd.Parameters.AddWithValue("@username", username);
 
@@ -409,7 +477,7 @@ namespace Life_Planner.Account
                     con.Dispose();
                 }
 
-            }
+            //}
 
             return isValid;
         }
@@ -417,9 +485,10 @@ namespace Life_Planner.Account
         private static string RetrieveSalt1(string username)
         {
             string salt = "";
-            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["CZ2006 - Life Planner"].ConnectionString))
-            {
-                string sql = "SELECT passwordSalt FROM dbo.AccCreds WHERE username=@username";
+            //using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["CZ2006 - Life Planner"].ConnectionString))
+            //{
+            SqlConnection con = new DBManager().getConnection();
+            string sql = "SELECT passwordSalt FROM dbo.AccCreds WHERE username=@username";
                 SqlCommand cmd = new SqlCommand(sql, con);
                 cmd.Parameters.AddWithValue("@username", username);
 
@@ -430,7 +499,7 @@ namespace Life_Planner.Account
                     salt = "-1";
                 else
                     salt = result.ToString();
-            }
+           // }
             return salt;
         }
         private static int retrieveAccID1(string email)
@@ -439,7 +508,8 @@ namespace Life_Planner.Account
 
             using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["CZ2006 - Life Planner"].ConnectionString))
             {
-                string sql = "SELECT accountID FROM dbo.Account WHERE email=@email";
+           // SqlConnection con = new DBManager().getConnection();
+            string sql = "SELECT accountID FROM dbo.Account WHERE email=@email";
                 SqlCommand cmd = new SqlCommand(sql, con);
                 cmd.Parameters.AddWithValue("@email", email);
 
@@ -456,9 +526,10 @@ namespace Life_Planner.Account
         {
             int valid = 0;
 
-            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["CZ2006 - Life Planner"].ConnectionString))
-            {
-                SqlCommand cmd = new SqlCommand("SELECT COUNT(*) FROM dbo.AccCreds WHERE username=@username", con);
+            //using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["CZ2006 - Life Planner"].ConnectionString))
+            //{
+            SqlConnection con = new DBManager().getConnection();
+            SqlCommand cmd = new SqlCommand("SELECT COUNT(*) FROM dbo.AccCreds WHERE username=@username", con);
                 cmd.Parameters.AddWithValue("@username", username);
                 con.Open();
 
@@ -472,7 +543,7 @@ namespace Life_Planner.Account
                 con.Close();
                 con.Dispose();
                 cmd.Dispose();
-            }
+           // }
             return valid;
         }
 
@@ -480,9 +551,10 @@ namespace Life_Planner.Account
         {
             int valid = 0;
 
-            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["CZ2006 - Life Planner"].ConnectionString))
-            {
-                SqlCommand cmd = new SqlCommand("SELECT COUNT(*) FROM dbo.Account WHERE email=@email", con);
+            //using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["CZ2006 - Life Planner"].ConnectionString))
+            //{
+            SqlConnection con = new DBManager().getConnection();
+            SqlCommand cmd = new SqlCommand("SELECT COUNT(*) FROM dbo.Account WHERE email=@email", con);
                 cmd.Parameters.AddWithValue("@email", email);
                 con.Open();
 
@@ -496,7 +568,7 @@ namespace Life_Planner.Account
                 con.Close();
                 con.Dispose();
                 cmd.Dispose();
-            }
+            //}
             return valid;
         }
 
