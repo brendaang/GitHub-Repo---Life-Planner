@@ -50,7 +50,7 @@
                                     </itemtemplate>
                                     <%--<asp:Label ID="userTitle" runat="server" Text='<%#Eval("acctTitle") %>'></asp:Label>--%>
                                 </div>
-                                <asp:Button ID="btnReport" runat="server" Text="Report" style="background-color: black" CssClass="btn" CommandName="report" OnClick="btnReport_Click" OnClientClick="ConfirmReport()" />
+                                <asp:Button ID="btnReport" runat="server" Text="Report" style="background-color: black" CssClass="btn" CommandName="report" OnClick="btnReport_Click" OnClientClick="ConfirmReport()" Width="87px" />
                             </div>
                             <div class="panel-body">
                                 <!-- Your content-->
@@ -65,8 +65,8 @@
                                 <asp:Button ID="btnEdit" runat="server" Text="Edit" CssClass="btn btn-warning" CommandName="edit" OnClick="btnEdit_Click" Width="87px" />
                                 <asp:Button ID="btnQuote" runat="server" Text="Quote" CssClass="btn btn-success" CommandName="quote" OnClick="btnQuote_Click" Width="87px" />
                                 <div class="col-md-10">
-                                    <asp:Button ID="btnLike" runat="server" Text="Like ↑" CssClass="btn btn-primary" CommandName="like" OnClick="btnLikeOnClick" />
-                                    <asp:Button ID="btnDislike" runat="server" Text="Dislike ↓" CssClass="btn btn-danger" CommandName="dislike" OnClick="btnDislikeOnClick" />
+                                    <asp:Button ID="btnLike" runat="server" Text="Like ↑" CssClass="btn btn-primary" CommandName="like" OnClick="btnLikeOnClick" Width="87px" />
+                                    <asp:Button ID="btnDislike" runat="server" Text="Dislike ↓" CssClass="btn btn-danger" CommandName="dislike" OnClick="btnDislikeOnClick" Width="87px" />
                                 </div>
                             </div>
                         </div>
@@ -121,11 +121,11 @@
         <div class="form-group">
             <asp:Label ID="lbl" runat="server" CssClass="col-md-2 control-label" Text=""></asp:Label>
             <div style="float: left">
-                <asp:Button ID="btnPost" runat="server" CssClass="btn btn-primary" OnClick="btnPost_Click" Text="Post" />
+                <asp:Button ID="btnPost" runat="server" CssClass="btn btn-primary" OnClick="btnPost_Click" Text="Post" Width="87px" />
                 <br />
             </div>
             <div>
-                <asp:Button ID="btnCancel" runat="server" CssClass="btn btn-warning" Text="Cancel" OnClick="btnCancel_Click" />
+                <asp:Button ID="btnCancel" runat="server" CssClass="btn btn-warning" Text="Cancel" OnClick="btnCancel_Click" Width="87px" />
             </div>
         </div>
         <br />

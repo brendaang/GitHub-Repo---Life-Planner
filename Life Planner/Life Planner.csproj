@@ -174,6 +174,7 @@
     <Content Include="Account\CreatePlanFromPrimary.aspx" />
     <Content Include="Account\CreatePlanFromSecondary.aspx" />
     <Content Include="Account\CreateThread.aspx" />
+    <Content Include="Account\Editing-Posts.aspx" />
     <Content Include="Account\EditProfile.aspx" />
     <Content Include="Account\ForgetPassword.aspx" />
     <Content Include="Account\ResetPassword.aspx" />
@@ -297,6 +298,13 @@
     </Compile>
     <Compile Include="Account\CreateThread.aspx.designer.cs">
       <DependentUpon>CreateThread.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\Editing-Posts.aspx.cs">
+      <DependentUpon>Editing-Posts.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\Editing-Posts.aspx.designer.cs">
+      <DependentUpon>Editing-Posts.aspx</DependentUpon>
     </Compile>
     <Compile Include="Account\EditProfile.aspx.cs">
       <DependentUpon>EditProfile.aspx</DependentUpon>
