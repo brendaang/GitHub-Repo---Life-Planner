@@ -16,24 +16,21 @@ namespace Life_Planner
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            string feedback_ID = (string)(Session["Feedback_ID"]);
+            string feedbackID = (string)(Session["Feedback_ID"]);
             SqlConnection con = new DBManager().getConnection();
 
-            string sql2 = "SELECT feedbackDatetime, feedbackIssue, feedbackContent, submittedBy, feedbackStatus FROM dbo.Feedback WHERE feedbackID = @feedbackID";
-            string sql3 = "SELECT resolvedNotes FROM dbo.ResolveFeedback WHERE feedbackID = @feedbackID";
+            string sql2 = "SELECT feedbackDatetime, feedbackIssue, feedbackContent, submittedBy, feedbackStatus FROM dbo.Feedback WHERE @feedbackID = feedbackID";
             SqlCommand cmd2 = new SqlCommand(sql2, con);
-            SqlCommand cmd3 = new SqlCommand(sql3, con);
 
-            cmd2.Parameters.AddWithValue("@feedbackID", feedback_ID);
+            cmd2.Parameters.AddWithValue("@feedbackID", feedbackID);
             con.Open();
             SqlDataReader reader = cmd2.ExecuteReader();
             reader.Read();
             fbkDatetime.Text = reader["feedbackDatetime"].ToString();
             txtfeedbackIssue.Text = reader["feedbackIssue"].ToString();
             fbkContent.Text = reader["feedbackContent"].ToString();
-            //txtAddnotes.Text = reader["resolvedNotes"].ToString();
-
             resolvedBy.Text = "Nurha";
+
             string today = DateTime.Now.ToString();
             resolvedOn.Text = today;
 
@@ -105,6 +102,24 @@ namespace Life_Planner
             cmd2.ExecuteNonQuery();
             con2.Close();
             return accountID;
+        }
+
+        protected string getFeeebackStatus()
+        {
+            string feedbackID = (string)(Session["Feedback_ID"]);
+            String feedbackStatus;
+            SqlConnection con2 = new DBManager().getConnection();
+
+            string sql2 = "SELECT feedbackStatus FROM dbo.Feedback WHERE @feedbackID = feedbackID";
+            SqlCommand cmd2 = new SqlCommand(sql2, con2);
+
+            cmd2.Parameters.AddWithValue("@feedbackID", feedbackID);
+            con2.Open();
+            var firstColumn = cmd2.ExecuteScalar();
+            feedbackStatus = firstColumn.ToString();
+            cmd2.ExecuteNonQuery();
+            con2.Close();
+            return feedbackStatus;
         }
     }
 }
