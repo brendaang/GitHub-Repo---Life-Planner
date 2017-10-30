@@ -169,6 +169,7 @@
   <ItemGroup>
     <Content Include="About.aspx" />
     <Content Include="404.aspx" />
+    <Content Include="Account\ChangeRole.aspx" />
     <Content Include="Account\CreatePlan.aspx" />
     <Content Include="Account\CreatePlanFromJC.aspx" />
     <Content Include="Account\CreatePlanFromPrimary.aspx" />
@@ -178,6 +179,7 @@
     <Content Include="Account\EditProfile.aspx" />
     <Content Include="Account\ForgetPassword.aspx" />
     <Content Include="Account\ResetPassword.aspx" />
+    <Content Include="Account\SetAdmin.aspx" />
     <Content Include="Account\ViewMyProfile.aspx" />
     <Content Include="Account\ViewOtherProfile.aspx" />
     <Content Include="Account\ChangePassword.aspx" />
@@ -264,6 +266,13 @@
     <Compile Include="404.aspx.designer.cs">
       <DependentUpon>404.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Account\ChangeRole.aspx.cs">
+      <DependentUpon>ChangeRole.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\ChangeRole.aspx.designer.cs">
+      <DependentUpon>ChangeRole.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Account\CreatePlan.aspx.cs">
       <DependentUpon>CreatePlan.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -326,6 +335,13 @@
     </Compile>
     <Compile Include="Account\ResetPassword.aspx.designer.cs">
       <DependentUpon>ResetPassword.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\SetAdmin.aspx.cs">
+      <DependentUpon>SetAdmin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\SetAdmin.aspx.designer.cs">
+      <DependentUpon>SetAdmin.aspx</DependentUpon>
     </Compile>
     <Compile Include="Account\validateUser.cs" />
     <Compile Include="Account\ViewMyProfile.aspx.cs">

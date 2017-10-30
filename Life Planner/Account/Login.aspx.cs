@@ -41,9 +41,11 @@ namespace Life_Planner.Account
                         // Perform a redirect to Home page
                         Session["username"] = tb_username.Text;
                         Session["accountID"] = vu.GetAccountID(tb_username.Text, tb_password.Text, salt);
+                        Session["role"] = vu.getRoleByAccID(Session["accountID"].ToString());
                         FormsAuthentication.RedirectFromLoginPage(tb_username.Text, true);
-                        //Response.Redirect("~404.aspx");
-                        //Response.Redirect("~/ViewFeedback.aspx");
+                        //Response.Write(Session["role"]);
+                        //Response.Write(Session["role"].GetType());
+
 
                         //alert_placeholder.Visible = true;
                         //alert_placeholder.Attributes["class"] = "alert alert-success alert-dismissable";

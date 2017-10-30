@@ -152,6 +152,92 @@ namespace Life_Planner.Account
             dm.executeInsertQuery(sql2, sqlParameters2);
         }
 
+        public string getRoleByAccID(string accID)
+        {
+            string role = "";
+            SqlConnection con = new DBManager().getConnection();
+            string sql = "SELECT role FROM dbo.Account WHERE accountID=@accID";
+            SqlCommand cmd = new SqlCommand(sql, con);
+            cmd.Parameters.AddWithValue("@accID", accID);
+            con.Open();
+            int result = int.Parse(cmd.ExecuteScalar().ToString());
+            if (result == 0)
+                role = "User";
+            else if (result == 1)
+            {
+                role = "Admin";
+            }
+            else
+            {
+                role = result.ToString();
+            }
+            return role;
+        }
+
+        public string[] getUserInfoByID(string accID)
+        {
+            //get info
+            string[] info = new string[3];
+            SqlConnection con = new DBManager().getConnection();
+            string sql = "SELECT * FROM dbo.Account WHERE accountID=@accountID";
+            con.Open();
+            SqlCommand cmd = new SqlCommand(sql, con);
+            cmd.Parameters.AddWithValue("@accountID", accID);
+            SqlDataReader dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                info[0] = (string)dr["fName"];
+                info[1] = (string)dr["lName"];
+                info[2] = dr["role"].ToString();
+            }
+            dr.Close();
+            con.Close();
+            con.Dispose();
+
+            return info;
+        }
+
+        public void changeRoleByID(string accID)
+        {
+            SqlConnection con = new DBManager().getConnection();
+            string role = getRoleByAccID(accID);
+            if(role == "User")
+            {
+                role = "1";
+                string sql = "UPDATE dbo.Account SET role=@role WHERE accountID=@accountID";
+                SqlCommand cmd = new SqlCommand(sql, con);
+                cmd.Parameters.AddWithValue("@accountID", accID);
+                cmd.Parameters.AddWithValue("@role", int.Parse(role));
+                con.Open();
+                cmd.ExecuteScalar();
+                con.Close();
+            }
+            else
+            {
+                role = "0";
+                string sql = "UPDATE dbo.Account SET role=@role WHERE accountID=@accountID";
+                SqlCommand cmd = new SqlCommand(sql, con);
+                cmd.Parameters.AddWithValue("@accountID", accID);
+                cmd.Parameters.AddWithValue("@role", int.Parse(role));
+                con.Open();
+                cmd.ExecuteScalar();
+                con.Close();
+            }
+
+        }
+
+        public string getAccountIDByUsername(string username)
+        {
+            SqlConnection con = new DBManager().getConnection();
+            string sql = "SELECT accountID FROM dbo.AccCreds WHERE username=@username";
+            SqlCommand cmd = new SqlCommand(sql, con);
+            cmd.Parameters.AddWithValue("@username", username);
+            con.Open();
+            string accID = cmd.ExecuteScalar().ToString();
+            con.Close();
+            return accID;
+        }
+
         // private methods
         private static bool AuthenticatePassword1(string password, string salt)
         {
