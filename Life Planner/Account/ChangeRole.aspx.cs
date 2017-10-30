@@ -13,6 +13,11 @@ namespace Life_Planner.Account
         string[] userinfo;
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["role"].ToString() != "Admin")
+            {
+                Response.Redirect("~/Error.aspx");
+            }
+
             tb_accId.Text = (string)Session["uia"];
             userinfo = vu.getUserInfoByID(tb_accId.Text);
             
