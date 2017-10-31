@@ -34,8 +34,17 @@ namespace Life_Planner.Account
             tbEmail.Text = reader["email"].ToString();
    
             tbBirthDate.Text = reader["birthdate"].ToString();
-            tbGender.Text = reader["gender"].ToString();
-            
+
+            string gender = reader["gender"].ToString();
+            if (gender == "1")
+            {
+                tbGender.Text = "Male";
+            }
+            else
+            {
+                tbGender.Text = "Female";
+            }
+
 
 
 
