@@ -16,36 +16,22 @@ namespace Life_Planner
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            //hardcoded for now
-            submittedBy.Text = "Nurha";
-            //txtAuthor.Text = Session["username"].ToString();
+            submittedBy.Text = getTheName();
             string today = DateTime.Now.ToString();
             txtDatetime.Text = today;
         }
 
         protected string getAccID()
         {
-            //hardcoded for now
-            String fName = "Brenda";
-
-            //String acctName = Session["username"].ToString();
-
+            String acctName = Session["username"].ToString();
             String accountID;
             SqlConnection con2 = new DBManager().getConnection();
-
-            string sql2 = "SELECT [accountID] FROM [CZ2006 - Life Planner].[dbo].[Account] WHERE fName = @fName;";
+            string sql2 = "SELECT accountID FROM dbo.Account WHERE accountID IN (SELECT accountID FROM dbo.AccCreds WHERE username = @acctName);";
             SqlCommand cmd2 = new SqlCommand(sql2, con2);
-            cmd2.Parameters.AddWithValue("@fName", fName);
+            cmd2.Parameters.AddWithValue("@acctName", acctName);
             con2.Open();
             var firstColumn = cmd2.ExecuteScalar();
-            if (firstColumn != null)
-            {
-                accountID = firstColumn.ToString();
-            }
-            else
-            {
-                return "Is a Null";
-            }
+            accountID = firstColumn.ToString();
             cmd2.ExecuteNonQuery();
             con2.Close();
             return accountID;
@@ -85,6 +71,22 @@ namespace Life_Planner
         {
             txtfeedbackIssue.Text = string.Empty;
             txtFeedbackContent.Text = string.Empty;
+        }
+
+        protected string getTheName()
+        {
+            String firstName;
+            SqlConnection con2 = new DBManager().getConnection();
+
+            string sql2 = "SELECT fName FROM dbo.Account WHERE accountID = @accountID";
+            SqlCommand cmd2 = new SqlCommand(sql2, con2);
+            cmd2.Parameters.AddWithValue("@accountID", getAccID());
+            con2.Open();
+            var firstColumn = cmd2.ExecuteScalar();
+            firstName = firstColumn.ToString();
+            cmd2.ExecuteNonQuery();
+            con2.Close();
+            return firstName;
         }
     }
 }

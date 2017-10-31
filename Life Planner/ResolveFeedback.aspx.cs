@@ -87,7 +87,6 @@ namespace Life_Planner
 
             if (feedbackStatus.Equals("Open"))
             {
-                DateTime resolvedOn = DateTime.Now;
                 String resolvedNotes = txtAddnotes.Text;
 
                 string sql0 = "SET IDENTITY_INSERT ID ON";
@@ -106,7 +105,7 @@ namespace Life_Planner
 
                 cmd1.Parameters.AddWithValue("@feedbackID", feedback_ID);
                 cmd1.Parameters.AddWithValue("@resolvedBy", getAccID());
-                cmd1.Parameters.AddWithValue("@resolvedOn", resolvedOn);
+                cmd1.Parameters.AddWithValue("@resolvedOn", DateTime.Now);
                 cmd1.Parameters.AddWithValue("@feedbackStatus", DropDownListStatus.SelectedValue);
                 cmd1.Parameters.AddWithValue("@resolvedNotes", resolvedNotes);
                 cmd2.Parameters.AddWithValue("@feedbackID", feedback_ID);
