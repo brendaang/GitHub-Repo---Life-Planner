@@ -84,6 +84,15 @@ namespace Life_Planner.Account
                 tb_lName.Text = reader["lName"].ToString();
                 tb_email.Text = reader["email"].ToString();
                 tb_datepicker.Text = reader["birthdate"].ToString();
+                string gender = reader["gender"].ToString();
+                if (gender == "1")
+                {
+                    rbl_gender.Text = "Male";
+                }
+                else
+                {
+                    rbl_gender.Text = "Female";
+                }
                 reader.Close();
             }
             catch (SqlException ex)
@@ -110,11 +119,11 @@ namespace Life_Planner.Account
             {
                 conn.Open();
                 string accountID = Session["accountID"].ToString();
-
-
-                SqlCommand cmd = new SqlCommand("UPDATE [CZ2006 - Life Planner].[dbo].[Account] " +
-                    "SET fname =@fName , lName =@lName, email = @email, birthdate = @date, role = '0' " +
-                    "WHERE accountID = @accountID ", conn);
+                string sql = "UPDATE dbo.Account SET fname=@fname, lname=@lname, email=@email, birthdate=@birthdate, gender=@gender WHERE accountID=@accountID";
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                //SqlCommand cmd = new SqlCommand("UPDATE [CZ2006 - Life Planner].[dbo].[Account] " +
+                //    "SET fname =@fName , lName =@lName, email = @email, birthdate = @date, gender= @gender, role = '0' " +
+                //    "WHERE accountID = @accountID ", conn);
 
 
 
@@ -123,29 +132,34 @@ namespace Life_Planner.Account
                 cmd.Parameters.AddWithValue("@lName", tb_lName.Text);
                 cmd.Parameters.AddWithValue("@email", tb_email.Text);
                 cmd.Parameters.AddWithValue("@date", tb_datepicker.Text);
+                cmd.Parameters.AddWithValue("@gender", rbl_gender.SelectedIndex);
 
-
-                int a = cmd.ExecuteNonQuery();
-    
+                //Response.Write("TEST1");
+                //int a = cmd.ExecuteNonQuery();
+                cmd.ExecuteNonQuery();
+                Response.Write("TEST2");
+                int a = 0;
                 if (a == 0)
                 {
+                    Response.Write("TEST3");
                     //Not updated.
-                   
-                     alert_placeholder.Visible = false;
-                    alert_placeholder.Attributes["class"] = "alert alert-danger alert-dismissable";
-                    alertText.Text = "Updated failed, Please try again later. ";
 
-                    Response.AddHeader("REFRESH", "3;URL=/Account/ViewMyProfile.aspx");
+                    //alert_placeholder.Visible = false;
+                    //alert_placeholder.Attributes["class"] = "alert alert-danger alert-dismissable";
+                    //alertText.Text = "Updated failed, Please try again later. ";
+
+                    //Response.AddHeader("REFRESH", "3;URL=/Account/ViewMyProfile.aspx");
                 }
 
                 else
                 {
+                    Response.Write("TEST4");
                     //Updated.
-                     alert_placeholder.Visible = true;
-                        alert_placeholder.Attributes["class"] = "alert alert-success alert-dismissable";
-                        alertText.Text = "User account updated successfully created! You will be redirected to the home page shortly.";
+                    //alert_placeholder.Visible = true;
+                    //    alert_placeholder.Attributes["class"] = "alert alert-success alert-dismissable";
+                    //    alertText.Text = "User account updated successfully created! You will be redirected to the home page shortly.";
 
-                        Response.AddHeader("REFRESH", "3;URL=/Default.aspx");
+                    //    Response.AddHeader("REFRESH", "3;URL=/Default.aspx");
                 }
                 
 
