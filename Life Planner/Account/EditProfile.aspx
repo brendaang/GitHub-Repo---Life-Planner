@@ -94,22 +94,17 @@
 
                 </div>
 
-               <%-- <div class="form-group">
-                    <div class="btn-group">
-
-       
-                            <asp:DropDownList CssClass="btn btn-default " ID="DPCID" runat="server">
-
-                                <asp:ListItem>Allahabad</asp:ListItem>
-                                <asp:ListItem>Kanpur</asp:ListItem>
-                                <asp:ListItem>Rewa</asp:ListItem>
-                                <asp:ListItem>Bhopal</asp:ListItem>
-                                <asp:ListItem>Indore</asp:ListItem>
-                                <asp:ListItem>Jabalpur</asp:ListItem>
-                            </asp:DropDownList>
-                        </div>
+              <div class="form-group">
+                    <asp:Label ID="lbl_gender" CssClass="col-lg-4 control-label" runat="server">Gender:</asp:Label>
+                    <div class="col-lg-6">
+                        <asp:RadioButtonList ID="rbl_gender" RepeatLayout="Flow" RepeatDirection="Horizontal" runat="server">
+                            <asp:ListItem class="radio-inline" Value="1" Text="Male" Selected="True"></asp:ListItem>
+                            <asp:ListItem class="radio-inline" Value="0" Text="Female"></asp:ListItem>
+                        </asp:RadioButtonList>
+                    </div>
                 </div>
-        </div>--%>
+                    <br />
+
        
         <div class="form-group">
             <div class="col-lg-4 col-lg-offset-4">
