@@ -415,7 +415,7 @@ namespace Life_Planner.Account
                     else
                     {
                         Session["postID"] = postID.Text;
-                        //Response.Redirect("Editing-Posts.aspx");
+                        Response.Redirect("Editing-Posts.aspx");
                     }
                 }
         }

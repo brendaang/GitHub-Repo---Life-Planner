@@ -7,10 +7,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Life_Planner {
+namespace Life_Planner.Account {
     
     
-    public partial class ResolveFeedback {
+    public partial class ChangePassword {
         
         /// <summary>
         /// alert_placeholder control.
@@ -22,165 +22,120 @@ namespace Life_Planner {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl alert_placeholder;
         
         /// <summary>
-        /// resolveACK control.
+        /// alertText control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal resolveACK;
+        protected global::System.Web.UI.WebControls.Literal alertText;
         
         /// <summary>
-        /// lblFbkTime control.
+        /// lbl_CurrentPassword control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblFbkTime;
+        protected global::System.Web.UI.WebControls.Label lbl_CurrentPassword;
         
         /// <summary>
-        /// fbkDatetime control.
+        /// tb_CurrentPassword control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox fbkDatetime;
+        protected global::System.Web.UI.WebControls.TextBox tb_CurrentPassword;
         
         /// <summary>
-        /// txtfeedbackIssue control.
+        /// rfv_CurrentPassword control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtfeedbackIssue;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_CurrentPassword;
         
         /// <summary>
-        /// lblFbkcontent control.
+        /// lbl_NewPassword control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblFbkcontent;
+        protected global::System.Web.UI.WebControls.Label lbl_NewPassword;
         
         /// <summary>
-        /// fbkContent control.
+        /// tb_NewPassword control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox fbkContent;
+        protected global::System.Web.UI.WebControls.TextBox tb_NewPassword;
         
         /// <summary>
-        /// lblNotes control.
+        /// rfv_NewPassword control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblNotes;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_NewPassword;
         
         /// <summary>
-        /// txtAddnotes control.
+        /// lbl_ConfirmPassword control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtAddnotes;
+        protected global::System.Web.UI.WebControls.Label lbl_ConfirmPassword;
         
         /// <summary>
-        /// lblResolvedBy control.
+        /// tb_ConfirmPassword control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblResolvedBy;
+        protected global::System.Web.UI.WebControls.TextBox tb_ConfirmPassword;
         
         /// <summary>
-        /// resolvedBy control.
+        /// rfv_ConfirmPassword control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox resolvedBy;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_ConfirmPassword;
         
         /// <summary>
-        /// lblDate control.
+        /// vs_all control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblDate;
+        protected global::System.Web.UI.WebControls.ValidationSummary vs_all;
         
         /// <summary>
-        /// resolvedOn control.
+        /// btn_Change control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox resolvedOn;
+        protected global::System.Web.UI.WebControls.Button btn_Change;
         
         /// <summary>
-        /// lblDropdown control.
+        /// lb_EndInfo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblDropdown;
-        
-        /// <summary>
-        /// fbkStatusLabel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label fbkStatusLabel;
-        
-        /// <summary>
-        /// DropDownListStatus control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownListStatus;
-        
-        /// <summary>
-        /// lbl control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl;
-        
-        /// <summary>
-        /// cancelBtn control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button cancelBtn;
-        
-        /// <summary>
-        /// resolvedBtn control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button resolvedBtn;
+        protected global::System.Web.UI.WebControls.Label lb_EndInfo;
     }
 }

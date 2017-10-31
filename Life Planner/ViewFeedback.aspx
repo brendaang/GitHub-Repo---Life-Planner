@@ -35,7 +35,7 @@
                 </asp:DropDownList>
             <br />
             <br />
-            <asp:GridView ID="feedbackGridView" runat="server" AutoGenerateColumns="False" BackColor="White" CssClass="table table-striped table-hover" EnableTheming="False" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="3" Width="1166px" AllowPaging="true" OnPageIndexChanging="feedbackGridView_PageIndexChanging" PageSize="100000">
+            <asp:GridView ID="feedbackGridView" runat="server" AutoGenerateColumns="False" DataKeyNames="feedbackID" BackColor="White" CssClass="table table-striped table-hover" EnableTheming="False" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="3" Width="1166px" AllowPaging="true" OnPageIndexChanging="feedbackGridView_PageIndexChanging" PageSize="100000" OnRowCommand="feedbackGridView_RowCommand">
                 <FooterStyle BackColor="White" ForeColor="#000066" />
                 <HeaderStyle BackColor="#006699" Font-Bold="True" ForeColor="White" />
                 <PagerStyle BackColor="White" ForeColor="#000066" HorizontalAlign="Left" />
@@ -48,6 +48,19 @@
                 <Columns>
                     <asp:BoundField DataField="feedbackID" HeaderText="Feedback ID" InsertVisible="False" SortExpression="feedbackID" ReadOnly="True" Visible="true" />
                     <asp:BoundField DataField="feedbackStatus" HeaderText="Status" SortExpression="feedbackStatus" />
+                    <%-- <asp:TemplateField>
+                        <HeaderTemplate> Status:
+                        <asp:DropDownList ID="fbkStatusID" runat="server" OnSelectedIndexChanged="fbkStatus_SelectedIndexChanged" AutoPostBack="true" style="color:black;">
+                            <asp:ListItem Value="All">All</asp:ListItem>
+                            <asp:ListItem Value="Open">Open</asp:ListItem>
+                            <asp:ListItem Value="Pending">Pending</asp:ListItem>
+                            <asp:ListItem Value="Resolved">Resolved</asp:ListItem>
+                        </asp:DropDownList>
+                        </HeaderTemplate>
+                        <ItemTemplate>
+                            <%# Eval("feedbackStatus") %>
+                        </ItemTemplate>
+                    </asp:TemplateField>--%>
                     <asp:BoundField DataField="feedbackIssue" HeaderText="Issue" SortExpression="feedbackIssue" />
                     <asp:BoundField DataField="feedbackDatetime" HeaderText="Created Date" SortExpression="feedbackDatetime" />
                     <%-- <asp:BoundField DataField="feedbackContent" HeaderText="Content" SortExpression="feedbackContent" />--%>
@@ -55,12 +68,12 @@
                     <%-- <asp:BoundField DataField="acctName" HeaderText="Author" SortExpression="acctName"/>--%>
                     <asp:TemplateField HeaderText="Action">
                         <ItemTemplate>
-                            <asp:LinkButton ID="feedbackAction" runat="server" CommandArgument='<%#Eval("feedbackID")%>' Text="View Details">
+                            <asp:LinkButton ID="feedbackAction" runat="server" CommandName="viewFbkDetail" CommandArgument='<%# Container.DataItemIndex %>' Text="View Details">
                             </asp:LinkButton>
                         </ItemTemplate>
                     </asp:TemplateField>
                 </Columns>
-                <PagerStyle HorizontalAlign="Center"/>
+                <PagerStyle HorizontalAlign="Center" />
             </asp:GridView>
         </div>
     </section>

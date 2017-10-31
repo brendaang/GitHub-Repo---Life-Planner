@@ -16,6 +16,10 @@ namespace Life_Planner.Account
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+
+            if (IsPostBack)
+                return;
+
             SqlConnection con = new DBManager().getConnection();
             string sql = "SELECT moduleID, moduleName FROM [CZ2006 - Life Planner].[dbo].[Module];";
             SqlCommand cmd = new SqlCommand(sql, con);
@@ -48,9 +52,10 @@ namespace Life_Planner.Account
 
         protected void submitFeedback_Click(object sender, EventArgs e)
         {
-           
+
             //Response.Write(emailValid);
             //Response.Write(nricValid);
+            //Response.Write(ddlCreatePlanChildCurrentEdLevel.Text);
 
             if (Page.IsValid)
             {
@@ -77,9 +82,32 @@ namespace Life_Planner.Account
                         cmd.ExecuteNonQuery();
                         con.Close();
 
+                    }            
+
+                    string edLevel = ddlCreatePlanChildCurrentEdLevel.Text;
+                    if (edLevel == "Kindergarten")
+                    {
+                        string newChildNRIC = txtCreatePlanNRIC.Text;
+                        Session["newChildPlanKindergarten"] = newChildNRIC;
+                        Response.AddHeader("REFRESH", "3;URL=/Account/CreatePlanFromPrimary.aspx");
                     }
 
-                    Response.AddHeader("REFRESH", "3;URL=/Account/Login.aspx");
+                    else if (edLevel == "Primary")
+                    {
+                        string newChildNRIC = txtCreatePlanNRIC.Text;
+                        Session["newChildPlanPrimary"] = newChildNRIC;
+                        Response.AddHeader("REFRESH", "3;URL=/Account/CreatePlanFromSecondary.aspx");
+                    }
+
+                    else if (edLevel == "Secondary")
+                    {
+                        string newChildNRIC = txtCreatePlanNRIC.Text;
+                        Session["newChildPlanSecondary"] = newChildNRIC;
+                        //2 choices - poly/jc
+                        Response.AddHeader("REFRESH", "3;URL=/Account/CreatePlanFromJC.aspx");
+                    }
+
+
                 }
 
                 else if (emailValid==0 && nricValid==1)

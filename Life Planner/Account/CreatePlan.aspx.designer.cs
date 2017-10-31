@@ -94,6 +94,15 @@ namespace Life_Planner.Account {
         protected global::System.Web.UI.WebControls.TextBox txtCreatePlanNRIC;
         
         /// <summary>
+        /// regexNRIC control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator regexNRIC;
+        
+        /// <summary>
         /// lblCreatePlanEmail control.
         /// </summary>
         /// <remarks>
