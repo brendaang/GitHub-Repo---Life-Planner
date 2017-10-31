@@ -33,7 +33,7 @@ namespace Life_Planner
                 fbkDatetime.Text = reader["feedbackDatetime"].ToString();
                 txtfeedbackIssue.Text = reader["feedbackIssue"].ToString();
                 fbkContent.Text = reader["feedbackContent"].ToString();
-                resolvedBy.Text = "Nurha";
+                resolvedBy.Text = getNameOpen();
 
                 string today = DateTime.Now.ToString();
                 resolvedOn.Text = today;
@@ -82,7 +82,6 @@ namespace Life_Planner
         {
             string feedbackStatus = (string)(Session["Feedback_Status"]);
             string feedback_ID = (string)(Session["Feedback_ID"]);
-            String resolvedBy = getAccID();
 
             SqlConnection con = new DBManager().getConnection();
 
@@ -106,7 +105,7 @@ namespace Life_Planner
                 SqlCommand cmd5 = new SqlCommand(sql5, con);
 
                 cmd1.Parameters.AddWithValue("@feedbackID", feedback_ID);
-                cmd1.Parameters.AddWithValue("@resolvedBy", resolvedBy);
+                cmd1.Parameters.AddWithValue("@resolvedBy", getAccID());
                 cmd1.Parameters.AddWithValue("@resolvedOn", resolvedOn);
                 cmd1.Parameters.AddWithValue("@feedbackStatus", DropDownListStatus.SelectedValue);
                 cmd1.Parameters.AddWithValue("@resolvedNotes", resolvedNotes);
@@ -117,6 +116,8 @@ namespace Life_Planner
                 cmd1.ExecuteNonQuery();
                 cmd2.ExecuteNonQuery();
                 con.Close();
+                cmd1.Dispose();
+                cmd2.Dispose();
             }
             if ((feedbackStatus.Equals("Pending")) || (feedbackStatus.Equals("Resolved")))
             {
@@ -135,7 +136,7 @@ namespace Life_Planner
                 SqlCommand cmd5 = new SqlCommand(sql5, con);
 
                 cmd1.Parameters.AddWithValue("@feedbackID", feedback_ID);
-                cmd1.Parameters.AddWithValue("@resolvedBy", resolvedBy);
+                cmd1.Parameters.AddWithValue("@resolvedBy", getAccID());
                 cmd1.Parameters.AddWithValue("@resolvedOn", DateTime.Now);
                 cmd1.Parameters.AddWithValue("@feedbackStatus", DropDownListStatus.SelectedValue);
                 cmd1.Parameters.AddWithValue("@resolvedNotes", txtAddnotes.Text);
@@ -145,6 +146,9 @@ namespace Life_Planner
                 con.Open();
                 cmd1.ExecuteNonQuery();
                 cmd2.ExecuteNonQuery();
+                resolvedBy.Text = getName();
+                string todayResolved = DateTime.Now.ToString();
+                resolvedOn.Text = todayResolved;
                 con.Close();
             }
 
@@ -155,15 +159,14 @@ namespace Life_Planner
 
         protected string getAccID()
         {
-            String fName = "Nurha";
-
-            //String acctName = Session["username"].ToString();
+            String acctName = Session["username"].ToString();
             String accountID;
             SqlConnection con2 = new DBManager().getConnection();
 
-            string sql2 = "SELECT [accountID] FROM [CZ2006 - Life Planner].[dbo].[Account] WHERE fName = @fName;";
+            string sql2 = "SELECT accountID FROM dbo.Account WHERE accountID IN (SELECT accountID FROM dbo.AccCreds WHERE username = @acctName);";
             SqlCommand cmd2 = new SqlCommand(sql2, con2);
-            cmd2.Parameters.AddWithValue("@fName", fName);
+
+            cmd2.Parameters.AddWithValue("@acctName", acctName);
             con2.Open();
             var firstColumn = cmd2.ExecuteScalar();
             accountID = firstColumn.ToString();
@@ -188,5 +191,24 @@ namespace Life_Planner
             con2.Close();
             return firstName;
         }
+
+        protected string getNameOpen()
+        {
+            String acct_Name = Session["username"].ToString();
+            String firstName;
+            SqlConnection con2 = new DBManager().getConnection();
+
+            string sql2 = "SELECT fname FROM dbo.Account WHERE accountID IN (SELECT accountID FROM dbo.AccCreds WHERE username = @acctName);";
+            SqlCommand cmd2 = new SqlCommand(sql2, con2);
+
+            cmd2.Parameters.AddWithValue("@acctName", acct_Name);
+            con2.Open();
+            var firstColumn = cmd2.ExecuteScalar();
+            firstName = firstColumn.ToString();
+            cmd2.ExecuteNonQuery();
+            con2.Close();
+            return firstName;
+        }
+
     }
 }

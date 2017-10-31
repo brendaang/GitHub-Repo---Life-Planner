@@ -57,7 +57,7 @@
                             if ((string)Session["role"] == "Admin")
                             {
                         %>
-                        <li><a runat="server" href="~/ViewFeedback">View Feedback</a></li>
+                        <li><a runat="server" href="~/ViewFeedback">Feedback</a></li>
                         <%
                             }
                             else
