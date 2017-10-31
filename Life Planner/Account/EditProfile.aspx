@@ -18,7 +18,7 @@
             $("[id$=tb_datepicker]").datepicker({
                 showOn: 'button',
                 buttonImageOnly: true,
-                buttonImage: 'http://jqueryui.com/demos/datepicker/images/calendar.gif',
+                buttonImage: 'http://www.bangorparksandrec.com/info/images/button_calendar.png',
                 dateFormat: 'yy/mm/dd',
                 changeMonth: true,
                 changeYear: true,
@@ -98,7 +98,7 @@
                     <asp:Label ID="lbl_gender" CssClass="col-lg-4 control-label" runat="server">Gender:</asp:Label>
                     <div class="col-lg-6">
                         <asp:RadioButtonList ID="rbl_gender" RepeatLayout="Flow" RepeatDirection="Horizontal" runat="server">
-                            <asp:ListItem class="radio-inline" Value="1" Text="Male" Selected="True"></asp:ListItem>
+                            <asp:ListItem class="radio-inline"  Value="1" Text="Male" ></asp:ListItem>
                             <asp:ListItem class="radio-inline" Value="0" Text="Female"></asp:ListItem>
                         </asp:RadioButtonList>
                     </div>
