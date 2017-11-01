@@ -263,3 +263,5 @@ Life Planner/Web.config
 /Life Planner/Account/test2.aspx
 /Life Planner/Account/test2.aspx.cs
 /Life Planner/Account/test2.aspx.designer.cs
+/Life Planner/Web.Release.config
+/Life Planner/Web.Debug.config
