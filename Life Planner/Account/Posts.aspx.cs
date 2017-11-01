@@ -452,66 +452,9 @@ namespace Life_Planner.Account
                         string confirmValue = Request.Form["confirm_value"];
                         if (confirmValue == "Yes")
                         {
-                            int reportCount = 1;
-                            string reporter = Session["username"].ToString();
-                            DateTime datetimeNow = DateTime.Now;
-                            string dateTimeReported = datetimeNow.ToString("yyyy-MM-dd HH:mm:ss");
-                            string windowPeriodToNextReport = datetimeNow.AddHours(24).ToString("yyyy-MM-dd HH:mm:ss");
-
-                            SqlConnection con1 = new DBManager().getConnection();
-                            string sql1 = "SELECT top 1 [windowPeriodToNextReport]FROM [CZ2006 - Life Planner].[dbo].[Reporting] WHERE reporter = @reporter ORDER BY dateTimeReported;";
-                            SqlCommand cmd1 = new SqlCommand(sql1, con1);
-                            cmd1.Parameters.AddWithValue("@reporter", reporter);
-                            con1.Open();
-                            SqlDataReader dr = cmd1.ExecuteReader();
-                            //checker for one-time reporting
-                            if (dr.Read())
-                            {
-                                string dtr = dr["windowPeriodToNextReport"].ToString();
-                                if (DateTime.Now < DateTime.Parse(dtr))
-                                {
-                                    Page.ClientScript.RegisterStartupScript(this.GetType(), "Alert!", "alert('Sorry! You have reported a post once before in the past 24 hours!');", true);
-                                    return;
-                                }
-                            }
-
-                            SqlConnection con2 = new DBManager().getConnection();
-                            string sql2 = "INSERT INTO [CZ2006 - Life Planner].[dbo].[Reporting] (postID, reporter, author, reportCount, dateTimeReported, windowPeriodToNextReport) VALUES (@postID, @reporter, @author, @reportCount, @dateTimeReported, @windowPeriodToNextReport);";
-                            SqlCommand cmd2 = new SqlCommand(sql2, con2);
-                            cmd2.Parameters.AddWithValue("@postID", postID.Text);
-                            cmd2.Parameters.AddWithValue("@reporter", Session["username"].ToString());
-                            cmd2.Parameters.AddWithValue("@author", authorName.Text);
-                            cmd2.Parameters.AddWithValue("@reportCount", reportCount);
-                            cmd2.Parameters.AddWithValue("@dateTimeReported", dateTimeReported);
-                            cmd2.Parameters.AddWithValue("@windowPeriodToNextReport", windowPeriodToNextReport);
-                            con2.Open();
-                            cmd2.ExecuteNonQuery();
-                            con2.Close();
-
-                            //get numReported balance
-                            SqlConnection con3 = new DBManager().getConnection();
-                            string sql3 = "SELECT [numReported] FROM [CZ2006 - Life Planner].[dbo].[Posts] WHERE [postID] = @postID;";
-                            SqlCommand cmd3 = new SqlCommand(sql3, con3);
-                            cmd3.Parameters.AddWithValue("@postID", postID.Text);
-                            con3.Open();
-                            string stringReportCountBalance = cmd3.ExecuteScalar().ToString();
-                            int reportCountBalance = Convert.ToInt32(stringReportCountBalance);
-                            con3.Close();
-
-                            int uponReport = 1;
-                            int newNumReportCountBalance = reportCountBalance + uponReport;
-
-                            SqlConnection con4 = new DBManager().getConnection();
-                            string sql4 = "UPDATE [CZ2006 - Life Planner].[dbo].[Posts] SET numReported = @numReported WHERE postID = @postID;";
-                            SqlCommand cmd4 = new SqlCommand(sql4, con4);
-                            cmd4.Parameters.AddWithValue("@postID", postID.Text);
-                            cmd4.Parameters.AddWithValue("@numReported", newNumReportCountBalance);
-                            con4.Open();
-                            cmd4.ExecuteNonQuery();
-                            con4.Close();
-
                             Session["postID"] = postID.Text;
-                            Response.Redirect("~/ReportReasons.aspx");
+                            Session["author"] = authorName.Text;
+                            Response.Redirect("~/Account/ReportPost.aspx");
                         }
                         else
                         {
