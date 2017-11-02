@@ -11,7 +11,18 @@ namespace Life_Planner
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if((string)Session["role"] == "User")
+            {
+                Response.Redirect("~/Account/ViewOwnPlan");
+            }
+            else if ((string)Session["role"] == "Admin")
+            {
+                Response.Redirect("~/Account/SetAdmin.aspx");
+            }
+            else
+            {
+                Response.Redirect("~/Account/Login.aspx");
+            }
         }
     }
 }
