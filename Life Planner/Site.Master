@@ -58,7 +58,7 @@
                             {
                         %>
                         <li><a runat="server" href="~/ViewFeedback">Feedback</a></li>
-                        <li><a runat="server" href="~/PostIssues.aspx">Post Issues</a></li>
+                        <li><a runat="server" href="~/Account/PostIssues.aspx">Post Issues</a></li>
                         <%
                             }
                             else
