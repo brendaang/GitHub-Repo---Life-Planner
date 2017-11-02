@@ -178,6 +178,8 @@
     <Content Include="Account\Editing-Posts.aspx" />
     <Content Include="Account\EditProfile.aspx" />
     <Content Include="Account\ForgetPassword.aspx" />
+    <Content Include="Account\PostIssues.aspx" />
+    <Content Include="Account\ReportPost.aspx" />
     <Content Include="Account\ResetPassword.aspx" />
     <Content Include="Account\SetAdmin.aspx" />
     <Content Include="Account\ViewMyProfile.aspx" />
@@ -330,6 +332,20 @@
     </Compile>
     <Compile Include="Account\ForgetPassword.aspx.designer.cs">
       <DependentUpon>ForgetPassword.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\PostIssues.aspx.cs">
+      <DependentUpon>PostIssues.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\PostIssues.aspx.designer.cs">
+      <DependentUpon>PostIssues.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\ReportPost.aspx.cs">
+      <DependentUpon>ReportPost.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\ReportPost.aspx.designer.cs">
+      <DependentUpon>ReportPost.aspx</DependentUpon>
     </Compile>
     <Compile Include="Account\ResetPassword.aspx.cs">
       <DependentUpon>ResetPassword.aspx</DependentUpon>

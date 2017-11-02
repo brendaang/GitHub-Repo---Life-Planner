@@ -105,7 +105,6 @@
                 </div>
                     <br />
 
-       
         <div class="form-group">
             <div class="col-lg-4 col-lg-offset-4">
                 <asp:Button ID="btn_cancel" CssClass="btn btn-default" Text="Cancel" runat="server" OnClick="btn_cancel_Click" />
