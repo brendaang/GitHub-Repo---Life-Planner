@@ -107,10 +107,9 @@ namespace Life_Planner {
 		}
 
 		protected void Button1_Click(object sender, EventArgs e) {
-
-			//HOW TO CLEAR <table> !?!?
-
 			TableRow tableRow = new TableRow();
+            //clear table data
+            Table1.Rows.Clear();
 			Table1.Rows.Add(tableRow);
 			TableCell aa = new TableCell();
 			aa.Text = "Cut off point > " + TextBox1.Text;
