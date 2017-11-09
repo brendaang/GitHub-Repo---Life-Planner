@@ -10,7 +10,7 @@
 namespace Life_Planner {
     
     
-    public partial class _Default {
+    public partial class moreInformation {
         
         /// <summary>
         /// Image1 control.

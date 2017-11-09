@@ -204,6 +204,7 @@
     <Content Include="Images\button_calendar.png" />
     <Content Include="Images\error.png" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="moreInformation.aspx" />
     <Content Include="OLevelCOP.aspx" />
     <Content Include="packages.config" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -493,6 +494,13 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="moreInformation.aspx.cs">
+      <DependentUpon>moreInformation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="moreInformation.aspx.designer.cs">
+      <DependentUpon>moreInformation.aspx</DependentUpon>
+    </Compile>
     <Compile Include="OLevelCOP.aspx.cs">
       <DependentUpon>OLevelCOP.aspx</DependentUpon>
     </Compile>
