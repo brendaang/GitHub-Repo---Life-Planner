@@ -5,27 +5,33 @@
             <div class="container">
 
         <!-- Alert placeholder, alter attributes in CodeBehind -->
-        <div id="Div1" runat="server" visible="false">
+        <div id="alert_placeholder" runat="server" visible="false">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-            <asp:Literal runat="server" ID="Literal1" />
+            <asp:Literal runat="server" ID="alertText" />
         </div>
 
         <div class="well">
             <fieldset class="form-horizontal">
                 <div class="row">
                     <legend class="col-lg-offset-4 col-lg-5">Plan:</legend>
-                 </div>
+                    </div>
 
                 <div class="form-group">
                     <asp:Label ID="lbl_priName" CssClass="col-lg-4 control-label" runat="server">Primary School:</asp:Label>
                     <div class="col-lg-6">
                         <asp:TextBox ID="tb_priName" CssClass="form-control" runat="server" Enabled="false"></asp:TextBox>
                     </div>
+                    <div class="col-lg-4 col-lg-offset-4">
+                        <asp:Button ID="btn_editPri" runat="server" Text="Edit Primary" class="btn btn-primary" Width="100px" OnClick="btn_editPri_Click" Visible="false"/>
+                    </div>
                 </div>
                 <div class="form-group">
                     <asp:Label ID="lbl_secName" CssClass="col-lg-4 control-label" runat="server">Secondary School:</asp:Label>
                     <div class="col-lg-6">
                         <asp:TextBox ID="tb_secName" CssClass="form-control" runat="server" Enabled="false"></asp:TextBox>
+                    </div>
+                    <div class="col-lg-4 col-lg-offset-4">
+                        <asp:Button ID="btn_editSec" runat="server" Text="Edit Secondary" class="btn btn-primary" Width="150px" OnClick="btn_editSec_Click" Visible="false"/>
                     </div>
                 </div>
                 <div class="form-group">
@@ -45,6 +51,9 @@
                     <div class="col-lg-6">
                         <asp:TextBox ID="tb_polyCourse" CssClass="form-control" runat="server" Enabled="false"></asp:TextBox>
                     </div>
+                    <div class="col-lg-4 col-lg-offset-4">
+                       <asp:Button ID="btn_editTertiary" runat="server" Text="Edit Tertiary" class="btn btn-primary" Width="100px" OnClick="btn_editTertiary_Click" Visible="false"/>
+                    </div>
                 </div>
                 <div class="form-group">
                     <asp:Label ID="lbl_uniName" CssClass="col-lg-4 control-label" runat="server">University:</asp:Label>
@@ -59,12 +68,24 @@
                     </div>
                 </div>
                 <div class="form-group">
+                    <asp:Label ID="lbl_shortestTime" CssClass="col-lg-4 control-label" runat="server">Shortest Time:</asp:Label>
+                    <div class="col-lg-6">
+                        <asp:TextBox ID="tb_shortestTime" CssClass="form-control" runat="server" Enabled="false"></asp:TextBox>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <asp:Label ID="lbl_longestTime" CssClass="col-lg-4 control-label" runat="server">Longest Time:</asp:Label>
+                    <div class="col-lg-6">
+                        <asp:TextBox ID="tb_longestTime" CssClass="form-control" runat="server" Enabled="false"></asp:TextBox>
+                    </div>
+                </div>
+                <div class="form-group">
                     <div class="col-lg-4 col-lg-offset-4">
                         <asp:Button ID="btn_editPlan" runat="server" OnClick="btn_editPlan_Click" Text="Edit Plan" class="btn btn-primary" Width="100px"/>
-                          <asp:Button ID="btn_deletePlan" runat="server" OnClick="btn_deletePlan_Click" Text="Delete Plan" class="btn btn-danger" Width="100px" OnClientClick="return confirm('Do you want to delete this plan? ');"/>
+                        <asp:Button ID="btn_doneEdit" runat="server" OnClick="btn_doneEdit_Click" Text="Done" class="btn btn-primary" Width="100px" Visible="false"/>
+                        <asp:Button ID="btn_deletePlan" runat="server" OnClick="btn_deletePlan_Click" Text="Delete Plan" class="btn btn-danger" Width="100px" OnClientClick="return confirm('Do you want to delete this plan? ');"/>
                     </div>
                 </div>
             </fieldset>
         </div>
-    </div>
 </asp:Content>
