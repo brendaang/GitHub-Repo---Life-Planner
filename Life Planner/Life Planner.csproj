@@ -176,7 +176,9 @@
     <Content Include="Account\CreatePlanFromSecondary.aspx" />
     <Content Include="Account\CreateThread.aspx" />
     <Content Include="Account\Editing-Posts.aspx" />
+    <Content Include="Account\EditPrimarySch.aspx" />
     <Content Include="Account\EditProfile.aspx" />
+    <Content Include="Account\EditSecSch.aspx" />
     <Content Include="Account\ForgetPassword.aspx" />
     <Content Include="Account\PostIssues.aspx" />
     <Content Include="Account\ReportPost.aspx" />
@@ -319,12 +321,26 @@
     <Compile Include="Account\Editing-Posts.aspx.designer.cs">
       <DependentUpon>Editing-Posts.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Account\EditPrimarySch.aspx.cs">
+      <DependentUpon>EditPrimarySch.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\EditPrimarySch.aspx.designer.cs">
+      <DependentUpon>EditPrimarySch.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Account\EditProfile.aspx.cs">
       <DependentUpon>EditProfile.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Account\EditProfile.aspx.designer.cs">
       <DependentUpon>EditProfile.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\EditSecSch.aspx.cs">
+      <DependentUpon>EditSecSch.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\EditSecSch.aspx.designer.cs">
+      <DependentUpon>EditSecSch.aspx</DependentUpon>
     </Compile>
     <Compile Include="Account\ForgetPassword.aspx.cs">
       <DependentUpon>ForgetPassword.aspx</DependentUpon>

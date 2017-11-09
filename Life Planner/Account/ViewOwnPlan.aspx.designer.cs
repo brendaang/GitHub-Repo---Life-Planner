@@ -13,22 +13,22 @@ namespace Life_Planner.Account {
     public partial class ViewOwnPlan {
         
         /// <summary>
-        /// Div1 control.
+        /// alert_placeholder control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Div1;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl alert_placeholder;
         
         /// <summary>
-        /// Literal1 control.
+        /// alertText control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal Literal1;
+        protected global::System.Web.UI.WebControls.Literal alertText;
         
         /// <summary>
         /// lbl_priName control.
@@ -49,6 +49,15 @@ namespace Life_Planner.Account {
         protected global::System.Web.UI.WebControls.TextBox tb_priName;
         
         /// <summary>
+        /// btn_editPri control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_editPri;
+        
+        /// <summary>
         /// lbl_secName control.
         /// </summary>
         /// <remarks>
@@ -65,6 +74,15 @@ namespace Life_Planner.Account {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tb_secName;
+        
+        /// <summary>
+        /// btn_editSec control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_editSec;
         
         /// <summary>
         /// lbl_jcName control.
@@ -121,6 +139,15 @@ namespace Life_Planner.Account {
         protected global::System.Web.UI.WebControls.TextBox tb_polyCourse;
         
         /// <summary>
+        /// btn_editTertiary control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_editTertiary;
+        
+        /// <summary>
         /// lbl_uniName control.
         /// </summary>
         /// <remarks>
@@ -164,6 +191,15 @@ namespace Life_Planner.Account {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btn_editPlan;
+        
+        /// <summary>
+        /// btn_doneEdit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_doneEdit;
         
         /// <summary>
         /// btn_deletePlan control.
