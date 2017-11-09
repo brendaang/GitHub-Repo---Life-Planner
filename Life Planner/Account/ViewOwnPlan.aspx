@@ -68,6 +68,18 @@
                     </div>
                 </div>
                 <div class="form-group">
+                    <asp:Label ID="lbl_shortestTime" CssClass="col-lg-4 control-label" runat="server">Shortest Time:</asp:Label>
+                    <div class="col-lg-6">
+                        <asp:TextBox ID="tb_shortestTime" CssClass="form-control" runat="server" Enabled="false"></asp:TextBox>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <asp:Label ID="lbl_longestTime" CssClass="col-lg-4 control-label" runat="server">Longest Time:</asp:Label>
+                    <div class="col-lg-6">
+                        <asp:TextBox ID="tb_longestTime" CssClass="form-control" runat="server" Enabled="false"></asp:TextBox>
+                    </div>
+                </div>
+                <div class="form-group">
                     <div class="col-lg-4 col-lg-offset-4">
                         <asp:Button ID="btn_editPlan" runat="server" OnClick="btn_editPlan_Click" Text="Edit Plan" class="btn btn-primary" Width="100px"/>
                         <asp:Button ID="btn_doneEdit" runat="server" OnClick="btn_doneEdit_Click" Text="Done" class="btn btn-primary" Width="100px" Visible="false"/>

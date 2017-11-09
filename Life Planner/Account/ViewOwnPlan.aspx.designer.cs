@@ -184,6 +184,42 @@ namespace Life_Planner.Account {
         protected global::System.Web.UI.WebControls.TextBox tb_uniCourse;
         
         /// <summary>
+        /// lbl_shortestTime control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_shortestTime;
+        
+        /// <summary>
+        /// tb_shortestTime control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tb_shortestTime;
+        
+        /// <summary>
+        /// lbl_longestTime control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_longestTime;
+        
+        /// <summary>
+        /// tb_longestTime control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tb_longestTime;
+        
+        /// <summary>
         /// btn_editPlan control.
         /// </summary>
         /// <remarks>
