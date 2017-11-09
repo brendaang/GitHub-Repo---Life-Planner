@@ -215,6 +215,7 @@
     <Content Include="ResolveFeedback.aspx" />
     <Content Include="SendFeedback.aspx" />
     <Content Include="Test.aspx" />
+    <Content Include="viewConsolidatedData.aspx" />
     <Content Include="ViewFeedback.aspx" />
     <Content Include="WordList\WordList.txt" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
@@ -533,6 +534,12 @@
     </Compile>
     <Compile Include="Test.aspx.designer.cs">
       <DependentUpon>Test.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="viewConsolidatedData.aspx.cs">
+      <DependentUpon>viewConsolidatedData.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="viewConsolidatedData.aspx.designer.cs">
+      <DependentUpon>viewConsolidatedData.aspx</DependentUpon>
     </Compile>
     <Compile Include="ViewFeedback.aspx.cs">
       <DependentUpon>ViewFeedback.aspx</DependentUpon>
