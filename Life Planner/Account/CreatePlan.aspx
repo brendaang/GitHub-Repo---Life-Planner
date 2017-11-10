@@ -36,8 +36,8 @@
 
     <%--<script src ="https://gist.github.com/eddiemoore/7131781#file-nric-validation-js" type="text/javascript"></script>--%>
 
-    <asp:Panel ID="Panel1" runat="server" Height="997px">
-        <section id="createPlan">
+    <asp:Panel ID="Panel1" runat="server" Height="997px" >
+        <section id="createPlan" >
             <h2></>Create Plan</h2>
 
             <h5>Step 1: Please enter your child's details</h5>
