@@ -423,6 +423,7 @@
       <DependentUpon>ViewOwnPlan.aspx</DependentUpon>
     </Compile>
     <Compile Include="Data\CommonMethods.cs" />
+    <Compile Include="Data\CommonMethodsForFeedback.cs" />
     <Compile Include="Error.aspx.cs">
       <DependentUpon>Error.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

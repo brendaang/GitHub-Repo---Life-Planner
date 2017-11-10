@@ -22,6 +22,7 @@ namespace Life_Planner
             if (feedbackStatus.Equals("Open"))
             {
                 SqlConnection con = new DBManager().getConnection();
+                String acct_Name = Session["username"].ToString();
 
                 string sql2 = "SELECT feedbackDatetime, feedbackIssue, feedbackContent, submittedBy, feedbackStatus FROM dbo.Feedback WHERE @feedbackID = feedbackID";
                 SqlCommand cmd2 = new SqlCommand(sql2, con);
@@ -33,7 +34,7 @@ namespace Life_Planner
                 fbkDatetime.Text = reader["feedbackDatetime"].ToString();
                 txtfeedbackIssue.Text = reader["feedbackIssue"].ToString();
                 fbkContent.Text = reader["feedbackContent"].ToString();
-                resolvedBy.Text = getNameOpen();
+                resolvedBy.Text = new CommonMethodsForFeedback().getNameOpen(acct_Name);
 
                 string today = DateTime.Now.ToString();
                 resolvedOn.Text = today;
@@ -43,7 +44,7 @@ namespace Life_Planner
             }
             if ((feedbackStatus.Equals("Pending") && (!IsPostBack)) || (feedbackStatus.Equals("Resolved") && (!IsPostBack)))
             {
-
+                string feedback_ID = (string)(Session["Feedback_ID"]);
                 SqlConnection con1 = new DBManager().getConnection();
 
                 string sql1 = "SELECT feedbackDatetime, feedbackIssue, feedbackContent, submittedBy, feedbackStatus FROM dbo.Feedback WHERE feedbackID = @feedbackID";
@@ -65,7 +66,7 @@ namespace Life_Planner
                 SqlDataReader reader2 = cmd2.ExecuteReader();
                 reader2.Read();
                 txtAddnotes.Text = reader2["resolvedNotes"].ToString();
-                resolvedBy.Text = getName();
+                resolvedBy.Text = new CommonMethodsForFeedback().getName(feedback_ID);
                 resolvedOn.Text = reader2["resolvedOn"].ToString();
                 reader2.Close();
                 con1.Close();
@@ -81,13 +82,15 @@ namespace Life_Planner
         protected void resolvedBtn_Click(object sender, EventArgs e)
         {
             string feedbackStatus = (string)(Session["Feedback_Status"]);
-            string feedback_ID = (string)(Session["Feedback_ID"]);
+            
+            String acctName = Session["username"].ToString();
 
             SqlConnection con = new DBManager().getConnection();
 
             if (feedbackStatus.Equals("Open"))
             {
                 String resolvedNotes = txtAddnotes.Text;
+                string feedback_ID = (string)(Session["Feedback_ID"]);
 
                 string sql0 = "SET IDENTITY_INSERT ID ON";
                 string sql3 = "SET XACT_ABORT ON";
@@ -104,7 +107,7 @@ namespace Life_Planner
                 SqlCommand cmd5 = new SqlCommand(sql5, con);
 
                 cmd1.Parameters.AddWithValue("@feedbackID", feedback_ID);
-                cmd1.Parameters.AddWithValue("@resolvedBy", getAccID());
+                cmd1.Parameters.AddWithValue("@resolvedBy", new CommonMethodsForFeedback().getAccID(acctName));
                 cmd1.Parameters.AddWithValue("@resolvedOn", DateTime.Now);
                 cmd1.Parameters.AddWithValue("@feedbackStatus", DropDownListStatus.SelectedValue);
                 cmd1.Parameters.AddWithValue("@resolvedNotes", resolvedNotes);
@@ -120,6 +123,7 @@ namespace Life_Planner
             }
             if ((feedbackStatus.Equals("Pending")) || (feedbackStatus.Equals("Resolved")))
             {
+                string feedback_ID = (string)(Session["Feedback_ID"]);
                 string sql0 = "SET IDENTITY_INSERT ID ON";
                 string sql3 = "SET XACT_ABORT ON";
                 string sql4 = "BEGIN TRANSACTION";
@@ -135,7 +139,7 @@ namespace Life_Planner
                 SqlCommand cmd5 = new SqlCommand(sql5, con);
 
                 cmd1.Parameters.AddWithValue("@feedbackID", feedback_ID);
-                cmd1.Parameters.AddWithValue("@resolvedBy", getAccID());
+                cmd1.Parameters.AddWithValue("@resolvedBy", new CommonMethodsForFeedback().getAccID(acctName));
                 cmd1.Parameters.AddWithValue("@resolvedOn", DateTime.Now);
                 cmd1.Parameters.AddWithValue("@feedbackStatus", DropDownListStatus.SelectedValue);
                 cmd1.Parameters.AddWithValue("@resolvedNotes", txtAddnotes.Text);
@@ -145,69 +149,14 @@ namespace Life_Planner
                 con.Open();
                 cmd1.ExecuteNonQuery();
                 cmd2.ExecuteNonQuery();
-                resolvedBy.Text = getName();
+                resolvedBy.Text = new CommonMethodsForFeedback().getName(feedback_ID);
                 string todayResolved = DateTime.Now.ToString();
                 resolvedOn.Text = todayResolved;
                 con.Close();
             }
-
             alert_placeholder.Visible = true;
             alert_placeholder.Attributes["class"] = "alert alert-success alert-dismissable";
             resolveACK.Text = "Your resolved to this feedback has been saved.";
         }
-
-        protected string getAccID()
-        {
-            String acctName = Session["username"].ToString();
-            String accountID;
-            SqlConnection con2 = new DBManager().getConnection();
-
-            string sql2 = "SELECT accountID FROM dbo.Account WHERE accountID IN (SELECT accountID FROM dbo.AccCreds WHERE username = @acctName);";
-            SqlCommand cmd2 = new SqlCommand(sql2, con2);
-
-            cmd2.Parameters.AddWithValue("@acctName", acctName);
-            con2.Open();
-            var firstColumn = cmd2.ExecuteScalar();
-            accountID = firstColumn.ToString();
-            cmd2.ExecuteNonQuery();
-            con2.Close();
-            return accountID;
-        }
-
-        protected string getName()
-        {
-            string feedback_ID = (string)(Session["Feedback_ID"]);
-            String firstName;
-            SqlConnection con2 = new DBManager().getConnection();
-
-            string sql2 = "SELECT fName FROM dbo.Account WHERE accountID IN (SELECT resolvedBy FROM dbo.ResolveFeedback WHERE feedbackID = @feedbackID)";
-            SqlCommand cmd2 = new SqlCommand(sql2, con2);
-            cmd2.Parameters.AddWithValue("@feedbackID", feedback_ID);
-            con2.Open();
-            var firstColumn = cmd2.ExecuteScalar();
-            firstName = firstColumn.ToString();
-            cmd2.ExecuteNonQuery();
-            con2.Close();
-            return firstName;
-        }
-
-        protected string getNameOpen()
-        {
-            String acct_Name = Session["username"].ToString();
-            String firstName;
-            SqlConnection con2 = new DBManager().getConnection();
-
-            string sql2 = "SELECT fname FROM dbo.Account WHERE accountID IN (SELECT accountID FROM dbo.AccCreds WHERE username = @acctName);";
-            SqlCommand cmd2 = new SqlCommand(sql2, con2);
-
-            cmd2.Parameters.AddWithValue("@acctName", acct_Name);
-            con2.Open();
-            var firstColumn = cmd2.ExecuteScalar();
-            firstName = firstColumn.ToString();
-            cmd2.ExecuteNonQuery();
-            con2.Close();
-            return firstName;
-        }
-
     }
 }
