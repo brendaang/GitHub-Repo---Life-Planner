@@ -40,6 +40,12 @@
                         <asp:TextBox ID="tb_jcName" CssClass="form-control" runat="server" Enabled="false"></asp:TextBox>
                     </div>
                 </div>
+                 <div class="form-group">
+                    <asp:Label ID="lbl_iteName" CssClass="col-lg-4 control-label" runat="server">ITE:</asp:Label>
+                    <div class="col-lg-6">
+                        <asp:TextBox ID="tb_iteName" CssClass="form-control" runat="server" Enabled="false"></asp:TextBox>
+                    </div>
+                </div>
                 <div class="form-group">
                     <asp:Label ID="lbl_polyName" CssClass="col-lg-4 control-label" runat="server">Polytechnic:</asp:Label>
                     <div class="col-lg-6">
