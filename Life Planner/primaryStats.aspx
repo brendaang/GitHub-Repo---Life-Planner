@@ -15,11 +15,11 @@
    <p>
        Performance of students at national examinations.
 
-Note:
+<br /><br />Note:
 
-Refers to PSLE students who qualified for Express, Normal (Academic) or Normal (Technical) courses
-The first batch of students under Subject-based Banding, where students can choose to take subjects at either Standard or Foundation level to cater to their uneven strengths, sat for the PSLE in 2009.
-Percentages are based on all students, regardless of whether they took their subjects at the Standard or Foundation levels.
+<br />Refers to PSLE students who qualified for Express, Normal (Academic) or Normal (Technical) courses
+<br />The first batch of students under Subject-based Banding, where students can choose to take subjects at either Standard or Foundation level to cater to their uneven strengths, sat for the PSLE in 2009.
+<br />Percentages are based on all students, regardless of whether they took their subjects at the Standard or Foundation levels.
    </p>
                 </div>
             </div>
@@ -30,7 +30,7 @@ Percentages are based on all students, regardless of whether they took their sub
                 <iframe width="520" height="400" src="https://data.gov.sg/dataset/percentage-of-p1-cohort-eligible-for-express-normal-acad-normal-tech/resource/ed4ab4f4-b69c-4761-ad0a-a2ce4011a3ec/view/6a77aa1d-5c8b-4d17-932b-b787a2660d20" frameborder="0"></iframe>
             <p>Refer to students who sat for Primary School Leaving Examination (PSLE) and are eligible for the Express, Normal (Academic) or Normal (Technical) course in secondary school.
 
-Note: The Primary 1 cohorts represented in each reporting year are different across the indicators. Figures from 2012 are preliminary.</p>
+<br /><br />Note: <br />The Primary 1 cohorts represented in each reporting year are different across the indicators. Figures from 2012 are preliminary.</p>
                                 </div>
                  </div>
         </div>

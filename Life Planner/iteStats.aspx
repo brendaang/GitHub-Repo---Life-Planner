@@ -18,34 +18,8 @@
 
 ISC refers to ITE Skills Certificate. NITEC refers to National ITE Certificate.
 
-Full-time courses offered in ITE
-
-Change in Course Name in 2015:
-
-Higher Nitec in Cyber & Network Security was previously known as Network Security Technology
-Higher Nitec in Engineering with Business was previously known as Advanced Manufacturing
-Higher Nitec in Games Art & Design was previously known as Games Design & Development.
-Higher Nitec in Games Programming & Development was previously known as Games Design & Development
-Nitec in Info-Communications Technology (Mobile Networks & Applications) was previously known as Mobile Systems & Services
-New Course(s) wef 2014:
-
-Nitec in Business Services
-New Course(s) wef 2015:
-
-Higher Nitec in Interactive Media & Design
-Higher Nitec in Rapid Transit Engineering
-New Course(s) wef 2016:
-
-Higher Nitec in Precision Engineering
-Nitec in Logistics Services
-Traineeship offered in ITE
-
-New Course(s) wef 2014:
-
-Nitec in Retail Services
-New Course(s) wef 2016:
-
-Higher Nitec in Hospitality Operations</p>
+<br />Full-time courses offered in ITE
+</p>
             </div>
         </div>
         <div class="col-md-6">
