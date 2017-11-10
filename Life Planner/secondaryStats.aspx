@@ -31,7 +31,8 @@ Figures exclude Integrated Programmes (IP) students.
                 <br />As cohorts progress over the years, the numbers across courses may fluctuate as students have opportunities to transfer laterally across courses
 <br /><br />Note(s):<br />
 
-1) Special and Express streams have been merged since the 2008 Secondary 1 cohort. 2) Normal(Tech) include students on the ITE Skill Certificate (ISC) course.</p>
+1) Special and Express streams have been merged since the 2008 Secondary 1 cohort. 
+             <br />   2) Normal(Tech) include students on the ITE Skill Certificate (ISC) course.</p>
                                 </div>
                  </div>
         </div>
