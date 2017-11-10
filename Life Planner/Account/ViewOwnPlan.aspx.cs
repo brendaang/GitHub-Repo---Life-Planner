@@ -89,9 +89,74 @@ namespace Life_Planner.Account
             //tb_uniName.Text = info[5];
             //tb_uniCourse.Text = info[6];
             tb_uniName.Text = tb_uniCourse.Text = "Not Available"; //no uni data in db
-        }
 
-        protected string getSchName(string priID)
+			int currentEdLevel = 0; //0 primary, 1 secondary, 2 jc, 3 poly, 4 polycourse, 5 uni, 6 uni course
+			for (int i = 6; i >= 0; i--) {
+				if(info[i] != "") {
+					currentEdLevel = i;
+					break;
+				}
+			}
+			currentEdLevel = currentEdLevel - 2;
+
+			int shortest = getShortestPath(currentEdLevel); //years
+			int longest = getLongestPath(currentEdLevel); //years
+
+
+
+			//not including ITE/Poly/University
+			tb_shortestTime.Text = shortest + " year(s)";
+			tb_longestTime.Text = longest + " year(s)";
+		}
+
+		protected int getShortestPath(int curr) {
+			SqlConnection con = new DBManager().getConnection();
+			string sql = "SELECT shortest FROM dbo.Module WHERE moduleID < @curr ORDER BY moduleID";
+			SqlCommand cmd = new SqlCommand(sql, con);
+			cmd.Parameters.AddWithValue("@curr", curr);
+			con.Open();
+
+			SqlDataReader dr = cmd.ExecuteReader();
+			int[] shortest = new int[7];
+			int shortestPath = 0;
+			int i = 0;
+			while (dr.Read()) {
+				//shortest[i] = (int) dr["shortest"];
+				shortestPath += (int)dr["shortest"];
+				i++;
+			}
+
+
+
+			con.Close();
+			con.Dispose();
+			return shortestPath;
+		}
+		protected int getLongestPath(int curr) {
+			SqlConnection con = new DBManager().getConnection();
+			string sql = "SELECT longest FROM dbo.Module WHERE moduleID < @curr ORDER BY moduleID";
+			SqlCommand cmd = new SqlCommand(sql, con);
+			cmd.Parameters.AddWithValue("@curr", curr);
+			con.Open();
+
+			SqlDataReader dr = cmd.ExecuteReader();
+			int[] longest = new int[7];
+			int longestPath = 0;
+			int i = 0;
+			while (dr.Read()) {
+				//shortest[i] = (int) dr["shortest"];
+				longestPath += (int)dr["longest"];
+				i++;
+			}
+
+
+
+			con.Close();
+			con.Dispose();
+			return longestPath;
+		}
+
+		protected string getSchName(string priID)
         {
             if(!string.IsNullOrEmpty(priID))
             {
