@@ -49,15 +49,6 @@ namespace Life_Planner.Account {
         protected global::System.Web.UI.WebControls.Label lblSelectSecSch;
         
         /// <summary>
-        /// lblPSLEScore control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPSLEScore;
-        
-        /// <summary>
         /// lblSecSchFilterLoc control.
         /// </summary>
         /// <remarks>
@@ -103,6 +94,15 @@ namespace Life_Planner.Account {
         protected global::System.Web.UI.WebControls.Button btnSecWest;
         
         /// <summary>
+        /// btnSecNone control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnSecNone;
+        
+        /// <summary>
         /// secSchTable control.
         /// </summary>
         /// <remarks>
@@ -112,12 +112,21 @@ namespace Life_Planner.Account {
         protected global::System.Web.UI.WebControls.GridView secSchTable;
         
         /// <summary>
-        /// Label1 control.
+        /// btnSecCont control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
+        protected global::System.Web.UI.WebControls.Button btnSecCont;
+        
+        /// <summary>
+        /// btnSecSubmit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnSecSubmit;
     }
 }

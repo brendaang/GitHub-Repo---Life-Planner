@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="CreatePlanFromSecondary.aspx.cs" Inherits="Life_Planner.Account.CreatePlanFromSecondary" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <asp:Panel ID="Panel1" runat="server" Height="703px">
+    <asp:Panel ID="Panel1" runat="server" Height="831px">
 
         <section id="createPlan">
             <h2></>Create Plan</h2>
@@ -20,54 +20,34 @@
                     <asp:Label ID="lblSelectSecSch" runat="server" CssClass="col-md-4 control-label" Text="Please select planned Secondary School path:"></asp:Label>
                     <br />
                     <br />
-                    <asp:Label ID="lblPSLEScore" runat="server" CssClass="col-md-3 control-label" Text="Please key in PSLE score if applicable:"></asp:Label>
-                    <br />
-                    <br />
                     <asp:Label ID="lblSecSchFilterLoc" runat="server" CssClass="col-md-3 control-label" Text="Filter by Location:"></asp:Label>
                 </div>
             </div>
 
-            <div class="form-group">
-                <div class="col-md-10">
-                    <br />
-                    <table class="nav-justified" style="width: 79%">
-                        <tr>
-                            <td style="width: 88px">
-                                <asp:Button ID="btnSecNorth" CssClass="btn btn-default" Text="North" runat="server" OnClick="btn_SecNorth" CausesValidation="false" />
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:Button ID="btnSecSouth" CssClass="btn btn-default" Text="South" runat="server" OnClick="btn_SecSouth" CausesValidation="false" />
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:Button ID="btnSecEast" CssClass="btn btn-default" Text="East" runat="server" OnClick="btn_SecEast" CausesValidation="false" />
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:Button ID="btnSecWest" CssClass="btn btn-default" Text="West" runat="server" OnClick="btn_SecWest" CausesValidation="false" />
-                                <br />
-                                <br />
-                                l
-                            </td>
-                        </tr>
-                    </table>
+
+            <div>
+                <div class="form-group">
+                    <div class="col-md-10">
+                        <br />
+                        <br />
+                        <table class="nav-justified" style="width: 79%">
+                            <tr>
+                                <td style="width: 88px">
+                                    <asp:Button ID="btnSecNorth" CssClass="btn btn-default" Text="North" runat="server" OnClick="btn_SecNorth" CausesValidation="false"/>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <asp:Button ID="btnSecSouth" CssClass="btn btn-default" Text="South" runat="server" OnClick="btn_SecSouth" CausesValidation="false"/>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <asp:Button ID="btnSecEast" CssClass="btn btn-default" Text="East" runat="server" OnClick="btn_SecEast" CausesValidation="false"/>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <asp:Button ID="btnSecWest" CssClass="btn btn-default" Text="West" runat="server" OnClick="btn_SecWest" CausesValidation="false"/>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <asp:Button ID="btnSecNone" CssClass="btn btn-default" Text="None" runat="server" OnClick="btn_SecNone" CausesValidation="false" />
+                                    <br />
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
                 </div>
-
-
-                <script type="text/javascript">
-      <!--
-
-
-    // Get the coefficients of the equation from the user
-    function myFunction() {
-        if (confirm("Do you wish to continue planning for Secondary School route?")) {
-            window.location.href = 'Account/login.aspx';
-        }
-        //else {
-
-        //    //link to cal page???
-        //}
-
-    }
-
-
-      // -->
-                </script>
 
                 <div class="form-group">
                     <div style="width: 100%; height: 400px; overflow: auto">
@@ -88,18 +68,21 @@
                                 <asp:BoundField DataField="url_address" HeaderText="URL" SortExpression="url_address" />
                             </Columns>
                         </asp:GridView>
-                        <%--<asp:TemplateField HeaderText="">
-                                    <ItemTemplate>
-                                        <asp:LinkButton ID="selectPriSch" runat="server" CausesValidation="false" Text='Select' OnSelectedIndexChanged="priSchGridView_SelectedIndexChanging"> //OnClientClick="myFunction()"
-                                        </asp:LinkButton>
-                                    </ItemTemplate>
-                                </asp:TemplateField>--%>
-                        <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
-
                         <br />
                     </div>
                 </div>
+
             </div>
+
+            <div class="form-group">
+                <div class="col-lg-10 col-lg-offset-10">
+                    <br />
+                    <asp:Button ID="btnSecCont" CssClass="btn btn-default" Text="Continue" runat="server" OnClick="btnSecContinuePlanning" CausesValidation="false" Width="93px" Visible="False" />
+                    &nbsp;
+                    <asp:Button ID="btnSecSubmit" CssClass="btn btn-primary" Text="End" runat="server" OnClick="btnSecSubmitPlan" Width="93px" Visible="False" />
+                </div>
+            </div>
+
 
 
         </section>
