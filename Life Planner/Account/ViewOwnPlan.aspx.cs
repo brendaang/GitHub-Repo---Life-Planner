@@ -69,6 +69,10 @@ namespace Life_Planner.Account
             cmd.ExecuteNonQuery();
             con.Close();
             setNA();
+            //reset shortest/longest plan
+            resetSL();
+            btn_deletePlan.Visible = false;
+            btn_editPlan.Visible = false;
             alert_placeholder.Visible = true;
             alert_placeholder.Attributes["class"] = "alert alert-success alert-dismissable";
             alertText.Text = "Successfully Deleted Plan! Redirecting to create plan page..";
@@ -90,23 +94,31 @@ namespace Life_Planner.Account
             //tb_uniCourse.Text = info[6];
             tb_uniName.Text = tb_uniCourse.Text = "Not Available"; //no uni data in db
 
-			int currentEdLevel = 0; //0 primary, 1 secondary, 2 jc, 3 poly, 4 polycourse, 5 uni, 6 uni course
-            for(int i = 0; i<7; i++)
+            //copy info[] to edlvl[] for looping 
+            string[] edlvl = new string[5];
+            edlvl[0] = info[0]; //primary
+            edlvl[1] = info[1]; //secondary
+            edlvl[2] = info[2]; //jc
+            edlvl[3] = info[3]; //poly
+            edlvl[4] = info[5]; //uni
+       
+
+			int currentEdLevel = 0; //0 primary, 1 secondary, 2 jc, 3 poly, 4 uni
+            for(int i=0; i<5; i++)
             {
-                if(info[i] == "")
+                if(edlvl[i] == "")
                 {
                     currentEdLevel = i;
                     break;
                 }
             }
+            
+			int shortest = getShortestPath(edlvl, currentEdLevel); //years
+			int longest = getLongestPath(edlvl, currentEdLevel); //years
 
 
-			int shortest = getShortestPath(info, currentEdLevel); //years
-			int longest = getLongestPath(info, currentEdLevel); //years
 
-
-
-			//not including ITE/Poly/University
+			//not including kindergarten
 			tb_shortestTime.Text = shortest + " year(s)";
 			tb_longestTime.Text = longest + " year(s)";
 		}
@@ -127,12 +139,16 @@ namespace Life_Planner.Account
 				shortestPath += (int)dr["shortest"];
 				i++;
 			}
-			if (info[3] != "") {
+
+			if (info[3] != "" && i<4)
+            {
 				shortestPath += 3;
 			}
-			if (info[5] != "") {
-				shortestPath += 4;
-			}
+
+            if(info[4] != "" && i<5)
+            {
+                shortestPath += 4;
+            }
 			shortestPath -= 2; //for kindergarten (since we do not show, we offset -2)
 
 
@@ -157,10 +173,10 @@ namespace Life_Planner.Account
 				longestPath += (int)dr["longest"];
 				i++;
 			}
-			if (info[3] != "") {
+			if (info[3] != "" && i<4) {
 				longestPath += 5;
 			}
-			if (info[5] != "") {
+			if (info[4] != "" && i<5) {
 				longestPath += 6;
 			}
 			longestPath -= 3; //for kindergarten (since we do not show, we offset -3)
