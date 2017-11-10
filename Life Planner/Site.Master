@@ -51,16 +51,7 @@
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li><a runat="server" href="~/">Home</a></li>
-                        <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">View Statistics<span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a runat="server" href="~/primaryStats.aspx">Primary</a></li>
-                                <li><a runat="server" href="~/secondaryStats.aspx">Secondary</a></li>
-                                <li><a runat="server" href="~/juniorCollegeStats.aspx">Junior College</a></li>
-                                <li><a runat="server" href="~/polytechnicStats.aspx">Polytechnic</a></li>
-                                <li><a runat="server" href="~/universityStats.aspx">University</a></li>
-                            </ul>
-                        </li>
+                  
                         <%--                        <li><a runat="server" href="~/About">About</a></li>
                         <li><a runat="server" href="~/Contact">Contact</a></li>--%>
                         <%
@@ -79,7 +70,19 @@
                         <li><a runat="server" href="~/SendFeedback">Feedback</a></li>
                         <%
                             }
+
                         %>
+                              <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">View Statistics<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a runat="server" href="~/primaryStats.aspx">Primary</a></li>
+                                <li><a runat="server" href="~/secondaryStats.aspx">Secondary</a></li>
+                                <li><a runat="server" href="~/iteStats.aspx">ITE</a></li>
+                                <li><a runat="server" href="~/juniorCollegeStats.aspx">Junior College</a></li>
+                                <li><a runat="server" href="~/polytechnicStats.aspx">Polytechnic</a></li>
+                                <li><a runat="server" href="~/universityStats.aspx">University</a></li>
+                            </ul>
+                        </li>
                     </ul>
                     <!-- Right-side of navbar -->
                     <ul class="nav navbar-nav navbar-right">
