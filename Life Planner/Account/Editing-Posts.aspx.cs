@@ -42,7 +42,7 @@ namespace Life_Planner.Account
             }
             else
             {
-                editPost(postID, postText);
+                new CommonMethods().updatePost(postID, postText);
                 Session["threadID"] = new CommonMethods().getThreadID(postID);
                 Response.Redirect("Posts.aspx");
             }
@@ -76,18 +76,5 @@ namespace Life_Planner.Account
             con.Close();
         }
 
-        protected void editPost(string postID, string postText)
-        {
-            SqlConnection con = new DBManager().getConnection();
-            string sql = "UPDATE [CZ2006 - Life Planner].[dbo].[Posts] SET postText=@postText WHERE postID=@postID;";
-            SqlCommand cmd = new SqlCommand(sql, con);
-
-            cmd.Parameters.AddWithValue("@postID", postID);
-            cmd.Parameters.AddWithValue("@postText", postText);
-            con.Open();
-            cmd.ExecuteNonQuery();
-            con.Close();
-
-        }
     }
 }
