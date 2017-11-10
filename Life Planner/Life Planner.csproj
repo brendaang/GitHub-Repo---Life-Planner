@@ -204,6 +204,7 @@
     <Content Include="Images\button_calendar.png" />
     <Content Include="Images\error.png" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="juniorCollegeStats.aspx" />
     <Content Include="moreInformation.aspx" />
     <Content Include="OLevelCOP.aspx" />
     <Content Include="packages.config" />
@@ -213,9 +214,13 @@
     <Content Include="Account\Web.config">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="polytechnicStats.aspx" />
+    <Content Include="primaryStats.aspx" />
     <Content Include="ResolveFeedback.aspx" />
+    <Content Include="secondaryStats.aspx" />
     <Content Include="SendFeedback.aspx" />
     <Content Include="Test.aspx" />
+    <Content Include="universityStats.aspx" />
     <Content Include="viewConsolidatedData.aspx" />
     <Content Include="ViewFeedback.aspx" />
     <Content Include="WordList\WordList.txt" />
@@ -489,6 +494,13 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
+    <Compile Include="juniorCollegeStats.aspx.cs">
+      <DependentUpon>juniorCollegeStats.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="juniorCollegeStats.aspx.designer.cs">
+      <DependentUpon>juniorCollegeStats.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Module.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -507,6 +519,20 @@
     <Compile Include="OLevelCOP.aspx.designer.cs">
       <DependentUpon>OLevelCOP.aspx</DependentUpon>
     </Compile>
+    <Compile Include="polytechnicStats.aspx.cs">
+      <DependentUpon>polytechnicStats.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="polytechnicStats.aspx.designer.cs">
+      <DependentUpon>polytechnicStats.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="primaryStats.aspx.cs">
+      <DependentUpon>primaryStats.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="primaryStats.aspx.designer.cs">
+      <DependentUpon>primaryStats.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ResolveFeedback.aspx.cs">
       <DependentUpon>ResolveFeedback.aspx</DependentUpon>
@@ -514,6 +540,12 @@
     </Compile>
     <Compile Include="ResolveFeedback.aspx.designer.cs">
       <DependentUpon>ResolveFeedback.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="secondaryStats.aspx.cs">
+      <DependentUpon>secondaryStats.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="secondaryStats.aspx.designer.cs">
+      <DependentUpon>secondaryStats.aspx</DependentUpon>
     </Compile>
     <Compile Include="SendFeedback.aspx.cs">
       <DependentUpon>SendFeedback.aspx</DependentUpon>
@@ -542,6 +574,13 @@
     </Compile>
     <Compile Include="Test.aspx.designer.cs">
       <DependentUpon>Test.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="universityStats.aspx.cs">
+      <DependentUpon>universityStats.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="universityStats.aspx.designer.cs">
+      <DependentUpon>universityStats.aspx</DependentUpon>
     </Compile>
     <Compile Include="viewConsolidatedData.aspx.cs">
       <DependentUpon>viewConsolidatedData.aspx</DependentUpon>

@@ -11,37 +11,37 @@ using System.Web.UI.WebControls;
 namespace Life_Planner
 {
 
-    public class Rootobject
+    public class Rootobject1
     {
         public string help { get; set; }
         public bool success { get; set; }
-        public Result1 result { get; set; }
+        public Result2 result { get; set; }
     }
 
-    public class Result1
+    public class Result2
     {
         public string resource_id { get; set; }
-        public List<Field> fields { get; set; }
-        public List<Record> records { get; set; }
-        public _Links _links { get; set; }
+        public List<Field2> fields { get; set; }
+        public List<Record2> records { get; set; }
+        public _Links1 _links { get; set; }
         public int total { get; set; }
-     
+
 
     }
 
-    public class _Links
+    public class _Links1
     {
         public string start { get; set; }
         public string next { get; set; }
     }
 
-    public class Field1
+    public class Field2
     {
         public string type { get; set; }
         public string id { get; set; }
     }
 
-    public class Record1
+    public class Record2
     {
         public string percentage { get; set; }
         public int _id { get; set; }
@@ -49,10 +49,8 @@ namespace Life_Planner
         public string year { get; set; }
     }
 
-    public partial class viewConsolidatedData : System.Web.UI.Page
+    public partial class secondaryStats : System.Web.UI.Page
     {
-
-
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -65,7 +63,7 @@ namespace Life_Planner
 
             //Fetch WEBDATA
             System.Net.WebClient webFetcher = new System.Net.WebClient();
-   
+
             string json = webFetcher.DownloadString("https://data.gov.sg/api/action/datastore_search?resource_id=173b95bc-6e8b-4af9-a166-4441789383cd");
             //parse into object
             JObject jObject = JObject.Parse(json);
@@ -97,7 +95,7 @@ namespace Life_Planner
             //to populate data on table
             //table headers
             TableHeaderRow tableHeader = new TableHeaderRow();
-            
+
             foreach (string field in fields)
             {
                 TableHeaderCell tableHeaderCell = new TableHeaderCell();
@@ -148,5 +146,4 @@ namespace Life_Planner
         }
 
     }
-
-    }
+}
