@@ -55,7 +55,7 @@
                     </div>
 
                     <div class="form-group">
-                        <div style="width: 100%; height: 400px; overflow: auto">
+                        <div style="width: 100%; height: 250px; overflow: auto">
                             <asp:GridView ID="ITEJCPOLYTable" runat="server" AutoGenerateColumns="False" BackColor="White" CssClass="table table-striped table-hover" EnableTheming="False" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="3" Width="1166px" DataKeyNames="school_name" OnSelectedIndexChanged="ITEJCPOLYGridView_SelectedIndexChanging" AutoGenerateSelectButton="True">
                                 <FooterStyle BackColor="White" ForeColor="#000066" />
                                 <HeaderStyle BackColor="#006699" Font-Bold="True" ForeColor="White" />
