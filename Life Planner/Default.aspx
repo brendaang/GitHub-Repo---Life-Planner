@@ -16,13 +16,13 @@
 
     <div class="row text-center">
         <div class="col-md-4">
-            <h2>Getting started</h2>
+            <h2>Start Create Plan</h2>
             <p>
             <%--    ASP.NET Web Forms lets you build dynamic websites using a familiar drag-and-drop, event-driven model.
             A design surface and hundreds of controls and components let you rapidly build sophisticated, powerful UI-driven sites with data access.--%>
             </p>
             <p>
-                <a class="btn btn-default" href="<%--http://go.microsoft.com/fwlink/?LinkId=301948--%>">Learn more &raquo;</a>
+                <a class="btn btn-default" href="CreatePlan.aspx"> Your Life Planner start here &raquo;</a>
             </p>
         </div>
         <div class="col-md-4">
