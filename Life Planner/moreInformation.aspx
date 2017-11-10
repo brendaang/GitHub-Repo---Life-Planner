@@ -3,7 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="container">
         <div class="jumbotron text-center">
-            <asp:Image ID="Image1" runat="server" ImageUrl="~/Images/plan.jpg" CssClass="img-responsive center-block" />
+           
             <h2>Welcome to the Life Planning!</h2>
             <p>Here you can find everything you need to help you design and deliver the life of your kids, including:  Life Planning for Your Kids</p>
 

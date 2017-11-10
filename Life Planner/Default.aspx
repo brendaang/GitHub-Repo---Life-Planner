@@ -6,23 +6,22 @@
         <h1>Life Planner</h1>
       
        <div class="well">
-            <asp:Image ID="Image1" runat="server" ImageUrl="~/Images/banner.png" height="230" width="1000" CssClass="img-responsive center-block" />
+            <asp:Image ID="Image1" runat="server" ImageUrl="~/Images/banner.png" height="300" width="1300" CssClass="img-responsive center-block" />
            
         </div>
-        <p class="lead">Plan out your ideal child education with simple planning modules and calculate the costs involved!</p>
         <p><a href="Account/Register.aspx" class="btn btn-primary btn-large ">Learn more by Registering! &raquo;</a></p>
    
         </div>
 
     <div class="row text-center">
         <div class="col-md-4">
-            <h2>Getting started</h2>
+            <h2>Start Create Plan</h2>
             <p>
             <%--    ASP.NET Web Forms lets you build dynamic websites using a familiar drag-and-drop, event-driven model.
             A design surface and hundreds of controls and components let you rapidly build sophisticated, powerful UI-driven sites with data access.--%>
             </p>
             <p>
-                <a class="btn btn-default" href="<%--http://go.microsoft.com/fwlink/?LinkId=301948--%>">Learn more &raquo;</a>
+                <a class="btn btn-default" href="Account/CreatePlan.aspx"> Your Life Planner start here! &raquo;</a>
             </p>
         </div>
         <div class="col-md-4">
