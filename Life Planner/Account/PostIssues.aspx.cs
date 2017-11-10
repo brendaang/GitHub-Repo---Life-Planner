@@ -16,7 +16,7 @@ namespace Life_Planner.Account
         {
             DataTable PostIssuesTable = new DataTable();
             SqlConnection con = new DBManager().getConnection();
-            string sql = "SELECT * FROM[CZ2006 - Life Planner].[dbo].[Reporting] WHERE resolved = @resolved";
+            string sql = "SELECT * FROM [CZ2006 - Life Planner].[dbo].[Reporting] WHERE resolved = @resolved";
             SqlCommand cmd = new SqlCommand(sql, con);
             cmd.Parameters.AddWithValue("@resolved", 0);
             con.Open();
@@ -44,6 +44,8 @@ namespace Life_Planner.Account
                 GridViewRow row = issuesGridView.Rows[index];
 
                 string reportID = row.Cells[0].Text;
+                string postID = row.Cells[1].Text;
+                Session["postID"] = postID;
                 Session["reportID"] = reportID;
                 Response.Redirect("~/Account/ResolveIssue.aspx");
             }
