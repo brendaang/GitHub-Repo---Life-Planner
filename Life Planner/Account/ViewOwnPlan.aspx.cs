@@ -99,8 +99,8 @@ namespace Life_Planner.Account
 			}
 			currentEdLevel = currentEdLevel - 2;
 
-			int shortest = getShortestPath(currentEdLevel); //years
-			int longest = getLongestPath(currentEdLevel); //years
+			int shortest = getShortestPath(info, currentEdLevel); //years
+			int longest = getLongestPath(info, currentEdLevel); //years
 
 
 
@@ -109,7 +109,7 @@ namespace Life_Planner.Account
 			tb_longestTime.Text = longest + " year(s)";
 		}
 
-		protected int getShortestPath(int curr) {
+		protected int getShortestPath(string[] info, int curr) {
 			SqlConnection con = new DBManager().getConnection();
 			string sql = "SELECT shortest FROM dbo.Module WHERE moduleID < @curr ORDER BY moduleID";
 			SqlCommand cmd = new SqlCommand(sql, con);
@@ -125,6 +125,12 @@ namespace Life_Planner.Account
 				shortestPath += (int)dr["shortest"];
 				i++;
 			}
+			if (info[3] != "") {
+				shortestPath += 3;
+			}
+			if (info[5] != "") {
+				shortestPath += 4;
+			}
 
 
 
@@ -132,7 +138,7 @@ namespace Life_Planner.Account
 			con.Dispose();
 			return shortestPath;
 		}
-		protected int getLongestPath(int curr) {
+		protected int getLongestPath(string[] info, int curr) {
 			SqlConnection con = new DBManager().getConnection();
 			string sql = "SELECT longest FROM dbo.Module WHERE moduleID < @curr ORDER BY moduleID";
 			SqlCommand cmd = new SqlCommand(sql, con);
@@ -147,6 +153,12 @@ namespace Life_Planner.Account
 				//shortest[i] = (int) dr["shortest"];
 				longestPath += (int)dr["longest"];
 				i++;
+			}
+			if (info[3] != "") {
+				longestPath += 5;
+			}
+			if (info[5] != "") {
+				longestPath += 6;
 			}
 
 
