@@ -72,6 +72,8 @@ namespace Life_Planner {
 		public string help { get; set; }
 		public bool success { get; set; }
 		public Result result { get; set; }
+
+
 	}
 
 	public partial class Test : System.Web.UI.Page {
