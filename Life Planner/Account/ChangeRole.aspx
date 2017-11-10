@@ -44,7 +44,6 @@
                 <div class="form-group">
                     <div class="col-lg-4 col-lg-offset-4">
                         <asp:Button ID="btn_changeRole" runat="server" OnClick="btn_ChangeRole_Click" Text="Change Role" class="btn btn-primary" Width="150px" OnClientClick="return confirm('Do you want to change role of user? ');"/>
-                        <asp:Label ID="lbl_changeRole" runat="server" ForeColor="Red"></asp:Label>
                     </div>
                 </div>
             </fieldset>

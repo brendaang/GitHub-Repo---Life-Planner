@@ -10,105 +10,87 @@
 namespace Life_Planner.Account {
     
     
-    public partial class ChangeRole {
+    public partial class EditSecSch {
         
         /// <summary>
-        /// Div1 control.
+        /// Panel1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Div1;
+        protected global::System.Web.UI.WebControls.Panel Panel1;
         
         /// <summary>
-        /// Literal1 control.
+        /// alert_placeholder control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal Literal1;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl alert_placeholder;
         
         /// <summary>
-        /// lbl_accId control.
+        /// alertText control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_accId;
+        protected global::System.Web.UI.WebControls.Literal alertText;
         
         /// <summary>
-        /// tb_accId control.
+        /// btnSecNorth control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tb_accId;
+        protected global::System.Web.UI.WebControls.Button btnSecNorth;
         
         /// <summary>
-        /// lbl_fname control.
+        /// btnSecSouth control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_fname;
+        protected global::System.Web.UI.WebControls.Button btnSecSouth;
         
         /// <summary>
-        /// tb_fname control.
+        /// btnSecEast control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tb_fname;
+        protected global::System.Web.UI.WebControls.Button btnSecEast;
         
         /// <summary>
-        /// lbl_lname control.
+        /// btnSecWest control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_lname;
+        protected global::System.Web.UI.WebControls.Button btnSecWest;
         
         /// <summary>
-        /// tb_lname control.
+        /// secSchTable control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tb_lname;
+        protected global::System.Web.UI.WebControls.GridView secSchTable;
         
         /// <summary>
-        /// lbl_role control.
+        /// btn_updateSecondary control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_role;
-        
-        /// <summary>
-        /// tb_role control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tb_role;
-        
-        /// <summary>
-        /// btn_changeRole control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_changeRole;
+        protected global::System.Web.UI.WebControls.Button btn_updateSecondary;
     }
 }

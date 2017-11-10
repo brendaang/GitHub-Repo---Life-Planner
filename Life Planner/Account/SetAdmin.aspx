@@ -1,8 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="SetAdmin.aspx.cs" Inherits="Life_Planner.Account.SetAdmin" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <asp:Panel ID="Panel1" runat="server">
-    </asp:Panel>
     <%--<h2><%: Title %>.</h2>--%>
     <h2> Life Planner.</h2>
     <h3>Admin Setting.</h3>
