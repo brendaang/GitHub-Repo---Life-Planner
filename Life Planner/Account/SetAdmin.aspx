@@ -34,7 +34,7 @@
                 </div>
                 <div class="form-group">
                     <div class="col-lg-4 col-lg-offset-4">
-                        <asp:Button ID="btn_Change" runat="server" OnClick="btn_Change_Click" Text="Search" class="btn btn-primary" />
+                        <asp:Button ID="btn_Change" runat="server" OnClick="btn_Change_Click" Text="Search" class="btn btn-primary" width="100px"/>
                         <asp:Label ID="lb_EndInfo" runat="server" ForeColor="Red"></asp:Label>
                     </div>
                 </div>

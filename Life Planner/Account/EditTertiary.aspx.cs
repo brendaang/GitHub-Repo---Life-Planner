@@ -21,15 +21,15 @@ namespace Life_Planner.Account
             setFalse();
         }
 
-        protected void radioSelectPolyJC_SelectedIndexChanged(object sender, EventArgs e)
+        protected void radioSelectITEPolyJC_SelectedIndexChanged(object sender, EventArgs e)
         {
             setTrue();
             resetView();
         }
 
-        protected void btnJCPOLYLocation(string area)
+        protected void btnITEJCPOLYLocation(string area)
         {
-            if (radioSelectPolyJC.SelectedItem.Text == "Junior College")
+            if (radioSelectITEPolyJC.SelectedItem.Text == "Junior College")
             {
                 DataTable ViewJCPOLYTable = new DataTable();
                 SqlConnection con = new DBManager().getConnection();
@@ -39,82 +39,126 @@ namespace Life_Planner.Account
                 con.Open();
                 SqlDataAdapter adapter = new SqlDataAdapter(cmd);
                 adapter.Fill(ViewJCPOLYTable);
-                JCPOLYTable.DataSource = ViewJCPOLYTable;
-                JCPOLYTable.DataBind();
+                ITEJCPOLYTable.DataSource = ViewJCPOLYTable;
+                ITEJCPOLYTable.DataBind();
                 con.Close();
             }
 
-            else if (radioSelectPolyJC.SelectedItem.Text == "Polytechnic")
+            else if (radioSelectITEPolyJC.SelectedItem.Text == "Polytechnic")
             {
-                DataTable ViewJCPOLYTable = new DataTable();
+
+                DataTable ViewITEJCPOLYTable = new DataTable();
                 SqlConnection con = new DBManager().getConnection();
                 string sql = "SELECT school_name,zone_code, dgp_code,url_address FROM [CZ2006 - Life Planner].[dbo].[Schools] WHERE zone_code=@area AND school_name LIKE '%POLYTECHNIC%';";
                 SqlCommand cmd = new SqlCommand(sql, con);
                 cmd.Parameters.AddWithValue("@area", area);
                 con.Open();
                 SqlDataAdapter adapter = new SqlDataAdapter(cmd);
-                adapter.Fill(ViewJCPOLYTable);
-                JCPOLYTable.DataSource = ViewJCPOLYTable;
-                JCPOLYTable.DataBind();
+                adapter.Fill(ViewITEJCPOLYTable);
+                ITEJCPOLYTable.DataSource = ViewITEJCPOLYTable;
+                ITEJCPOLYTable.DataBind();
+                con.Close();
+            }
+
+            else if (radioSelectITEPolyJC.SelectedItem.Text == "ITE")
+            {
+                DataTable ViewITEJCPOLYTable = new DataTable();
+                SqlConnection con = new DBManager().getConnection();
+                string sql = "SELECT school_name,zone_code, dgp_code,url_address FROM [CZ2006 - Life Planner].[dbo].[Schools] WHERE zone_code=@area AND school_name LIKE '%ITE COLLEGE%';";
+                SqlCommand cmd = new SqlCommand(sql, con);
+                cmd.Parameters.AddWithValue("@area", area);
+                con.Open();
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                adapter.Fill(ViewITEJCPOLYTable);
+                ITEJCPOLYTable.DataSource = ViewITEJCPOLYTable;
+                ITEJCPOLYTable.DataBind();
                 con.Close();
             }
 
         }
 
-        protected void btn_JCPOLYNorth(object sender, EventArgs e)
-        {
-            string area = "North";
-            btnJCPOLYLocation(area);
-        }
-
-        protected void btn_JCPOLYSouth(object sender, EventArgs e)
-        {
-            string area = "South";
-            btnJCPOLYLocation(area);
-        }
-
-        protected void btn_JCPOLYEast(object sender, EventArgs e)
-        {
-            string area = "East";
-            btnJCPOLYLocation(area);
-        }
-
-        protected void btn_JCPOLYWest(object sender, EventArgs e)
-        {
-            string area = "West";
-            btnJCPOLYLocation(area);
-        }
-
-        protected void JCPOLYGridView_SelectedIndexChanging(object sender, EventArgs e)
-        {
-
-            string JCPOLYName = (string)JCPOLYTable.DataKeys[JCPOLYTable.SelectedIndex].Value;
-            Session["JCPOLYName"] = JCPOLYName;
-        }
-
-        protected void btnJCPOLYSubmitPlan(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void btnJCPOLYContinuePlanning(object sender, EventArgs e)
-        {
-            //Response.Redirect("CreatePlanFromUniversity.aspx");
-        }
-
-        protected void btn_JCPOLYNone(object sender, EventArgs e)
+        protected void btn_ITEJCPOLYNone(object sender, EventArgs e)
         {
             resetView();
         }
+
+        protected void btn_ITEJCPOLYNorth(object sender, EventArgs e)
+        {
+            string area = "North";
+            btnITEJCPOLYLocation(area);
+        }
+
+        protected void btn_ITEJCPOLYSouth(object sender, EventArgs e)
+        {
+            string area = "South";
+            btnITEJCPOLYLocation(area);
+        }
+
+        protected void btn_ITEJCPOLYEast(object sender, EventArgs e)
+        {
+            string area = "East";
+            btnITEJCPOLYLocation(area);
+        }
+
+        protected void btn_ITEJCPOLYWest(object sender, EventArgs e)
+        {
+            string area = "West";
+            btnITEJCPOLYLocation(area);
+        }
+
+        protected void ITEJCPOLYGridView_SelectedIndexChanging(object sender, EventArgs e)
+        {
+            if(radioSelectITEPolyJC.SelectedItem.Text == "ITE" || radioSelectITEPolyJC.SelectedItem.Text == "Junior College")
+            {
+                btn_updateTertiary1.Visible = true;
+                btn_updateTertiary2.Visible = false;
+                PolyCoursesTable.Visible = false;
+            }
+
+            if (radioSelectITEPolyJC.SelectedItem.Text == "Polytechnic")
+            {
+                btn_updateTertiary1.Visible = false;
+                btn_updateTertiary2.Visible = true;
+                PolyCoursesTable.Visible = true;
+
+                DataTable PolyTable = new DataTable();
+                SqlConnection con = new DBManager().getConnection();
+                string sql = "SELECT DISTINCT school, course_name, gceo_cut_off FROM dbo.OLevelCOP WHERE academic_year = (SELECT MAX(academic_year) FROM OLevelCOP)";
+                SqlCommand cmd = new SqlCommand(sql, con);
+                con.Open();
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                adapter.Fill(PolyTable);
+                PolyCoursesTable.DataSource = PolyTable;
+                PolyCoursesTable.DataBind();
+                con.Close();
+            }
+
+            string ITEJCPOLYName = (string)ITEJCPOLYTable.DataKeys[ITEJCPOLYTable.SelectedIndex].Value;
+
+            if (radioSelectITEPolyJC.SelectedItem.Text == "Junior College")
+                Session["JCName"] = ITEJCPOLYName;
+            if (radioSelectITEPolyJC.SelectedItem.Text == "ITE")
+                Session["ITEName"] = ITEJCPOLYName;
+            if (radioSelectITEPolyJC.SelectedItem.Text == "Polytechnic")
+                Session["POLYName"] = ITEJCPOLYName;
+        }
+
+        protected void POLYCourseGridView_SelectedIndexChanging(object sender, EventArgs e)
+        {
+            string polyCourse = (string)PolyCoursesTable.DataKeys[PolyCoursesTable.SelectedIndex].Value;
+            Session["PolyCourse"] = polyCourse;
+
+        }
+
 
         protected void btn_updateTertiary_Click(object sender, EventArgs e)
         {
             EditPlanDAO ep = new EditPlanDAO();
             SqlConnection con = new DBManager().getConnection();
             int count;
-            string id = ep.getSchID(Session["JCPOLYName"].ToString());
-            if(radioSelectPolyJC.SelectedItem.Text == "Junior College")
+            if(radioSelectITEPolyJC.SelectedItem.Text == "Junior College")
             {
+                string id = ep.getSchID(Session["JCName"].ToString());
                 string sql = "UPDATE dbo.PathPlan SET jcID=@jcID WHERE accountID=@accountID";
                 SqlCommand cmd = new SqlCommand(sql, con);
                 cmd.Parameters.AddWithValue("@jcID", id);
@@ -139,86 +183,135 @@ namespace Life_Planner.Account
 
                 }
             }
-            else //selected is poly
-            {//not yet
-                //string sql = "UPDATE dbo.PathPlan SET polyID=@polyID WHERE accountID=@accountID";
-                //SqlCommand cmd = new SqlCommand(sql, con);
-                //cmd.Parameters.AddWithValue("@polyID", id);
-                //cmd.Parameters.AddWithValue("@accountID", Session["accountID"].ToString());
-                //con.Open();
-                //count = Convert.ToInt32(cmd.ExecuteScalar());
-                ////update: count == 0
-                //if (count == 0)
-                //{
-                //    alert_placeholder.Visible = true;
-                //    alert_placeholder.Attributes["class"] = "alert alert-success alert-dismissable";
-                //    alertText.Text = "Successfully updated! Redirecting to View Own Plan page...";
-                //    Response.AddHeader("REFRESH", "2;URL=ViewOwnPlan.aspx");
-                //    con.Close();
-                //    con.Dispose();
-                //}
-                //else
-                //{
-                //    con.Close();
-                //    con.Dispose();
-                //    Response.Redirect("Error.aspx");
+            else if(radioSelectITEPolyJC.SelectedItem.Text == "Polytechnic")//selected is poly
+            {
+                string id = ep.getSchID(Session["POLYName"].ToString());
+                string course = Session["PolyCourse"].ToString();
+                string sql = "UPDATE dbo.PathPlan SET polyID=@polyID, polyCourse=@polyCourse WHERE accountID=@accountID";
+                SqlCommand cmd = new SqlCommand(sql, con);
+                cmd.Parameters.AddWithValue("@polyID", id);
+                cmd.Parameters.AddWithValue("@polyCourse", course);
+                cmd.Parameters.AddWithValue("@accountID", Session["accountID"].ToString());
+                con.Open();
+                count = Convert.ToInt32(cmd.ExecuteScalar());
+                //update: count == 0
+                if (count == 0)
+                {
+                    alert_placeholder.Visible = true;
+                    alert_placeholder.Attributes["class"] = "alert alert-success alert-dismissable";
+                    alertText.Text = "Successfully updated! Redirecting to View Own Plan page...";
+                    Response.AddHeader("REFRESH", "2;URL=ViewOwnPlan.aspx");
+                    con.Close();
+                    con.Dispose();
+                }
+                else
+                {
+                    con.Close();
+                    con.Dispose();
+                    Response.Redirect("Error.aspx");
 
-                //}
+                }
+            }
+            else //for ite
+            {
+                string id = ep.getSchID(Session["ITEName"].ToString());
+                string sql = "UPDATE dbo.PathPlan SET ITEID=@ITEID WHERE accountID=@accountID";
+                SqlCommand cmd = new SqlCommand(sql, con);
+                cmd.Parameters.AddWithValue("@ITEID", id);
+                cmd.Parameters.AddWithValue("@accountID", Session["accountID"].ToString());
+                con.Open();
+                count = Convert.ToInt32(cmd.ExecuteScalar());
+                //update: count == 0
+                if (count == 0)
+                {
+                    alert_placeholder.Visible = true;
+                    alert_placeholder.Attributes["class"] = "alert alert-success alert-dismissable";
+                    alertText.Text = "Successfully updated! Redirecting to View Own Plan page...";
+                    Response.AddHeader("REFRESH", "2;URL=ViewOwnPlan.aspx");
+                    con.Close();
+                    con.Dispose();
+                }
+                else
+                {
+                    con.Close();
+                    con.Dispose();
+                    Response.Redirect("Error.aspx");
+
+                }
             }
         }
 
         protected void resetView()
         {
-            // to load secsch gridview with sec schools after setting it to visible
-            //*************to store priSchName into db
-
-            if (radioSelectPolyJC.SelectedItem.Text == "Junior College")
+            if (radioSelectITEPolyJC.SelectedItem.Text == "ITE" || radioSelectITEPolyJC.SelectedItem.Text == "Junior College")
             {
-                DataTable ViewJCSchTable = new DataTable();
+                btn_updateTertiary1.Visible = true;
+                btn_updateTertiary2.Visible = false;
+                PolyCoursesTable.Visible = false;
+            }
+
+            if (radioSelectITEPolyJC.SelectedItem.Text == "Junior College")
+            {
+                DataTable ViewITEJCSchTable = new DataTable();
                 SqlConnection con = new DBManager().getConnection();
                 string sql = "SELECT school_name,zone_code, dgp_code,url_address FROM [CZ2006 - Life Planner].[dbo].[Schools] WHERE school_name LIKE '%JUNIOR COLLEGE%';";
                 SqlCommand cmd = new SqlCommand(sql, con);
                 con.Open();
                 SqlDataAdapter adapter = new SqlDataAdapter(cmd);
-                adapter.Fill(ViewJCSchTable);
-                JCPOLYTable.DataSource = ViewJCSchTable;
-                JCPOLYTable.DataBind();
+                adapter.Fill(ViewITEJCSchTable);
+                ITEJCPOLYTable.DataSource = ViewITEJCSchTable;
+                ITEJCPOLYTable.DataBind();
                 con.Close();
             }
 
-            else if (radioSelectPolyJC.SelectedItem.Text == "Polytechnic")
+            else if (radioSelectITEPolyJC.SelectedItem.Text == "Polytechnic")
             {
-                DataTable ViewPolySchTable = new DataTable();
+                DataTable ViewITEPolySchTable = new DataTable();
                 SqlConnection con = new DBManager().getConnection();
                 string sql = "SELECT school_name,zone_code, dgp_code,url_address FROM [CZ2006 - Life Planner].[dbo].[Schools] WHERE school_name LIKE '%POLYTECHNIC%';";
                 SqlCommand cmd = new SqlCommand(sql, con);
                 con.Open();
                 SqlDataAdapter adapter = new SqlDataAdapter(cmd);
-                adapter.Fill(ViewPolySchTable);
-                JCPOLYTable.DataSource = ViewPolySchTable;
-                JCPOLYTable.DataBind();
+                adapter.Fill(ViewITEPolySchTable);
+                ITEJCPOLYTable.DataSource = ViewITEPolySchTable;
+                ITEJCPOLYTable.DataBind();
+                con.Close();
+            }
+
+            else if (radioSelectITEPolyJC.SelectedItem.Text == "ITE")
+            {
+                DataTable ViewITEPolySchTable = new DataTable();
+                SqlConnection con = new DBManager().getConnection();
+                string sql = "SELECT school_name,zone_code, dgp_code,url_address FROM [CZ2006 - Life Planner].[dbo].[Schools] WHERE school_name LIKE '%ITE COLLEGE%';";
+                SqlCommand cmd = new SqlCommand(sql, con);
+                con.Open();
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                adapter.Fill(ViewITEPolySchTable);
+                ITEJCPOLYTable.DataSource = ViewITEPolySchTable;
+                ITEJCPOLYTable.DataBind();
                 con.Close();
             }
         }
 
         protected void setTrue()
         {
-            btnJCPOLYNorth.Visible = true;
-            btnJCPOLYWest.Visible = true;
-            btnJCPOLYEast.Visible = true;
-            btnJCPOLYSouth.Visible = true;
-            btnJCPOLYNone.Visible = true;
-            btn_updateTertiary.Visible = true;
+            btnITEJCPOLYNorth.Visible = true;
+            btnITEJCPOLYWest.Visible = true;
+            btnITEJCPOLYEast.Visible = true;
+            btnITEJCPOLYSouth.Visible = true;
+            btnITEJCPOLYNone.Visible = true;
+            btn_updateTertiary1.Visible = true;
         }
 
         protected void setFalse()
         {
-            btnJCPOLYNorth.Visible = false;
-            btnJCPOLYWest.Visible = false;
-            btnJCPOLYEast.Visible = false;
-            btnJCPOLYSouth.Visible = false;
-            btnJCPOLYNone.Visible = false;
-            btn_updateTertiary.Visible = false;
+            btnITEJCPOLYNorth.Visible = false;
+            btnITEJCPOLYWest.Visible = false;
+            btnITEJCPOLYEast.Visible = false;
+            btnITEJCPOLYSouth.Visible = false;
+            btnITEJCPOLYNone.Visible = false;
+            btn_updateTertiary1.Visible = false;
+            btn_updateTertiary2.Visible = false;
         }
     }
 }

@@ -10,7 +10,7 @@
 namespace Life_Planner.Account {
     
     
-    public partial class EditJCPoly {
+    public partial class CreatePlanFromJCPOLY {
         
         /// <summary>
         /// Panel1 control.
@@ -38,6 +38,15 @@ namespace Life_Planner.Account {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal alertText;
+        
+        /// <summary>
+        /// lblSelectITEPolyJC control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblSelectITEPolyJC;
         
         /// <summary>
         /// radioSelectITEPolyJC control.
@@ -112,13 +121,22 @@ namespace Life_Planner.Account {
         protected global::System.Web.UI.WebControls.GridView ITEJCPOLYTable;
         
         /// <summary>
-        /// btn_updateTertiary1 control.
+        /// btnITEJCPOLYCont control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_updateTertiary1;
+        protected global::System.Web.UI.WebControls.Button btnITEJCPOLYCont;
+        
+        /// <summary>
+        /// btnITEJCPOLYSubmit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnITEJCPOLYSubmit;
         
         /// <summary>
         /// PolyCoursesTable control.
@@ -130,12 +148,21 @@ namespace Life_Planner.Account {
         protected global::System.Web.UI.WebControls.GridView PolyCoursesTable;
         
         /// <summary>
-        /// btn_updateTertiary2 control.
+        /// btnITEJCPOLYCont2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_updateTertiary2;
+        protected global::System.Web.UI.WebControls.Button btnITEJCPOLYCont2;
+        
+        /// <summary>
+        /// btnITEJCPOLYSubmit2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnITEJCPOLYSubmit2;
     }
 }

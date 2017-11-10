@@ -98,7 +98,7 @@ namespace Life_Planner.Account
 
         protected void btnSecContinuePlanning(object sender, EventArgs e)
         {
-            Response.Redirect("CreatePlanFromJCPOLY.aspx");
+            Response.Redirect("CreatePlanFromITEJCPOLY.aspx");
         }
 
         protected void btnSecSubmitPlan(object sender, EventArgs e)
@@ -118,29 +118,29 @@ namespace Life_Planner.Account
             using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["CZ2006 - Life Planner"].ConnectionString))
             {
                 string sql3 = "SELECT id FROM Schools WHERE school_name=@schoolname;";
-                SqlCommand cmd2 = new SqlCommand(sql3, con);
-                cmd2.Parameters.AddWithValue("@schoolname", Session["secSchName"].ToString());
+                SqlCommand cmd3 = new SqlCommand(sql3, con);
+                cmd3.Parameters.AddWithValue("@schoolname", Session["secSchName"].ToString());
 
                 con.Open();
-                secSchID = (int)cmd2.ExecuteScalar();
+                secSchID = (int)cmd3.ExecuteScalar();
                 con.Close();
             }
 
             using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["CZ2006 - Life Planner"].ConnectionString))
             {
-                string sql = "INSERT INTO dbo.PathPlan(NRIC, priSchID) VALUES (@NRIC, @priSchID, @secSchID);";
+                string sql = "INSERT INTO dbo.PathPlan(NRIC, priSchID, secSchID, accountID) VALUES (@NRIC, @priSchID, @secSchID, @accountID);";
                 SqlCommand cmd = new SqlCommand(sql, con);
-                cmd.Parameters.AddWithValue("@NRIC", "S9866756H");
-                //**********************************************************************************
-                //cmd.Parameters.AddWithValue("@NRIC", Session["newChild"].ToString());
-                cmd.Parameters.AddWithValue("@secSchID", secSchID);
 
+                cmd.Parameters.AddWithValue("@NRIC", Session["newChild"].ToString());
+                cmd.Parameters.AddWithValue("@secSchID", secSchID);
+                cmd.Parameters.AddWithValue("@priSchID", priSchID);
+                cmd.Parameters.AddWithValue("@accountID", Session["accountID"].ToString());
                 con.Open();
                 cmd.ExecuteNonQuery();
                 con.Close();
             }
             //redirect to view plan
-            Response.AddHeader("REFRESH", "3;URL=/Account/ChangePassword.aspx");
+            Response.AddHeader("REFRESH", "3;URL=/Account/ViewOwnPlan.aspx");
         }
 
         

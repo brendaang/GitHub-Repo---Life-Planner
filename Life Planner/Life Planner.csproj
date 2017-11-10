@@ -171,15 +171,17 @@
     <Content Include="404.aspx" />
     <Content Include="Account\ChangeRole.aspx" />
     <Content Include="Account\CreatePlan.aspx" />
-    <Content Include="Account\CreatePlanFromJCPOLY.aspx" />
+    <Content Include="Account\CreatePlanFromITEJCPOLY.aspx" />
     <Content Include="Account\CreatePlanFromPrimary.aspx" />
     <Content Include="Account\CreatePlanFromSecondary.aspx" />
+    <Content Include="Account\CreatePlanFromUni.aspx" />
     <Content Include="Account\CreateThread.aspx" />
     <Content Include="Account\Editing-Posts.aspx" />
     <Content Include="Account\EditTertiary.aspx" />
     <Content Include="Account\EditPrimarySch.aspx" />
     <Content Include="Account\EditProfile.aspx" />
     <Content Include="Account\EditSecSch.aspx" />
+    <Content Include="Account\EditUni.aspx" />
     <Content Include="Account\ForgetPassword.aspx" />
     <Content Include="Account\PostIssues.aspx" />
     <Content Include="Account\ReportPost.aspx" />
@@ -204,9 +206,12 @@
     <Content Include="Content\Site.css" />
     <Content Include="Images\404.png" />
     <Content Include="Images\button_calendar.png" />
+    <Content Include="Images\Capture.png" />
     <Content Include="Images\educationOverview.PNG" />
     <Content Include="Images\error.png" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Images\plan.jpg" />
+    <Content Include="iteStats.aspx" />
     <Content Include="juniorCollegeStats.aspx" />
     <Content Include="moreInformation.aspx" />
     <Content Include="OLevelCOP.aspx" />
@@ -296,12 +301,12 @@
     <Compile Include="Account\CreatePlan.aspx.designer.cs">
       <DependentUpon>CreatePlan.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Account\CreatePlanFromJCPOLY.aspx.cs">
-      <DependentUpon>CreatePlanFromJCPOLY.aspx</DependentUpon>
+    <Compile Include="Account\CreatePlanFromITEJCPOLY.aspx.cs">
+      <DependentUpon>CreatePlanFromITEJCPOLY.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Account\CreatePlanFromJCPOLY.aspx.designer.cs">
-      <DependentUpon>CreatePlanFromJCPOLY.aspx</DependentUpon>
+    <Compile Include="Account\CreatePlanFromITEJCPOLY.aspx.designer.cs">
+      <DependentUpon>CreatePlanFromITEJCPOLY.aspx</DependentUpon>
     </Compile>
     <Compile Include="Account\CreatePlanFromPrimary.aspx.cs">
       <DependentUpon>CreatePlanFromPrimary.aspx</DependentUpon>
@@ -316,6 +321,13 @@
     </Compile>
     <Compile Include="Account\CreatePlanFromSecondary.aspx.designer.cs">
       <DependentUpon>CreatePlanFromSecondary.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\CreatePlanFromUni.aspx.cs">
+      <DependentUpon>CreatePlanFromUni.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\CreatePlanFromUni.aspx.designer.cs">
+      <DependentUpon>CreatePlanFromUni.aspx</DependentUpon>
     </Compile>
     <Compile Include="Account\CreateThread.aspx.cs">
       <DependentUpon>CreateThread.aspx</DependentUpon>
@@ -359,6 +371,13 @@
     </Compile>
     <Compile Include="Account\EditSecSch.aspx.designer.cs">
       <DependentUpon>EditSecSch.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\EditUni.aspx.cs">
+      <DependentUpon>EditUni.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\EditUni.aspx.designer.cs">
+      <DependentUpon>EditUni.aspx</DependentUpon>
     </Compile>
     <Compile Include="Account\ForgetPassword.aspx.cs">
       <DependentUpon>ForgetPassword.aspx</DependentUpon>
@@ -513,6 +532,13 @@
     </Compile>
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="iteStats.aspx.cs">
+      <DependentUpon>iteStats.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="iteStats.aspx.designer.cs">
+      <DependentUpon>iteStats.aspx</DependentUpon>
     </Compile>
     <Compile Include="juniorCollegeStats.aspx.cs">
       <DependentUpon>juniorCollegeStats.aspx</DependentUpon>

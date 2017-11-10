@@ -108,26 +108,26 @@ namespace Life_Planner.Account
 
             using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["CZ2006 - Life Planner"].ConnectionString))
             {     
-                string sql = "INSERT INTO dbo.PathPlan(NRIC, priSchID) VALUES (@NRIC, @priSchID);";
+                string sql = "INSERT INTO dbo.PathPlan(NRIC, priSchID, accountID) VALUES (@NRIC, @priSchID, @accountID);";
                 SqlCommand cmd = new SqlCommand(sql, con);
-                cmd.Parameters.AddWithValue("@NRIC", "S9866756H");
-                //**********************************************************************************
-                //cmd.Parameters.AddWithValue("@NRIC", Session["newChild"].ToString());
+
+                cmd.Parameters.AddWithValue("@NRIC", Session["newChild"].ToString());
                 cmd.Parameters.AddWithValue("@priSchID", priSchID);
+                cmd.Parameters.AddWithValue("@accountID", Session["accountID"].ToString());
 
                 con.Open();
                 cmd.ExecuteNonQuery();
                 con.Close();
             }
             //redirect to view plan
-            Response.AddHeader("REFRESH", "3;URL=/Account/ChangePassword.aspx");
+            Response.AddHeader("REFRESH", "3;URL=/Account/ViewOwnPlan.aspx");
         }
 
         protected void btn_PriNone(object sender, EventArgs e)
         {
             DataTable ViewPriSchTable = new DataTable();
             SqlConnection con = new DBManager().getConnection();
-            string sql = "SELECT school_name,zone_code, dgp_code,url_address FROM [CZ2006 - Life Planner].[dbo].[Schools] WHERE school_name LIKE '%PRIMARY SCHOOL%';";
+            string sql = "SELECT school,zone_code, dgp_code,url_address FROM [CZ2006 - Life Planner].[dbo].[Schools] WHERE school_name LIKE '%PRIMARY SCHOOL%';";
             SqlCommand cmd = new SqlCommand(sql, con);
             con.Open();
             SqlDataAdapter adapter = new SqlDataAdapter(cmd);

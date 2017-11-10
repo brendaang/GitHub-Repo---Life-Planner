@@ -1,9 +1,12 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="EditTertiary.aspx.cs" Inherits="Life_Planner.Account.EditJCPoly" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="CreatePlanFromITEJCPOLY.aspx.cs" Inherits="Life_Planner.Account.CreatePlanFromJCPOLY" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-       <asp:Panel ID="Panel1" runat="server" Height="831px">
+        <asp:Panel ID="Panel1" runat="server" Height="831px">
 
             <section id="createPlan">
-                <h2>Edit Tertiary Selection</h2>
+                <h2></>Create Plan</h2>
+
+                <h5>Step 2: Selecting ITE/Junior College/Polytechnic</h5>
 
 
                 <div id="alert_placeholder" runat="server" visible="false">
@@ -13,8 +16,11 @@
                 <hr />
                 <div>
 
+                    <%--////2--%>
                     <div>
                         <div class="form-group">
+                            <asp:Label ID="lblSelectITEPolyJC" runat="server" CssClass="col-md-4 control-label" Text="Please select next path to enter:" Visible="False"></asp:Label>
+                            <br />
                             <asp:RadioButtonList ID="radioSelectITEPolyJC" RepeatLayout="Flow" RepeatDirection="Horizontal" runat="server" OnSelectedIndexChanged="radioSelectITEPolyJC_SelectedIndexChanged" AutoPostBack="true">
                                 <asp:ListItem class="radio-inline" Value="0" Text="ITE"></asp:ListItem>
                                 <asp:ListItem class="radio-inline" Value="1" Text="Junior College"></asp:ListItem>
@@ -32,13 +38,13 @@
                             <table class="nav-justified" style="width: 79%">
                                 <tr>
                                     <td style="width: 88px">
-                                        <asp:Button ID="btnITEJCPOLYNorth" CssClass="btn btn-default" Text="North" runat="server" OnClick="btn_ITEJCPOLYNorth" CausesValidation="false" />
+                                        <asp:Button ID="btnITEJCPOLYNorth" CssClass="btn btn-default" Text="North" runat="server" OnClick="btn_ITEJCPOLYNorth" CausesValidation="false"/>
                                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:Button ID="btnITEJCPOLYSouth" CssClass="btn btn-default" Text="South" runat="server" OnClick="btn_ITEJCPOLYSouth" CausesValidation="false" />
+                                <asp:Button ID="btnITEJCPOLYSouth" CssClass="btn btn-default" Text="South" runat="server" OnClick="btn_ITEJCPOLYSouth" CausesValidation="false"/>
                                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:Button ID="btnITEJCPOLYEast" CssClass="btn btn-default" Text="East" runat="server" OnClick="btn_ITEJCPOLYEast" CausesValidation="false" />
+                                <asp:Button ID="btnITEJCPOLYEast" CssClass="btn btn-default" Text="East" runat="server" OnClick="btn_ITEJCPOLYEast" CausesValidation="false"/>
                                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:Button ID="btnITEJCPOLYWest" CssClass="btn btn-default" Text="West" runat="server" OnClick="btn_ITEJCPOLYWest" CausesValidation="false" />
+                                <asp:Button ID="btnITEJCPOLYWest" CssClass="btn btn-default" Text="West" runat="server" OnClick="btn_ITEJCPOLYWest" CausesValidation="false"/>
                                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <asp:Button ID="btnITEJCPOLYNone" CssClass="btn btn-default" Text="None" runat="server" OnClick="btn_ITEJCPOLYNone" CausesValidation="false" />
                                         <br />
@@ -72,9 +78,15 @@
                     </div>
 
                 </div>
-                <div class="form-group col-lg-10 col-lg-offset-10">
-                         <asp:Button ID="btn_updateTertiary1" runat="server" Text="Update Tertiary" class="btn btn-primary" Width="150px" OnClick="btn_updateTertiary_Click" OnClientClick="return confirm('Do you want to update choice as selected Tertiary? ');" />
-                 </div>
+
+                <div class="form-group">
+                    <div class="col-lg-10 col-lg-offset-10">
+                        <br />
+                        <asp:Button ID="btnITEJCPOLYCont" CssClass="btn btn-default" Text="Continue" runat="server" OnClick="btnITEJCPOLYContinuePlanning" CausesValidation="false" Width="93px" Visible="False" />
+                        &nbsp;
+                        <asp:Button ID="btnITEJCPOLYSubmit" CssClass="btn btn-primary" Text="End" runat="server" OnClick="btnITEJCPOLYSubmitPlan" Width="93px" Visible="False" />
+                    </div>
+                </div>
 
                 <%--******--%>
                 <div>
@@ -99,11 +111,20 @@
                             <br />
                         </div>
                     </div>
-                </div>
-                <div class="form-group col-lg-10 col-lg-offset-10">
-                    <asp:Button ID="btn_updateTertiary2" runat="server" Text="Update Tertiary" class="btn btn-primary" Width="150px" OnClick="btn_updateTertiary_Click" OnClientClick="return confirm('Do you want to update choice as selected Tertiary? ');" />
-                </div>
-            </section>
-       </asp:Panel>
 
+
+                </div>
+
+                <div class="form-group">
+                    <div class="col-lg-10 col-lg-offset-10">
+                        <br />
+                        <asp:Button ID="btnITEJCPOLYCont2" CssClass="btn btn-default" Text="Continue" runat="server" OnClick="btnITEJCPOLYContinuePlanning2" CausesValidation="false" Width="93px" Visible="False" />
+                        &nbsp;
+                        <asp:Button ID="btnITEJCPOLYSubmit2" CssClass="btn btn-primary" Text="End" runat="server" OnClick="btnITEJCPOLYSubmitPlan2" Width="93px" Visible="False" />
+                    </div>
+                </div>
+
+
+            </section>
+        </asp:Panel>
 </asp:Content>
