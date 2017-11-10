@@ -67,11 +67,7 @@
                         <li><a runat="server" href="~/Account/CreatePlan">Create Plan</a></li>
                         <li><a runat="server" href="~/Account/Forum">Forum</a></li>
                         <li><a runat="server" href="~/SendFeedback">Feedback</a></li>
-                        <%
-                            }
-
-                        %>
-                              <li class="dropdown">
+                        <li class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" href="#">View Statistics<span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a runat="server" href="~/primaryStats.aspx">Primary</a></li>
@@ -83,6 +79,10 @@
                                 <li><a runat="server" href="~/OLevelCOP.aspx">O Level COP</a></li>
                             </ul>
                         </li>
+                        <%
+                            }
+
+                        %>
                     </ul>
                     <!-- Right-side of navbar -->
                     <ul class="nav navbar-nav navbar-right">
