@@ -19,9 +19,7 @@ namespace Life_Planner.Account
             if (IsPostBack)
                 return;
 
-            //to uncomment after done
-            //if (Session["newChildPlanPrimary"] != null) //can get newchildnric from Session["newChildPlanKindergarten"].ToString();
-            {
+           
                 DataTable ViewUniTable = new DataTable();
                 SqlConnection con = new DBManager().getConnection();
                 string sql = "SELECT school_name,zone_code, dgp_code,url_address FROM [CZ2006 - Life Planner].[dbo].[Schools] WHERE school_name LIKE '%UNIVERSITY%';";
@@ -32,7 +30,7 @@ namespace Life_Planner.Account
                 uniTable.DataSource = ViewUniTable;
                 uniTable.DataBind();
                 con.Close();
-            }
+            
         }
 
         protected void btnUniLocation(string area)
@@ -98,27 +96,39 @@ namespace Life_Planner.Account
         protected void btnUniSubmitPlan(object sender, EventArgs e)
         {
             string priSchID="", secSchID="", jcID="", iteID="", polyID="", polyCourse = "", uniID="";
-            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["CZ2006 - Life Planner"].ConnectionString))
+
+            if (Session["priSchName"] != null)
             {
-                string sql2 = "SELECT id FROM Schools WHERE school_name=@schoolname;";
-                SqlCommand cmd2 = new SqlCommand(sql2, con);
-                cmd2.Parameters.AddWithValue("@schoolname", Session["priSchName"].ToString());
+                using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["CZ2006 - Life Planner"].ConnectionString))
+                {
+                    string sql2 = "SELECT id FROM Schools WHERE school_name=@schoolname;";
+                    SqlCommand cmd2 = new SqlCommand(sql2, con);
+                    cmd2.Parameters.AddWithValue("@schoolname", Session["priSchName"].ToString());
 
-                con.Open();
-                priSchID = cmd2.ExecuteScalar().ToString();
-                con.Close();
+                    con.Open();
+                    priSchID = cmd2.ExecuteScalar().ToString();
+                    con.Close();
+                }
             }
+            else if (Session["priSchName"] == null)
+                priSchID = "";
 
-            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["CZ2006 - Life Planner"].ConnectionString))
+
+            if (Session["secSchName"] != null)
             {
-                string sql3 = "SELECT id FROM Schools WHERE school_name=@schoolname;";
-                SqlCommand cmd3 = new SqlCommand(sql3, con);
-                cmd3.Parameters.AddWithValue("@schoolname", Session["secSchName"].ToString());
+                using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["CZ2006 - Life Planner"].ConnectionString))
+                {
+                    string sql3 = "SELECT id FROM Schools WHERE school_name=@schoolname;";
+                    SqlCommand cmd3 = new SqlCommand(sql3, con);
+                    cmd3.Parameters.AddWithValue("@schoolname", Session["secSchName"].ToString());
 
-                con.Open();
-                secSchID = cmd3.ExecuteScalar().ToString();
-                con.Close();
+                    con.Open();
+                    secSchID = cmd3.ExecuteScalar().ToString();
+                    con.Close();
+                }
             }
+            else if (Session["secSchName"] == null)
+                secSchID = "";
 
 
             if (Session["JCName"] != null)
@@ -158,12 +168,10 @@ namespace Life_Planner.Account
             
             if (Session["PolyCourse"] == null)
             {
-                Response.Write("Session PolyCourse " + Session["PolyCourse"].ToString());
                 polyCourse = "";
             }
             else
             {
-                Response.Write("notnull"+ Session["PolyCourse"].ToString());
                 polyCourse = Session["PolyCourse"].ToString();
             }
                
@@ -248,7 +256,7 @@ namespace Life_Planner.Account
                 cmd.Parameters.AddWithValue("@priSchID", priSchID);
                 cmd.Parameters.AddWithValue("@secSchID", secSchID);
                 cmd.Parameters.AddWithValue("@polyID", polyID);
-                cmd.Parameters.AddWithValue("@polyCourse", Session["PolyCourse"].ToString());
+                cmd.Parameters.AddWithValue("@polyCourse", polyCourse);
                 cmd.Parameters.AddWithValue("@jcID", jcID);
                 cmd.Parameters.AddWithValue("@ITEID", iteID);
                 cmd.Parameters.AddWithValue("@uniID", uniID);
@@ -261,7 +269,7 @@ namespace Life_Planner.Account
                 con.Close();
             }
             //redirect to view plan
-           // Response.Redirect("~/Account/ViewOwnPlan.aspx");
+           Response.Redirect("~/Account/ViewOwnPlan.aspx");
         }
     }
 }

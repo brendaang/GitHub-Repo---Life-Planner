@@ -19,9 +19,7 @@ namespace Life_Planner.Account
             if (IsPostBack)
                 return;
 
-            //to uncomment after done
-            //if (Session["newChildPlanKindergarten"] != null) //can get newchildnric from Session["newChild"].ToString();
-            //{
+            
             DataTable ViewPriSchTable = new DataTable();
             SqlConnection con = new DBManager().getConnection();
             string sql = "SELECT school_name,zone_code, dgp_code,url_address FROM [CZ2006 - Life Planner].[dbo].[Schools] WHERE school_name LIKE '%PRIMARY SCHOOL%';";
@@ -32,7 +30,7 @@ namespace Life_Planner.Account
             priSchTable.DataSource = ViewPriSchTable;
             priSchTable.DataBind();
             con.Close();
-            //}
+           
 
         }
 
@@ -94,33 +92,47 @@ namespace Life_Planner.Account
 
         protected void btnPriSubmitPlan(object sender, EventArgs e)
         {
-            int priSchID;
+            string priSchID="";
+            if (Session["priSchName"] != null)
+            {
+                using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["CZ2006 - Life Planner"].ConnectionString))
+                {
+                    string sql2 = "SELECT id FROM Schools WHERE school_name=@schoolname;";
+                    SqlCommand cmd2 = new SqlCommand(sql2, con);
+                    cmd2.Parameters.AddWithValue("@schoolname", Session["priSchName"].ToString());
+
+                    con.Open();
+                    priSchID = cmd2.ExecuteScalar().ToString();
+                    con.Close();
+                }
+            }
+            else if (Session["priSchName"] == null)
+                priSchID = "";
+
             using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["CZ2006 - Life Planner"].ConnectionString))
             {
-                string sql2 = "SELECT id FROM Schools WHERE school_name=@schoolname;";
-                SqlCommand cmd2 = new SqlCommand(sql2,con);
-                cmd2.Parameters.AddWithValue("@schoolname", Session["priSchName"].ToString());
+                string sql = "";
+                sql += "INSERT INTO dbo.PathPlan(NRIC, priSchID, accountID) VALUES (@NRIC, ";
 
-                con.Open();
-                priSchID = (int)cmd2.ExecuteScalar();
-                con.Close();
-            }
+                if (priSchID == "")
+                    sql += "NULL, ";
+                else
+                    sql += "@priSchID, ";
 
-            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["CZ2006 - Life Planner"].ConnectionString))
-            {     
-                string sql = "INSERT INTO dbo.PathPlan(NRIC, priSchID, accountID) VALUES (@NRIC, @priSchID, @accountID);";
+                sql += "@accountID);";
+
                 SqlCommand cmd = new SqlCommand(sql, con);
-
-                cmd.Parameters.AddWithValue("@NRIC", Session["newChild"].ToString());
+                cmd.Parameters.AddWithValue("@NRIC", Session["newChild"]);
                 cmd.Parameters.AddWithValue("@priSchID", priSchID);
                 cmd.Parameters.AddWithValue("@accountID", Session["accountID"].ToString());
-
                 con.Open();
                 cmd.ExecuteNonQuery();
                 con.Close();
             }
+
+
             //redirect to view plan
-            Response.AddHeader("REFRESH", "3;URL=/Account/ViewOwnPlan.aspx");
+            Response.Redirect("~/Account/ViewOwnPlan.aspx");
         }
 
         protected void btn_PriNone(object sender, EventArgs e)
