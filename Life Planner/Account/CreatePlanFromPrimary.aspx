@@ -1,8 +1,8 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="CreatePlanFromPrimary.aspx.cs" Inherits="Life_Planner.Account.CreatePlanFromPrimary" %>
+<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="CreatePlanFromPrimary.aspx.cs" Inherits="Life_Planner.Account.CreatePlanFromPrimary" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
-    <asp:Panel ID="Panel1" runat="server" Height="703px">
+    <asp:Panel ID="Panel1" runat="server" Height="1658px">
 
         <section id="createPlan">
             <h2></>Create Plan</h2>
@@ -11,8 +11,6 @@
 
 
             <div id="alert_placeholder" runat="server" visible="false">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                <asp:Literal runat="server" ID="alertText" />
             </div>
             <hr />
 
@@ -38,33 +36,14 @@
                                 <asp:Button ID="btnPriEast" CssClass="btn btn-default" Text="East" runat="server" OnClick="btn_PriEast" CausesValidation="false" />
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <asp:Button ID="btnPriWest" CssClass="btn btn-default" Text="West" runat="server" OnClick="btn_PriWest" CausesValidation="false" />
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <asp:Button ID="btnPriNone" CssClass="btn btn-default" Text="None" runat="server" OnClick="btn_PriNone" CausesValidation="false" />
                                 <br />
-                                <br />l
+                                <br />
                             </td>
                         </tr>
                     </table>
                 </div>
-
-
-                <script type="text/javascript">
-      <!--
-
-
-    // Get the coefficients of the equation from the user
-    function myFunction() {
-        if (confirm("Do you wish to continue planning for Secondary School route?")) {
-            window.location.href = 'Account/login.aspx';
-        }
-        //else {
-
-        //    //link to cal page???
-        //}
-        
-    }
-
-
-      // -->
-                </script>
 
                 <div class="form-group">
                     <div style="width: 100%; height: 400px; overflow: auto">
@@ -85,18 +64,24 @@
                                 <asp:BoundField DataField="url_address" HeaderText="URL" SortExpression="url_address" />
                             </Columns>
                         </asp:GridView>
-                         <%--<asp:TemplateField HeaderText="">
-                                    <ItemTemplate>
-                                        <asp:LinkButton ID="selectPriSch" runat="server" CausesValidation="false" Text='Select' OnSelectedIndexChanged="priSchGridView_SelectedIndexChanging"> //OnClientClick="myFunction()"
-                                        </asp:LinkButton>
-                                    </ItemTemplate>
-                                </asp:TemplateField>--%>
-                        <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
-
                         <br />
                     </div>
                 </div>
+
+
             </div>
+
+            <div class="form-group">
+                <div class="col-lg-10 col-lg-offset-10">
+                    <br />
+                    <asp:Button ID="btnPriCont" CssClass="btn btn-default" Text="Continue" runat="server" OnClick="btnPriContinuePlanning" CausesValidation="false" Width="93px" Visible="False" />
+                        &nbsp;
+                        <asp:Button ID="btnPriSubmit" CssClass="btn btn-primary" Text="End" runat="server" OnClick="btnPriSubmitPlan" Width="93px" Visible="False" />
+                </div>
+            </div>
+
+            
+
 
 
         </section>
