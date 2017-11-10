@@ -79,14 +79,6 @@
                     </div>
                 </div>
 
-                <%--<script type ="text/javascript">
-                    function validateNRIC() {
-                        var txtNRIC = document.getElementById('txtCreatePlanNRIC');
-                        txtNRIC.matches("^[STFGstfg][0-9][0-9][0-9][0-9][0-9][0-9][0-9][a-zA-Z]$");
-                        if()
-                    }
-                </script>--%>
-
                 <div class="form-group">
                     <asp:Label ID="lblCreatePlanEmail" runat="server" CssClass="col-md-2 control-label" Text="Email:"></asp:Label>
                     <div class="col-md-10">

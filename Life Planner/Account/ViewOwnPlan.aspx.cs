@@ -262,7 +262,7 @@ namespace Life_Planner.Account
 
         protected void btn_editTertiary_Click(object sender, EventArgs e)
         {
-
+            Response.Redirect("EditTertiary.aspx");
         }
 
         protected void btn_doneEdit_Click(object sender, EventArgs e)

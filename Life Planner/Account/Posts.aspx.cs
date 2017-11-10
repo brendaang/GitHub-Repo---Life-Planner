@@ -147,326 +147,250 @@ namespace Life_Planner.Account
 
         protected void btnPost_Click(object sender, EventArgs e)
         {
-                //checking if textbox is empty.
-                //if there is no post content, do not allow user to proceed.
-                if (txtEditor.Text == "")
-                {
-                    Page.ClientScript.RegisterStartupScript(this.GetType(), "Alert!", "alert('Please type a post or reply before clicking the 'Post' button.');", true);
-                    return;
-                }
+            String file = Server.MapPath("/WordList/WordList.txt");
+            //checking if textbox is empty.
+            //if there is no post content, do not allow user to proceed.
+            if (txtEditor.Text == "")
+            {
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "Alert!", "alert('Please type a post or reply before clicking the 'Post' button.');", true);
+                return;
+            }
 
-                //pass content from rich textbox through the vulgarity checking method.
-                //if post contains vulgarities, do not allow user to proceed.
-                else if (messageChecker(txtEditor.Text))
-                {
-                    Page.ClientScript.RegisterStartupScript(this.GetType(), "Alert!", "alert('Please check your post contents. No vulgarities please.');", true);
-                    return;
-                }
+            //pass content from rich textbox through the vulgarity checking method.
+            //if post contains vulgarities, do not allow user to proceed.
+            //get the path to the WordList file
+            else if (new CommonMethods().messageChecker(txtEditor.Text, new CommonMethods().getBadWordList(file)))
+            {
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "Alert!", "alert('Please check your post contents. No vulgarities please.');", true);
+                return;
+            }
 
-                else
-                {
-                    string postText = txtEditor.Text;
-                    string threadID = (string)(Session["ThreadID"]);
-                    string accID = getAccID();
-                    DateTime dateTime = DateTime.Now;
-                    SqlConnection con3 = new DBManager().getConnection();
-                    string sql3 = "INSERT INTO [CZ2006 - Life Planner].[dbo].[Posts] (postText, threadID, accID, datePosted) VALUES (@postText, @threadID, @accID, @dateTime);";
-                    SqlCommand cmd3 = new SqlCommand(sql3, con3);
-                    cmd3.Parameters.AddWithValue("@postText", postText);
-                    cmd3.Parameters.AddWithValue("@threadID", threadID);
-                    cmd3.Parameters.AddWithValue("@accID", accID);
-                    cmd3.Parameters.AddWithValue("@dateTime", dateTime);
-                    con3.Open();
-                    cmd3.ExecuteNonQuery();
-                    con3.Close();
-                    Response.Redirect("Posts.aspx");
-                }
+            else
+            {
+                string postText = txtEditor.Text;
+                string threadID = (string)(Session["ThreadID"]);
+                String username = Session["username"].ToString();
+                String accID = new CommonMethods().getAccID(username);
+                DateTime dateTime = DateTime.Now;
+                SqlConnection con3 = new DBManager().getConnection();
+                string sql3 = "INSERT INTO [CZ2006 - Life Planner].[dbo].[Posts] (postText, threadID, accID, datePosted) VALUES (@postText, @threadID, @accID, @dateTime);";
+                SqlCommand cmd3 = new SqlCommand(sql3, con3);
+                cmd3.Parameters.AddWithValue("@postText", postText);
+                cmd3.Parameters.AddWithValue("@threadID", threadID);
+                cmd3.Parameters.AddWithValue("@accID", accID);
+                cmd3.Parameters.AddWithValue("@dateTime", dateTime);
+                con3.Open();
+                cmd3.ExecuteNonQuery();
+                con3.Close();
+                Response.Redirect("Posts.aspx");
+            }
 
         }
-
-        //method to get userID by the username that was saved in the session
-        protected string getAccID()
-        {
-            String acctName = Session["username"].ToString();
-
-            String accID;
-            SqlConnection con4 = new DBManager().getConnection();
-            string sql4 = "SELECT [accountID] FROM [CZ2006 - Life Planner].[dbo].[AccCreds] WHERE username = @userName;";
-            SqlCommand cmd4 = new SqlCommand(sql4, con4);
-            cmd4.Parameters.AddWithValue("@userName", acctName);
-            con4.Open();
-            accID = cmd4.ExecuteScalar().ToString();
-            cmd4.ExecuteNonQuery();
-            con4.Close();
-
-            return accID;
-        }
-
         protected void btnCancel_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/Account/Posts.aspx");
         }
-
-        //method to get the userID of a post's author
-        protected string getAcc(string postID)
-        {
-            string authorID;
-
-            SqlConnection con = new DBManager().getConnection();
-            string sql = "SELECT [accID] FROM [CZ2006 - Life Planner].[dbo].[Posts] WHERE postID = @postID;";
-            SqlCommand cmd = new SqlCommand(sql, con);
-            cmd.Parameters.AddWithValue("@postID", postID);
-            con.Open();
-            authorID = cmd.ExecuteScalar().ToString();
-            cmd.ExecuteNonQuery();
-            con.Close();
-
-            return authorID;
-        }
         //voting system
         protected void btnLikeOnClick(object sender, EventArgs e)
         {
-                Panel pl = ((Button)sender).Parent as Panel;
-                if (pl != null)
+            Panel pl = ((Button)sender).Parent as Panel;
+            if (pl != null)
+            {
+                LinkButton authorName = pl.FindControl("authorLinkButton") as LinkButton;
+                Label postID = pl.FindControl("postID") as Label;
+
+                string authorID = new CommonMethods().getAcc(postID.Text);
+
+
+                if (votingChecker(authorName.Text))
                 {
-                    LinkButton authorName = pl.FindControl("authorLinkButton") as LinkButton;
-                    Label postID = pl.FindControl("postID") as Label;
+                    string accID = new CommonMethods().getAcc(postID.Text);
 
-                    string authorID = getAcc(postID.Text);
+                    int voteCount = 1;
+                    string voter = Session["username"].ToString();
 
+                    SqlConnection con8 = new DBManager().getConnection();
+                    string sql8 = "SELECT [voteCount] FROM [CZ2006 - Life Planner].[dbo].[Voting] WHERE postID = @postID AND voter = @voter;";
+                    SqlCommand cmd8 = new SqlCommand(sql8, con8);
+                    cmd8.Parameters.AddWithValue("@postID", postID.Text);
+                    cmd8.Parameters.AddWithValue("@voter", voter);
+                    con8.Open();
+                    SqlDataReader dr = cmd8.ExecuteReader();
 
-                    if (votingChecker(authorName.Text))
+                    //checker for one-time voting
+                    if (dr.Read())
                     {
-
-                        //int pointBalance;
-                        //string pointsBalance;
-                        string accID = getAcc(postID.Text);
-
-                        int voteCount = 1;
-                        string voter = Session["username"].ToString();
-
-                        SqlConnection con8 = new DBManager().getConnection();
-                        string sql8 = "SELECT [voteCount] FROM [CZ2006 - Life Planner].[dbo].[Voting] WHERE postID = @postID AND voter = @voter;";
-                        SqlCommand cmd8 = new SqlCommand(sql8, con8);
-                        cmd8.Parameters.AddWithValue("@postID", postID.Text);
-                        cmd8.Parameters.AddWithValue("@voter", voter);
-                        con8.Open();
-                        SqlDataReader dr = cmd8.ExecuteReader();
-
-                        //checker for one-time voting
-                        if (dr.Read())
-                        {
-                            ScriptManager.RegisterStartupScript(this, this.GetType(), "Alert", "javascript:alert('You have voted this post once before already!');", true);
-                            return;
-                        }
-                        con8.Close();
-
-                        SqlConnection con7 = new DBManager().getConnection();
-                        string sql7 = "INSERT INTO [CZ2006 - Life Planner].[dbo].[Voting] (postID, voter, author, voteCount) VALUES (@postID, @voter, @author, @voteCount);";
-                        SqlCommand cmd7 = new SqlCommand(sql7, con7);
-                        cmd7.Parameters.AddWithValue("@postID", postID.Text);
-                        cmd7.Parameters.AddWithValue("@voter", Session["username"].ToString());
-                        cmd7.Parameters.AddWithValue("@author", authorName.Text);
-                        cmd7.Parameters.AddWithValue("@voteCount", voteCount);
-                        con7.Open();
-                        cmd7.ExecuteNonQuery();
-                        con7.Close();
-
-                        int numLikesBalance;
-
-                        //get numLikes balance
-                        SqlConnection con9 = new DBManager().getConnection();
-                        string sql9 = "SELECT [numLikes]  FROM [CZ2006 - Life Planner].[dbo].[Posts]  WHERE postID = @postID;";
-                        SqlCommand cmd9 = new SqlCommand(sql9, con9);
-                        cmd9.Parameters.AddWithValue("@postID", postID.Text);
-                        con9.Open();
-                        string stringNumLikesBalance = cmd9.ExecuteScalar().ToString();
-                        numLikesBalance = Convert.ToInt32(stringNumLikesBalance);
-                        con9.Close();
-
-                        int uponVote = 1;
-                        int newNumLikesBalance = numLikesBalance + uponVote;
-
-                        SqlConnection con10 = new DBManager().getConnection();
-                        string sql10 = "UPDATE [CZ2006 - Life Planner].[dbo].[Posts] SET numLikes = @numLikes WHERE postID = @postID;";
-                        SqlCommand cmd10 = new SqlCommand(sql10, con10);
-                        cmd10.Parameters.AddWithValue("@postID", postID.Text);
-                        cmd10.Parameters.AddWithValue("@numLikes", newNumLikesBalance);
-                        con10.Open();
-                        cmd10.ExecuteNonQuery();
-                        con10.Close();
-
-
-                        Page.ClientScript.RegisterStartupScript(this.GetType(), "Alert!", "alert('You have liked this post! :)');", true);
+                        ScriptManager.RegisterStartupScript(this, this.GetType(), "Alert", "javascript:alert('You have voted this post once before already!');", true);
                         return;
                     }
-                    else
-                    {
-                        Page.ClientScript.RegisterStartupScript(this.GetType(), "Alert!", "alert('You cannot vote on your own post.');", true);
-                        return;
-                    }
+                    con8.Close();
+
+                    SqlConnection con7 = new DBManager().getConnection();
+                    string sql7 = "INSERT INTO [CZ2006 - Life Planner].[dbo].[Voting] (postID, voter, author, voteCount) VALUES (@postID, @voter, @author, @voteCount);";
+                    SqlCommand cmd7 = new SqlCommand(sql7, con7);
+                    cmd7.Parameters.AddWithValue("@postID", postID.Text);
+                    cmd7.Parameters.AddWithValue("@voter", Session["username"].ToString());
+                    cmd7.Parameters.AddWithValue("@author", authorName.Text);
+                    cmd7.Parameters.AddWithValue("@voteCount", voteCount);
+                    con7.Open();
+                    cmd7.ExecuteNonQuery();
+                    con7.Close();
+
+                    int numLikesBalance = new CommonMethods().getNumLikesBalance(postID.Text);
+                    int uponVote = 1;
+                    int newNumLikesBalance = numLikesBalance + uponVote;
+                    new CommonMethods().updateNumLikesBalance(postID.Text, newNumLikesBalance);
+
+                    Page.ClientScript.RegisterStartupScript(this.GetType(), "Alert!", "alert('You have liked this post! :)');", true);
+                    return;
                 }
                 else
                 {
-                    Page.ClientScript.RegisterStartupScript(this.GetType(), "Alert!", "alert('Not found!');", true);
+                    Page.ClientScript.RegisterStartupScript(this.GetType(), "Alert!", "alert('You cannot vote on your own post.');", true);
                     return;
                 }
+            }
+            else
+            {
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "Alert!", "alert('Not found!');", true);
+                return;
+            }
         }
 
         protected void btnDislikeOnClick(object sender, EventArgs e)
         {
-                Panel pl = ((Button)sender).Parent as Panel;
-                if (pl != null)
+            Panel pl = ((Button)sender).Parent as Panel;
+            if (pl != null)
+            {
+                LinkButton authorName = pl.FindControl("authorLinkButton") as LinkButton;
+                Label postID = pl.FindControl("postID") as Label;
+
+                string authorID = new CommonMethods().getAcc(postID.Text);
+
+                if (votingChecker(authorName.Text))
                 {
-                    LinkButton authorName = pl.FindControl("authorLinkButton") as LinkButton;
-                    Label postID = pl.FindControl("postID") as Label;
+                    string accID = new CommonMethods().getAcc(postID.Text);
 
-                    string authorID = getAcc(postID.Text);
+                    int voteCount = 1;
+                    string voter = Session["username"].ToString();
 
-                    if (votingChecker(authorName.Text))
+                    SqlConnection con8 = new DBManager().getConnection();
+                    string sql8 = "SELECT [voteCount] FROM [CZ2006 - Life Planner].[dbo].[Voting] WHERE postID = @postID AND voter = @voter;";
+                    SqlCommand cmd8 = new SqlCommand(sql8, con8);
+                    cmd8.Parameters.AddWithValue("@postID", postID.Text);
+                    cmd8.Parameters.AddWithValue("@voter", voter);
+                    con8.Open();
+                    SqlDataReader dr = cmd8.ExecuteReader();
+
+                    //checker for one-time voting
+                    if (dr.Read())
                     {
-                        string accID = getAcc(postID.Text);
-
-                        int voteCount = 1;
-                        string voter = Session["username"].ToString();
-
-                        SqlConnection con8 = new DBManager().getConnection();
-                        string sql8 = "SELECT [voteCount] FROM [CZ2006 - Life Planner].[dbo].[Voting] WHERE postID = @postID AND voter = @voter;";
-                        SqlCommand cmd8 = new SqlCommand(sql8, con8);
-                        cmd8.Parameters.AddWithValue("@postID", postID.Text);
-                        cmd8.Parameters.AddWithValue("@voter", voter);
-                        con8.Open();
-                        SqlDataReader dr = cmd8.ExecuteReader();
-
-                        //checker for one-time voting
-                        if (dr.Read())
-                        {
-                            Page.ClientScript.RegisterStartupScript(this.GetType(), "Alert!", "alert('Sorry! You have voted this post once before already!');", true);
-                            return;
-                        }
-                        con8.Close();
-
-                        SqlConnection con7 = new DBManager().getConnection();
-                        string sql7 = "INSERT INTO [CZ2006 - Life Planner].[dbo].[Voting] (postID, voter, author, voteCount) VALUES (@postID, @voter, @author, @voteCount);";
-                        SqlCommand cmd7 = new SqlCommand(sql7, con7);
-                        cmd7.Parameters.AddWithValue("@postID", postID.Text);
-                        cmd7.Parameters.AddWithValue("@voter", Session["username"].ToString());
-                        cmd7.Parameters.AddWithValue("@author", authorName.Text);
-                        cmd7.Parameters.AddWithValue("@voteCount", voteCount);
-                        con7.Open();
-                        cmd7.ExecuteNonQuery();
-                        con7.Close();
-
-                        int numDislikesBalance;
-
-                        //get numLikes balance
-                        SqlConnection con9 = new DBManager().getConnection();
-                        string sql9 = "SELECT [numDislikes]  FROM [CZ2006 - Life Planner].[dbo].[Posts]  WHERE postID = @postID;";
-                        SqlCommand cmd9 = new SqlCommand(sql9, con9);
-                        cmd9.Parameters.AddWithValue("@postID", postID.Text);
-                        con9.Open();
-                        string stringNumDislikesBalance = cmd9.ExecuteScalar().ToString();
-                        numDislikesBalance = Convert.ToInt32(stringNumDislikesBalance);
-                        con9.Close();
-
-                        int uponVote = 1;
-                        int newNumDislikesBalance = numDislikesBalance + uponVote;
-
-                        SqlConnection con10 = new DBManager().getConnection();
-                        string sql10 = "UPDATE [CZ2006 - Life Planner].[dbo].[Posts] SET numDislikes = @numDislikes WHERE postID = @postID;";
-                        SqlCommand cmd10 = new SqlCommand(sql10, con10);
-                        cmd10.Parameters.AddWithValue("@postID", postID.Text);
-                        cmd10.Parameters.AddWithValue("@numDislikes", newNumDislikesBalance);
-                        con10.Open();
-                        cmd10.ExecuteNonQuery();
-                        con10.Close();
-
-                        Page.ClientScript.RegisterStartupScript(this.GetType(), "Alert!", "alert('You have disliked this post ):');", true);
+                        Page.ClientScript.RegisterStartupScript(this.GetType(), "Alert!", "alert('Sorry! You have voted this post once before already!');", true);
                         return;
                     }
-                    else
-                    {
-                        Page.ClientScript.RegisterStartupScript(this.GetType(), "Alert!", "alert('You cannot vote on your own post.');", true);
-                        return;
-                    }
+                    con8.Close();
+
+                    SqlConnection con7 = new DBManager().getConnection();
+                    string sql7 = "INSERT INTO [CZ2006 - Life Planner].[dbo].[Voting] (postID, voter, author, voteCount) VALUES (@postID, @voter, @author, @voteCount);";
+                    SqlCommand cmd7 = new SqlCommand(sql7, con7);
+                    cmd7.Parameters.AddWithValue("@postID", postID.Text);
+                    cmd7.Parameters.AddWithValue("@voter", Session["username"].ToString());
+                    cmd7.Parameters.AddWithValue("@author", authorName.Text);
+                    cmd7.Parameters.AddWithValue("@voteCount", voteCount);
+                    con7.Open();
+                    cmd7.ExecuteNonQuery();
+                    con7.Close();
+                    int numDislikesBalance = new CommonMethods().getNumDislikesBalance(postID.Text);
+                    int uponVote = 1;
+                    int newNumDislikesBalance = numDislikesBalance + uponVote;
+                    new CommonMethods().updateNumLikesBalance(postID.Text, newNumDislikesBalance);
+
+                    Page.ClientScript.RegisterStartupScript(this.GetType(), "Alert!", "alert('You have disliked this post ):');", true);
+                    return;
                 }
                 else
                 {
-                    Page.ClientScript.RegisterStartupScript(this.GetType(), "Alert!", "alert('Not found!');", true);
+                    Page.ClientScript.RegisterStartupScript(this.GetType(), "Alert!", "alert('You cannot vote on your own post.');", true);
                     return;
                 }
+            }
+            else
+            {
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "Alert!", "alert('Not found!');", true);
+                return;
+            }
         }
 
         protected void btnEdit_Click(object sender, EventArgs e)
         {
-                Panel pl = ((Button)sender).Parent as Panel;
-                if (pl != null)
+            Panel pl = ((Button)sender).Parent as Panel;
+            if (pl != null)
+            {
+                LinkButton authorName = pl.FindControl("authorLinkButton") as LinkButton;
+                Label postID = pl.FindControl("postID") as Label;
+
+                string authorID = new CommonMethods().getAcc(postID.Text);
+
+                if (votingChecker(authorName.Text))
                 {
-                    LinkButton authorName = pl.FindControl("authorLinkButton") as LinkButton;
-                    Label postID = pl.FindControl("postID") as Label;
-
-                    string authorID = getAcc(postID.Text);
-
-                    if (votingChecker(authorName.Text))
-                    {
-                        Page.ClientScript.RegisterStartupScript(this.GetType(), "Alert!", "alert('You cannot edit posts by other users!');", true);
-                        return;
-                    }
-                    else
-                    {
-                        Session["postID"] = postID.Text;
-                        Response.Redirect("Editing-Posts.aspx");
-                    }
+                    Page.ClientScript.RegisterStartupScript(this.GetType(), "Alert!", "alert('You cannot edit posts by other users!');", true);
+                    return;
                 }
+                else
+                {
+                    Session["postID"] = postID.Text;
+                    Response.Redirect("Editing-Posts.aspx");
+                }
+            }
         }
 
         protected void btnQuote_Click(object sender, EventArgs e)
         {
-                Panel pl = ((Button)sender).Parent as Panel;
-                if (pl != null)
-                {
-                    LinkButton authorName = pl.FindControl("authorLinkButton") as LinkButton;
-                    Label postID = pl.FindControl("postID") as Label;
+            Panel pl = ((Button)sender).Parent as Panel;
+            if (pl != null)
+            {
+                LinkButton authorName = pl.FindControl("authorLinkButton") as LinkButton;
+                Label postID = pl.FindControl("postID") as Label;
 
-                    string authorID = getAcc(postID.Text);
-                    string quote = getQuote(postID.Text, authorID);
+                string authorID = new CommonMethods().getAcc(postID.Text);
+                string quote = new CommonMethods().getQuote(postID.Text, authorID);
 
-                    txtEditor.Text = "@ " + authorName.Text + ": " + quote + "\n\n";
-                    btnPost.Focus();
-                }
+                txtEditor.Text = "@ " + authorName.Text + ": " + quote + "\n\n";
+                btnPost.Focus();
+            }
         }
 
         protected void btnReport_Click(object sender, EventArgs e)
         {
-                Panel pl = ((Button)sender).Parent as Panel;
-                if (pl != null)
+            Panel pl = ((Button)sender).Parent as Panel;
+            if (pl != null)
+            {
+                LinkButton authorName = pl.FindControl("authorLinkButton") as LinkButton;
+                Label postID = pl.FindControl("postID") as Label;
+
+                string authorID = new CommonMethods().getAcc(postID.Text);
+
+                if (votingChecker(authorName.Text))
                 {
-                    LinkButton authorName = pl.FindControl("authorLinkButton") as LinkButton;
-                    Label postID = pl.FindControl("postID") as Label;
 
-                    string authorID = getAcc(postID.Text);
-
-                    if (votingChecker(authorName.Text))
+                    string confirmValue = Request.Form["confirm_value"];
+                    if (confirmValue == "Yes")
                     {
-
-                        string confirmValue = Request.Form["confirm_value"];
-                        if (confirmValue == "Yes")
-                        {
-                            Session["postID"] = postID.Text;
-                            Session["author"] = authorName.Text;
-                            Response.Redirect("~/Account/ReportPost.aspx");
-                        }
-                        else
-                        {
-                            this.Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('The post is not reported.')", true);
-                        }
+                        Session["postID"] = postID.Text;
+                        Session["author"] = authorName.Text;
+                        Response.Redirect("~/Account/ReportPost.aspx");
                     }
                     else
                     {
-                        Page.ClientScript.RegisterStartupScript(this.GetType(), "Alert!", "alert('Why would you report your own post? O:');", true);
-                        return;
+                        this.Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('The post is not reported.')", true);
                     }
                 }
+                else
+                {
+                    Page.ClientScript.RegisterStartupScript(this.GetType(), "Alert!", "alert('Why would you report your own post? O:');", true);
+                    return;
+                }
+            }
         }
 
         //voting checker disallow users to like/dislike their own posts
@@ -488,84 +412,6 @@ namespace Life_Planner.Account
         {
             LinkButton lb = (LinkButton)sender;
             string authorName = lb.Text;
-        }
-
-        //vulgarity filter, loading the txt file of vulgarities.
-        //and saving into list<string>
-        protected List<string> getBadWordList()
-        {
-            List<string> badWords = new List<string>();
-            //get the path to the WordList file
-            //string file = System.IO.File.ReadAllText(@"");
-            String file = Server.MapPath("/WordList/WordList.txt");
-
-            //Open text file for reading
-            using (TextReader reader = new StreamReader(file))
-            {
-                //Loop through each line in the file
-                string line;
-                while ((line = reader.ReadLine()) != null)
-                {
-                    //remove any whitespace and cast to lower case.
-                    string word = line.Trim().ToLower();
-
-                    //add to list in memory
-                    badWords.Add(word);
-                }
-            }
-            return badWords;
-        }
-
-        //splitting the post word by word and reading through the array, comparing the words.
-        protected bool messageChecker(string post)
-        {
-
-
-            char delimiter = ' ';
-            string[] words = post.Split(delimiter);
-            string[] badWords = getBadWordList().ToArray();
-
-            foreach (string word in words)
-            {
-                if (this.getBadWordList().Contains(word.ToLower()))
-                {
-                    //System.Diagnostics.Debug.WriteLine("Inside1");
-                    return true;
-                }
-
-            }
-            for (int j = 0; j < badWords.Count(); j++)
-            {
-                var regexItem1 = new Regex("(" + badWords[j] + ")");
-                for (int i = 0; i < words.Count(); i++)
-                {
-                    if (regexItem1.IsMatch(words[i]))
-                    {
-                        //System.Diagnostics.Debug.WriteLine("Inside2" );
-                        //System.Diagnostics.Debug.WriteLine(i);
-                        //System.Diagnostics.Debug.WriteLine(regexItem1);
-                        //System.Diagnostics.Debug.WriteLine(badWords.Count());
-                        //System.Diagnostics.Debug.WriteLine(words[i]);
-                        return true;
-                    }
-                }
-            }
-            return false;
-        }
-        
-        protected string getQuote(string postID, string authorID)
-        {
-            SqlConnection con = new DBManager().getConnection();
-            string sql = "SELECT [postText] FROM [CZ2006 - Life Planner].[dbo].[Posts] WHERE [postID] = @postID AND [accID] = @accID;";
-            SqlCommand cmd = new SqlCommand(sql, con);
-            cmd.Parameters.AddWithValue("@postID", postID);
-            cmd.Parameters.AddWithValue("@accID", authorID);
-            con.Open();
-            string quote = cmd.ExecuteScalar().ToString();
-            con.Close();
-
-            return quote;
-
-        }
+        }       
     }
 }

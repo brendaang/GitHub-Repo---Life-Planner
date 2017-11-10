@@ -10,7 +10,7 @@
 namespace Life_Planner.Account {
     
     
-    public partial class CreatePlanFromJC {
+    public partial class CreatePlanFromJCPOLY {
         
         /// <summary>
         /// Panel1 control.
@@ -40,84 +40,129 @@ namespace Life_Planner.Account {
         protected global::System.Web.UI.WebControls.Literal alertText;
         
         /// <summary>
-        /// lblSelectJC control.
+        /// lblSelectITEPolyJC control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblSelectJC;
+        protected global::System.Web.UI.WebControls.Label lblSelectITEPolyJC;
         
         /// <summary>
-        /// lblOlevelScore control.
+        /// radioSelectITEPolyJC control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblOlevelScore;
+        protected global::System.Web.UI.WebControls.RadioButtonList radioSelectITEPolyJC;
         
         /// <summary>
-        /// lblJCFilterLoc control.
+        /// lblITEJCPOLYSchFilterByLoc control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblJCFilterLoc;
+        protected global::System.Web.UI.WebControls.Label lblITEJCPOLYSchFilterByLoc;
         
         /// <summary>
-        /// btnJCNorth control.
+        /// btnITEJCPOLYNorth control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnJCNorth;
+        protected global::System.Web.UI.WebControls.Button btnITEJCPOLYNorth;
         
         /// <summary>
-        /// btnJCSouth control.
+        /// btnITEJCPOLYSouth control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnJCSouth;
+        protected global::System.Web.UI.WebControls.Button btnITEJCPOLYSouth;
         
         /// <summary>
-        /// btnJCEast control.
+        /// btnITEJCPOLYEast control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnJCEast;
+        protected global::System.Web.UI.WebControls.Button btnITEJCPOLYEast;
         
         /// <summary>
-        /// btnJCWest control.
+        /// btnITEJCPOLYWest control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnJCWest;
+        protected global::System.Web.UI.WebControls.Button btnITEJCPOLYWest;
         
         /// <summary>
-        /// JCTable control.
+        /// btnITEJCPOLYNone control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView JCTable;
+        protected global::System.Web.UI.WebControls.Button btnITEJCPOLYNone;
         
         /// <summary>
-        /// Label1 control.
+        /// ITEJCPOLYTable control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
+        protected global::System.Web.UI.WebControls.GridView ITEJCPOLYTable;
+        
+        /// <summary>
+        /// btnITEJCPOLYCont control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnITEJCPOLYCont;
+        
+        /// <summary>
+        /// btnITEJCPOLYSubmit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnITEJCPOLYSubmit;
+        
+        /// <summary>
+        /// PolyCoursesTable control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView PolyCoursesTable;
+        
+        /// <summary>
+        /// btnITEJCPOLYCont2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnITEJCPOLYCont2;
+        
+        /// <summary>
+        /// btnITEJCPOLYSubmit2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnITEJCPOLYSubmit2;
     }
 }

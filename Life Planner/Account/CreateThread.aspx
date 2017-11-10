@@ -19,11 +19,13 @@
         <br />
         <div class="form-group">
             <asp:Label ID="lblThreadDesc" runat="server" CssClass="col-md-2 control-label" Text="Discussion Thread Description:"></asp:Label>
-         
+                <div class="col-md-10">
+                    
                 <asp:TextBox ID="txtThreadDesc" runat="server" Rows="3" TextMode="MultiLine" CssClass="form-control" Width="500px" onkeypress="return this.value.length <= 255"></asp:TextBox>
                 <asp:RequiredFieldValidator runat="server" ControlToValidate="txtThreadDesc" CssClass="text-danger" ErrorMessage="The 'Thread Description' field is required." />
                 <br />
                 <br />
+                </div>
            
         </div>
         <br />

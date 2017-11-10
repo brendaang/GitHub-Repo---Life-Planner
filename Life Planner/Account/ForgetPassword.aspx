@@ -43,7 +43,7 @@
                 </div>
                 <div class="form-group">
                     <div class="col-lg-4 col-lg-offset-4">
-                        <asp:Button ID="btn_Reset" runat="server" OnClick="btn_Reset_Click" Text="Reset Password" class="btn btn-primary"/>
+                        <asp:Button ID="btn_Reset" runat="server" OnClick="btn_Reset_Click" Text="Reset Password" class="btn btn-primary" Width="150px"/>
                     <asp:Label ID="lb_EndInfo" runat="server" ForeColor="Red"></asp:Label>
                     </div>
                 </div>
