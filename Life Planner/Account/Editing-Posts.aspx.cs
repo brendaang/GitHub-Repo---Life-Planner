@@ -34,7 +34,7 @@ namespace Life_Planner.Account
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "Alert!", "alert('Please check that the post you edited is not empty.');", true);
                 return;
             }
-            else if (messageChecker(txtEditor.Text))
+            else if (new CommonMethods().messageChecker(txtEditor.Text, getBadWordList()))
             {
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "Alert!", "alert('Please check your edited post contents. No vulgarities please.');", true);
                 return;
@@ -129,38 +129,6 @@ namespace Life_Planner.Account
                 }
             }
             return badWords;
-        }
-
-        //splitting the post word by word and reading through the array, comparing the words.
-        protected bool messageChecker(string post)
-        {
-
-
-            char delimiter = ' ';
-            string[] words = post.Split(delimiter);
-            string[] badWords = getBadWordList().ToArray();
-
-            foreach (string word in words)
-            {
-                if (this.getBadWordList().Contains(word.ToLower()))
-                {
-                    //System.Diagnostics.Debug.WriteLine("Inside1");
-                    return true;
-                }
-
-            }
-            for (int j = 0; j < badWords.Count(); j++)
-            {
-                var regexItem1 = new Regex("(" + badWords[j] + ")");
-                for (int i = 0; i < words.Count(); i++)
-                {
-                    if (regexItem1.IsMatch(words[i]))
-                    {
-                        return true;
-                    }
-                }
-            }
-            return false;
         }
     }
 }

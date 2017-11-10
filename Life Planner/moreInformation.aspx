@@ -10,9 +10,13 @@
             <p>This Life Planner is a complete guide of Child Life Planning Process. Get started Life Planning now!</p>
             <p>simple, quick and easy to use Study Calculator to help you estimate your study duration. </p>
             <p>An Ultimate guide to find the ideal study adviser and Life Planner to help you along the way.</p>
-        </div>
+       <h2>Milestones in the Education System</h2>
         <div class="well">
             <asp:Image ID="univOverview" runat="server" ImageUrl="~/Images/educationOverview.png" CssClass="img-responsive center-block" />
         </div>
+       
+            </div>
+        
     </div>
+    
 </asp:Content>
