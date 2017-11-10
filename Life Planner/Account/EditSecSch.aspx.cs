@@ -108,7 +108,8 @@ namespace Life_Planner.Account
 
         protected void btn_updateSecondary_Click(object sender, EventArgs e)
         {
-            string schID = getSchID(Session["secSchName"].ToString());
+            EditPlanDAO ep = new EditPlanDAO();
+            string schID = ep.getSchID(Session["secSchName"].ToString());
             SqlConnection con = new DBManager().getConnection();
             string sql = "UPDATE dbo.PathPlan SET secSchID=@secSchID WHERE accountID=@accountID";
             SqlCommand cmd = new SqlCommand(sql, con);
@@ -135,17 +136,17 @@ namespace Life_Planner.Account
             }
         }
 
-        protected string getSchID(string priName)
-        {
-            SqlConnection con = new DBManager().getConnection();
-            string sql = "SELECT id FROM dbo.Schools WHERE school_name=@school_name";
-            SqlCommand cmd = new SqlCommand(sql, con);
-            cmd.Parameters.AddWithValue("@school_name", priName);
-            con.Open();
-            string schID = cmd.ExecuteScalar().ToString();
-            con.Close();
-            return schID;
+        //protected string getSchID(string priName)
+        //{
+        //    SqlConnection con = new DBManager().getConnection();
+        //    string sql = "SELECT id FROM dbo.Schools WHERE school_name=@school_name";
+        //    SqlCommand cmd = new SqlCommand(sql, con);
+        //    cmd.Parameters.AddWithValue("@school_name", priName);
+        //    con.Open();
+        //    string schID = cmd.ExecuteScalar().ToString();
+        //    con.Close();
+        //    return schID;
 
-        }
+        //}
     }
 }

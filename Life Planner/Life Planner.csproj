@@ -171,11 +171,12 @@
     <Content Include="404.aspx" />
     <Content Include="Account\ChangeRole.aspx" />
     <Content Include="Account\CreatePlan.aspx" />
-    <Content Include="Account\CreatePlanFromJC.aspx" />
+    <Content Include="Account\CreatePlanFromJCPOLY.aspx" />
     <Content Include="Account\CreatePlanFromPrimary.aspx" />
     <Content Include="Account\CreatePlanFromSecondary.aspx" />
     <Content Include="Account\CreateThread.aspx" />
     <Content Include="Account\Editing-Posts.aspx" />
+    <Content Include="Account\EditTertiary.aspx" />
     <Content Include="Account\EditPrimarySch.aspx" />
     <Content Include="Account\EditProfile.aspx" />
     <Content Include="Account\EditSecSch.aspx" />
@@ -295,12 +296,12 @@
     <Compile Include="Account\CreatePlan.aspx.designer.cs">
       <DependentUpon>CreatePlan.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Account\CreatePlanFromJC.aspx.cs">
-      <DependentUpon>CreatePlanFromJC.aspx</DependentUpon>
+    <Compile Include="Account\CreatePlanFromJCPOLY.aspx.cs">
+      <DependentUpon>CreatePlanFromJCPOLY.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Account\CreatePlanFromJC.aspx.designer.cs">
-      <DependentUpon>CreatePlanFromJC.aspx</DependentUpon>
+    <Compile Include="Account\CreatePlanFromJCPOLY.aspx.designer.cs">
+      <DependentUpon>CreatePlanFromJCPOLY.aspx</DependentUpon>
     </Compile>
     <Compile Include="Account\CreatePlanFromPrimary.aspx.cs">
       <DependentUpon>CreatePlanFromPrimary.aspx</DependentUpon>
@@ -329,6 +330,14 @@
     </Compile>
     <Compile Include="Account\Editing-Posts.aspx.designer.cs">
       <DependentUpon>Editing-Posts.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\EditPlanDAO.cs" />
+    <Compile Include="Account\EditTertiary.aspx.cs">
+      <DependentUpon>EditTertiary.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\EditTertiary.aspx.designer.cs">
+      <DependentUpon>EditTertiary.aspx</DependentUpon>
     </Compile>
     <Compile Include="Account\EditPrimarySch.aspx.cs">
       <DependentUpon>EditPrimarySch.aspx</DependentUpon>

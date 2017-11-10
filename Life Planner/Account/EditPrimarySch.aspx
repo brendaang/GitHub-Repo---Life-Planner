@@ -2,7 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
         <asp:Panel ID="Panel1" runat="server" Height="703px">
         <section id="editPrimary">
-            <h2></>Edit Primary Selection</h2>
+            <h2>Edit Primary Selection</h2>
 
             <div id="alert_placeholder" runat="server" visible="false">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
