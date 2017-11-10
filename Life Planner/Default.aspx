@@ -6,7 +6,7 @@
         <h1>Life Planner</h1>
       
        <div class="well">
-            <asp:Image ID="Image1" runat="server" ImageUrl="~/Images/Capture.png" height="230" width="1000" CssClass="img-responsive center-block" />
+            <asp:Image ID="Image1" runat="server" ImageUrl="~/Images/banner.png" height="230" width="1000" CssClass="img-responsive center-block" />
            
         </div>
         <p class="lead">Plan out your ideal child education with simple planning modules and calculate the costs involved!</p>
