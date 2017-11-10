@@ -90,19 +90,28 @@ namespace Life_Planner.Account
 
                     string edLevel = ddlCreatePlanChildCurrentEdLevel.Text;
                     if (edLevel == "Kindergarten")
-                    {  
-                        Response.AddHeader("REFRESH", "3;URL=/Account/CreatePlanFromPrimary.aspx");
+                    {
+                        Response.Redirect("~/Account/CreatePlanFromPrimary.aspx");
                     }
 
                     else if (edLevel == "Primary")
                     {
-                        Response.AddHeader("REFRESH", "3;URL=/Account/CreatePlanFromSecondary.aspx");
+                        Response.Redirect("~/Account/CreatePlanFromSecondary.aspx");
                     }
 
                     else if (edLevel == "Secondary")
                     {
-                        //2 choices - poly/jc
-                        Response.AddHeader("REFRESH", "3;URL=/Account/CreatePlanFromJC.aspx");
+                        Response.Redirect("~/Account/CreatePlanFromITEJCPOLY.aspx");
+                    }
+
+                    else if (edLevel == "Junior College"||edLevel=="Polytechnic")
+                    {
+                        Response.Redirect("~/Account/CreatePlanFromUni.aspx");
+                    }
+
+                    else if (edLevel == "ITE" || edLevel == "Polytechnic")
+                    {
+                        Response.Redirect("~/Account/CreatePlanFromJCPOLY.aspx");
                     }
 
 
