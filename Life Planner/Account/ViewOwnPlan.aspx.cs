@@ -91,13 +91,6 @@ namespace Life_Planner.Account
             tb_uniName.Text = tb_uniCourse.Text = "Not Available"; //no uni data in db
 
 			int currentEdLevel = 0; //0 primary, 1 secondary, 2 jc, 3 poly, 4 polycourse, 5 uni, 6 uni course
-			//for (int i = 6; i >= 0; i--) {
-			//	if(info[i] != "") {
-			//		currentEdLevel = i;
-			//		break;
-			//	}
-			//}
-
             for(int i = 0; i<7; i++)
             {
                 if(info[i] == "")
@@ -230,6 +223,8 @@ namespace Life_Planner.Account
                         if(tb_polyName.Text == tb_polyCourse.Text)
                             if(tb_polyCourse.Text == "Not Available")
                             { //no plans
+                                //reset shortest/longest plan
+                                resetSL();
                                 btn_deletePlan.Visible = false;
                                 btn_editPlan.Visible = false;
                                 alert_placeholder.Visible = true;
@@ -272,6 +267,14 @@ namespace Life_Planner.Account
             tb_polyCourse.Text = "";
             tb_uniName.Text = "";
             tb_uniCourse.Text = "";
+            tb_shortestTime.Text = "";
+            tb_longestTime.Text = "";
+        }
+
+        protected void resetSL()
+        {
+            tb_shortestTime.Text = "Not Available";
+            tb_longestTime.Text = "Not Available";
         }
     }
 }
