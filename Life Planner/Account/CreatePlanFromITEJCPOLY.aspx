@@ -6,7 +6,7 @@
             <section id="createPlan">
                 <h2></>Create Plan</h2>
 
-                <h5>Step 2: Selecting a ITE/Junior College/Polytechnic</h5>
+                <h5>Step 2: Select a ITE/Junior College/Polytechnic</h5>
 
 
                 <div id="alert_placeholder" runat="server" visible="false">
