@@ -131,6 +131,7 @@ namespace Life_Planner.Account
 			if (info[5] != "") {
 				shortestPath += 4;
 			}
+			shortestPath -= 2; //for kindergarten (since we do not show, we offset -2)
 
 
 
@@ -160,6 +161,7 @@ namespace Life_Planner.Account
 			if (info[5] != "") {
 				longestPath += 6;
 			}
+			longestPath -= 3; //for kindergarten (since we do not show, we offset -3)
 
 
 
