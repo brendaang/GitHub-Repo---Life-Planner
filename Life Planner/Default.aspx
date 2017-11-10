@@ -6,10 +6,9 @@
         <h1>Life Planner</h1>
       
        <div class="well">
-            <asp:Image ID="Image1" runat="server" ImageUrl="~/Images/banner.png" height="230" width="1000" CssClass="img-responsive center-block" />
+            <asp:Image ID="Image1" runat="server" ImageUrl="~/Images/banner.png" height="300" width="1300" CssClass="img-responsive center-block" />
            
         </div>
-        <p class="lead">Plan out your ideal child education with simple planning modules and calculate the costs involved!</p>
         <p><a href="Account/Register.aspx" class="btn btn-primary btn-large ">Learn more by Registering! &raquo;</a></p>
    
         </div>
@@ -22,7 +21,7 @@
             A design surface and hundreds of controls and components let you rapidly build sophisticated, powerful UI-driven sites with data access.--%>
             </p>
             <p>
-                <a class="btn btn-default" href="~/Account/CreatePlan"> Your Life Planner start here! &raquo;</a>
+                <a class="btn btn-default" href="Account/CreatePlan.aspx"> Your Life Planner start here! &raquo;</a>
             </p>
         </div>
         <div class="col-md-4">
