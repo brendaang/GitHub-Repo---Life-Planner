@@ -15,14 +15,13 @@
 
                     <div>
                         <div class="form-group">
-                            <asp:Label ID="lblSelectPolyJC" runat="server" CssClass="col-md-4 control-label" Text="Please select next path to enter:" Visible="False"></asp:Label>
-                            <br />
-                            <asp:RadioButtonList ID="radioSelectPolyJC" RepeatLayout="Flow" RepeatDirection="Horizontal" runat="server" OnSelectedIndexChanged="radioSelectPolyJC_SelectedIndexChanged" AutoPostBack="true">
-                                <asp:ListItem class="radio-inline" Value="0" Text="Junior College"></asp:ListItem>
-                                <asp:ListItem class="radio-inline" Value="1" Text="Polytechnic"></asp:ListItem>
+                            <asp:RadioButtonList ID="radioSelectITEPolyJC" RepeatLayout="Flow" RepeatDirection="Horizontal" runat="server" OnSelectedIndexChanged="radioSelectITEPolyJC_SelectedIndexChanged" AutoPostBack="true">
+                                <asp:ListItem class="radio-inline" Value="0" Text="ITE"></asp:ListItem>
+                                <asp:ListItem class="radio-inline" Value="1" Text="Junior College"></asp:ListItem>
+                                <asp:ListItem class="radio-inline" Value="2" Text="Polytechnic"></asp:ListItem>
                             </asp:RadioButtonList>
                             <br />
-                            <asp:Label ID="lblJCPOLYSchFilterByLoc" runat="server" CssClass="col-md-3 control-label" Text="Filter by Location:" Visible="False"></asp:Label>
+                            <asp:Label ID="lblITEJCPOLYSchFilterByLoc" runat="server" CssClass="col-md-3 control-label" Text="Filter by Location:" Visible="False"></asp:Label>
                         </div>
                     </div>
 
@@ -33,15 +32,15 @@
                             <table class="nav-justified" style="width: 79%">
                                 <tr>
                                     <td style="width: 88px">
-                                        <asp:Button ID="btnJCPOLYNorth" CssClass="btn btn-default" Text="North" runat="server" OnClick="btn_JCPOLYNorth" CausesValidation="false" Visible="false"/>
+                                        <asp:Button ID="btnITEJCPOLYNorth" CssClass="btn btn-default" Text="North" runat="server" OnClick="btn_ITEJCPOLYNorth" CausesValidation="false" />
                                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:Button ID="btnJCPOLYSouth" CssClass="btn btn-default" Text="South" runat="server" OnClick="btn_JCPOLYSouth" CausesValidation="false"/>
+                                <asp:Button ID="btnITEJCPOLYSouth" CssClass="btn btn-default" Text="South" runat="server" OnClick="btn_ITEJCPOLYSouth" CausesValidation="false" />
                                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:Button ID="btnJCPOLYEast" CssClass="btn btn-default" Text="East" runat="server" OnClick="btn_JCPOLYEast" CausesValidation="false"/>
+                                <asp:Button ID="btnITEJCPOLYEast" CssClass="btn btn-default" Text="East" runat="server" OnClick="btn_ITEJCPOLYEast" CausesValidation="false" />
                                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:Button ID="btnJCPOLYWest" CssClass="btn btn-default" Text="West" runat="server" OnClick="btn_JCPOLYWest" CausesValidation="false"/>
+                                <asp:Button ID="btnITEJCPOLYWest" CssClass="btn btn-default" Text="West" runat="server" OnClick="btn_ITEJCPOLYWest" CausesValidation="false" />
                                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:Button ID="btnJCPOLYNone" CssClass="btn btn-default" Text="None" runat="server" OnClick="btn_JCPOLYNone" CausesValidation="false" />
+                                <asp:Button ID="btnITEJCPOLYNone" CssClass="btn btn-default" Text="None" runat="server" OnClick="btn_ITEJCPOLYNone" CausesValidation="false" />
                                         <br />
                                     </td>
                                 </tr>
@@ -50,8 +49,8 @@
                     </div>
 
                     <div class="form-group">
-                        <div style="width: 100%; height: 400px; overflow: auto">
-                            <asp:GridView ID="JCPOLYTable" runat="server" AutoGenerateColumns="False" BackColor="White" CssClass="table table-striped table-hover" EnableTheming="False" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="3" Width="1166px" DataKeyNames="school_name" OnSelectedIndexChanged="JCPOLYGridView_SelectedIndexChanging" AutoGenerateSelectButton="True">
+                        <div style="width: 100%; height: 250px; overflow: auto">
+                            <asp:GridView ID="ITEJCPOLYTable" runat="server" AutoGenerateColumns="False" BackColor="White" CssClass="table table-striped table-hover" EnableTheming="False" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="3" Width="1166px" DataKeyNames="school_name" OnSelectedIndexChanged="ITEJCPOLYGridView_SelectedIndexChanging" AutoGenerateSelectButton="True">
                                 <FooterStyle BackColor="White" ForeColor="#000066" />
                                 <HeaderStyle BackColor="#006699" Font-Bold="True" ForeColor="White" />
                                 <PagerStyle BackColor="White" ForeColor="#000066" HorizontalAlign="Left" />
@@ -62,7 +61,7 @@
                                 <SortedDescendingCellStyle BackColor="#CAC9C9" />
                                 <SortedDescendingHeaderStyle BackColor="#00547E" />
                                 <Columns>
-                                    <asp:BoundField DataField="school_name" HeaderText="JC/POLY Name" InsertVisible="False" ReadOnly="True" SortExpression="school_name" Visible="true" />
+                                    <asp:BoundField DataField="school_name" HeaderText="ITE/JC/POLY Name" InsertVisible="False" ReadOnly="True" SortExpression="school_name" Visible="true" />
                                     <asp:BoundField DataField="zone_code" HeaderText="Area" SortExpression="zone_code" />
                                     <asp:BoundField DataField="dgp_code" HeaderText="Location" SortExpression="dgp_code" />
                                     <asp:BoundField DataField="url_address" HeaderText="URL" SortExpression="url_address" />
@@ -73,8 +72,38 @@
                     </div>
 
                 </div>
+                <div class="form-group col-lg-10 col-lg-offset-10">
+                         <asp:Button ID="btn_updateTertiary1" runat="server" Text="Update Tertiary" class="btn btn-primary" Width="150px" OnClick="btn_updateTertiary_Click" OnClientClick="return confirm('Do you want to update choice as selected Tertiary? ');" />
+                 </div>
+
+                <%--******--%>
+                <div>
+                    <div class="form-group">
+                        <div style="width: 100%; height: 400px; overflow: auto">
+                            <asp:GridView ID="PolyCoursesTable" runat="server" AutoGenerateColumns="False" BackColor="White" CssClass="table table-striped table-hover" EnableTheming="False" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="3" Width="1166px" DataKeyNames="course_name" OnSelectedIndexChanged="POLYCourseGridView_SelectedIndexChanging" AutoGenerateSelectButton="True" Visible="False">
+                                <FooterStyle BackColor="White" ForeColor="#000066" />
+                                <HeaderStyle BackColor="#006699" Font-Bold="True" ForeColor="White" />
+                                <PagerStyle BackColor="White" ForeColor="#000066" HorizontalAlign="Left" />
+                                <RowStyle ForeColor="#000066" />
+                                <SelectedRowStyle BackColor="#669999" Font-Bold="True" ForeColor="White" />
+                                <SortedAscendingCellStyle BackColor="#F1F1F1" />
+                                <SortedAscendingHeaderStyle BackColor="#007DBB" />
+                                <SortedDescendingCellStyle BackColor="#CAC9C9" />
+                                <SortedDescendingHeaderStyle BackColor="#00547E" />
+                                <Columns>
+                                    <asp:BoundField DataField="course_name" HeaderText="Course Name" InsertVisible="False" ReadOnly="True" SortExpression="course_name" Visible="true" />
+                                    <asp:BoundField DataField="school" HeaderText="Faculty" SortExpression="school" />
+                                    <asp:BoundField DataField="gceo_cut_off" HeaderText="Cut-off Point" SortExpression="gceo_cut_off" />
+                                </Columns>
+                            </asp:GridView>
+                            <br />
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group col-lg-10 col-lg-offset-10">
+                    <asp:Button ID="btn_updateTertiary2" runat="server" Text="Update Tertiary" class="btn btn-primary" Width="150px" OnClick="btn_updateTertiary_Click" OnClientClick="return confirm('Do you want to update choice as selected Tertiary? ');" />
+                </div>
             </section>
-              <asp:Button ID="btn_updateTertiary" runat="server" Text="Update Tertiary" class="btn btn-primary" Width="150px" OnClick="btn_updateTertiary_Click" OnClientClick="return confirm('Do you want to update choice as selected Tertiary? ');"/>
-        </asp:Panel>
+       </asp:Panel>
 
 </asp:Content>

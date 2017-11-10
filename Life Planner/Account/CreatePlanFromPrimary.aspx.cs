@@ -120,7 +120,7 @@ namespace Life_Planner.Account
                 con.Close();
             }
             //redirect to view plan
-            Response.AddHeader("REFRESH", "3;URL=/Account/ChangePassword.aspx");
+            Response.AddHeader("REFRESH", "3;URL=/Account/ViewOwnPlan.aspx");
         }
 
         protected void btn_PriNone(object sender, EventArgs e)

@@ -62,7 +62,7 @@ namespace Life_Planner.Account
 
                 DataTable ViewITEPolySchTable = new DataTable();
                 SqlConnection con = new DBManager().getConnection();
-                string sql = "SELECT school_name,zone_code, dgp_code,url_address FROM [CZ2006 - Life Planner].[dbo].[Schools] WHERE school_name LIKE '%ITE%';";
+                string sql = "SELECT school_name,zone_code, dgp_code,url_address FROM [CZ2006 - Life Planner].[dbo].[Schools] WHERE school_name LIKE '%ITE COLLEGE%';";
                 SqlCommand cmd = new SqlCommand(sql, con);
                 con.Open();
                 SqlDataAdapter adapter = new SqlDataAdapter(cmd);
@@ -111,7 +111,7 @@ namespace Life_Planner.Account
             {
                 DataTable ViewITEJCPOLYTable = new DataTable();
                 SqlConnection con = new DBManager().getConnection();
-                string sql = "SELECT school_name,zone_code, dgp_code,url_address FROM [CZ2006 - Life Planner].[dbo].[Schools] WHERE zone_code=@area AND school_name LIKE '%ITE%';";
+                string sql = "SELECT school_name,zone_code, dgp_code,url_address FROM [CZ2006 - Life Planner].[dbo].[Schools] WHERE zone_code=@area AND school_name LIKE '%ITE COLLEGE%';";
                 SqlCommand cmd = new SqlCommand(sql, con);
                 cmd.Parameters.AddWithValue("@area", area);
                 con.Open();
@@ -158,7 +158,7 @@ namespace Life_Planner.Account
             {
                 DataTable ViewITEPolySchTable = new DataTable();
                 SqlConnection con = new DBManager().getConnection();
-                string sql = "SELECT school_name,zone_code, dgp_code,url_address FROM [CZ2006 - Life Planner].[dbo].[Schools] WHERE school_name LIKE '%ITE%';";
+                string sql = "SELECT school_name,zone_code, dgp_code,url_address FROM [CZ2006 - Life Planner].[dbo].[Schools] WHERE school_name LIKE '%ITE COLLEGE%';";
                 SqlCommand cmd = new SqlCommand(sql, con);
                 con.Open();
                 SqlDataAdapter adapter = new SqlDataAdapter(cmd);
@@ -197,6 +197,11 @@ namespace Life_Planner.Account
         {
             btnITEJCPOLYSubmit.Visible = true;
             btnITEJCPOLYCont.Visible = true;
+
+            if (radioSelectITEPolyJC.SelectedItem.Text == "ITE" || radioSelectITEPolyJC.SelectedItem.Text == "Junior College")
+            {
+                PolyCoursesTable.Visible = false;
+            }
 
             if (radioSelectITEPolyJC.SelectedItem.Text == "Polytechnic")
             {
@@ -278,61 +283,13 @@ namespace Life_Planner.Account
                     cmd.ExecuteNonQuery();
                     con.Close();
                 }
-               
-            }
 
-            if (radioSelectITEPolyJC.SelectedItem.Text == "Polytechnic")
-            {
-                int priSchID1, secSchID1, polyID;
-                using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["CZ2006 - Life Planner"].ConnectionString))
-                {
-                    string sql2 = "SELECT id FROM Schools WHERE school_name=@schoolname;";
-                    SqlCommand cmd2 = new SqlCommand(sql2, con);
-                    cmd2.Parameters.AddWithValue("@schoolname", Session["priSchName"].ToString());
-
-                    con.Open();
-                    priSchID1 = (int)cmd2.ExecuteScalar();
-                    con.Close();
-                }
-
-                using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["CZ2006 - Life Planner"].ConnectionString))
-                {
-                    string sql3 = "SELECT id FROM Schools WHERE school_name=@schoolname;";
-                    SqlCommand cmd3 = new SqlCommand(sql3, con);
-                    cmd3.Parameters.AddWithValue("@schoolname", Session["secSchName"].ToString());
-
-                    con.Open();
-                    secSchID1 = (int)cmd3.ExecuteScalar();
-                    con.Close();
-                }
-
-                using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["CZ2006 - Life Planner"].ConnectionString))
-                {
-                    string sql4 = "SELECT id FROM Schools WHERE school_name=@schoolname;";
-                    SqlCommand cmd4 = new SqlCommand(sql4, con);
-                    cmd4.Parameters.AddWithValue("@schoolname", Session["POLYName"].ToString());
-
-                    con.Open();
-                    polyID = (int)cmd4.ExecuteScalar();
-                    con.Close();
-                }
-
-                using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["CZ2006 - Life Planner"].ConnectionString))
-                {
-                    string sql = "INSERT INTO dbo.PathPlan(NRIC, priSchID, secSchID, polyID, accountID) VALUES (@NRIC, @priSchID, @secSchID, @polyID, @accountID);";
-                    SqlCommand cmd = new SqlCommand(sql, con);
-
-                    cmd.Parameters.AddWithValue("@NRIC", Session["newChild"].ToString());
-                    cmd.Parameters.AddWithValue("@secSchID", secSchID1);
-                    cmd.Parameters.AddWithValue("@priSchID", priSchID1);
-                    cmd.Parameters.AddWithValue("@polyID", polyID);
-                    cmd.Parameters.AddWithValue("@accountID", Session["accountID"].ToString());
-                    con.Open();
-                    cmd.ExecuteNonQuery();
-                    con.Close();
-                }
+                Session["ITEName"] = null;
+                Session["POLYName"] = null;
 
             }
+
+
 
             if (radioSelectITEPolyJC.SelectedItem.Text == "ITE")
             {
@@ -372,7 +329,7 @@ namespace Life_Planner.Account
 
                 using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["CZ2006 - Life Planner"].ConnectionString))
                 {
-                    string sql = "INSERT INTO dbo.PathPlan(NRIC, priSchID, secSchID, polyID, accountID) VALUES (@NRIC, @priSchID, @secSchID, @ITEID, @accountID);";
+                    string sql = "INSERT INTO dbo.PathPlan(NRIC, priSchID, secSchID, ITEID, accountID) VALUES (@NRIC, @priSchID, @secSchID, @ITEID, @accountID);";
                     SqlCommand cmd = new SqlCommand(sql, con);
 
                     cmd.Parameters.AddWithValue("@NRIC", Session["newChild"].ToString());
@@ -385,19 +342,22 @@ namespace Life_Planner.Account
                     con.Close();
                 }
 
+                Session["JCName"] = null;
+                Session["POLYName"] = null;
+
             }
 
 
             //redirect to view plan
-            Response.AddHeader("REFRESH", "3;URL=/Account/ChangePassword.aspx");
+            Response.AddHeader("REFRESH", "3;URL=/Account/ViewOwnPlan.aspx");
         }
 
         protected void btnITEJCPOLYContinuePlanning(object sender, EventArgs e)
         {
             //if (radioSelectITEPolyJC.SelectedItem.Text == "ITE")
-                //Response.Redirect("CreatePlanFromJCPOLY.aspx");
+            //Response.Redirect("CreatePlanFromJCPOLY.aspx");
             //else
-                //Response.Redirect("CreatePlanFromUni.aspx");
+            //Response.AddHeader("REFRESH", "3;URL=/Account/CreatePlanFromUni.aspx");
         }
 
         protected void POLYCourseGridView_SelectedIndexChanging(object sender, EventArgs e)
@@ -412,12 +372,66 @@ namespace Life_Planner.Account
 
         protected void btnITEJCPOLYSubmitPlan2(object sender, EventArgs e)
         {
-            
+            int priSchID1, secSchID1, polyID;
+            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["CZ2006 - Life Planner"].ConnectionString))
+            {
+                string sql2 = "SELECT id FROM Schools WHERE school_name=@schoolname;";
+                SqlCommand cmd2 = new SqlCommand(sql2, con);
+                cmd2.Parameters.AddWithValue("@schoolname", Session["priSchName"].ToString());
+
+                con.Open();
+                priSchID1 = (int)cmd2.ExecuteScalar();
+                con.Close();
+            }
+
+            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["CZ2006 - Life Planner"].ConnectionString))
+            {
+                string sql3 = "SELECT id FROM Schools WHERE school_name=@schoolname;";
+                SqlCommand cmd3 = new SqlCommand(sql3, con);
+                cmd3.Parameters.AddWithValue("@schoolname", Session["secSchName"].ToString());
+
+                con.Open();
+                secSchID1 = (int)cmd3.ExecuteScalar();
+                con.Close();
+            }
+
+            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["CZ2006 - Life Planner"].ConnectionString))
+            {
+                string sql4 = "SELECT id FROM Schools WHERE school_name=@schoolname;";
+                SqlCommand cmd4 = new SqlCommand(sql4, con);
+                cmd4.Parameters.AddWithValue("@schoolname", Session["POLYName"].ToString());
+
+                con.Open();
+                polyID = (int)cmd4.ExecuteScalar();
+                con.Close();
+            }
+
+            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["CZ2006 - Life Planner"].ConnectionString))
+            {
+                string sql = "INSERT INTO dbo.PathPlan(NRIC, priSchID, secSchID, polyID, polyCourse, accountID) VALUES (@NRIC, @priSchID, @secSchID, @polyID, @polyCourse, @accountID);";
+                SqlCommand cmd = new SqlCommand(sql, con);
+                //string trynull = null;
+                cmd.Parameters.AddWithValue("@NRIC", Session["newChild"]);
+                cmd.Parameters.AddWithValue("@secSchID", secSchID1);
+                cmd.Parameters.AddWithValue("@priSchID", priSchID1);
+                cmd.Parameters.AddWithValue("@polyID", polyID);
+                cmd.Parameters.AddWithValue("@polyCourse", Session["PolyCourse"]);
+                cmd.Parameters.AddWithValue("@accountID", Session["accountID"].ToString());
+                con.Open();
+                cmd.ExecuteNonQuery();
+                con.Close();
+            }
+
+            Session["JCName"] = null;
+            Session["ITEName"] = null;
+
+            Response.AddHeader("REFRESH", "3;URL=/Account/ViewOwnPlan.aspx");
+
         }
 
         protected void btnITEJCPOLYContinuePlanning2(object sender, EventArgs e)
         {
-            
+            Response.AddHeader("REFRESH", "3;URL=/Account/CreatePlanFromUni.aspx");
         }
     }
 }
