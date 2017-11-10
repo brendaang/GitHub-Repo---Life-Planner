@@ -11,7 +11,7 @@ using System.Web.UI.WebControls;
 namespace Life_Planner
 {
 
-  
+
 
     public partial class secondaryStats : System.Web.UI.Page
     {
@@ -19,5 +19,6 @@ namespace Life_Planner
         {
 
 
+        }
     }
 }
