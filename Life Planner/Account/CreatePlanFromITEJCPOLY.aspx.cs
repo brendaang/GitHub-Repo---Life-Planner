@@ -22,6 +22,13 @@ namespace Life_Planner.Account
 
         protected void radioSelectITEPolyJC_SelectedIndexChanged(object sender, EventArgs e)
         {
+            btnITEJCPOLYEast.Visible = true;
+            btnITEJCPOLYNone.Visible = true;
+            btnITEJCPOLYNorth.Visible = true;
+            btnITEJCPOLYSouth.Visible = true;
+            btnITEJCPOLYWest.Visible = true;
+            lblITEJCPOLYSchFilterByLoc.Visible = true;
+
             if (radioSelectITEPolyJC.SelectedItem.Text == "Junior College")
             {
                 PolyCoursesTable.Visible = false;
@@ -291,7 +298,6 @@ namespace Life_Planner.Account
 
                 using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["CZ2006 - Life Planner"].ConnectionString))
                 {
-                    //string sql = "INSERT INTO dbo.PathPlan(NRIC, priSchID, secSchID, jcID, polyID, ITEID, uniID, accountID) VALUES (@NRIC, @priSchID, @secSchID, @jcID, @polyID, @ITEID, @uniID, @accountID);";
                     string sql = "";
                     sql += "INSERT INTO dbo.PathPlan(NRIC, priSchID, secSchID, jcID, accountID) VALUES (@NRIC, ";
 
@@ -435,15 +441,15 @@ namespace Life_Planner.Account
             }
 
             //redirect to view plan
-            // Response.AddHeader("REFRESH", "3;URL=/Account/ViewOwnPlan.aspx");
+            Response.Redirect("~/Account/ViewOwnPlan.aspx");
         }
 
         protected void btnITEJCPOLYContinuePlanning(object sender, EventArgs e)
         {
-            //if (radioSelectITEPolyJC.SelectedItem.Text == "ITE")
-            //Response.Redirect("CreatePlanFromJCPOLY.aspx");
-            //else
-            //Response.AddHeader("REFRESH", "3;URL=/Account/CreatePlanFromUni.aspx");
+            if (radioSelectITEPolyJC.SelectedItem.Text == "ITE")
+                Response.Redirect("~/Account/CreatePlanFromPOLY.aspx");
+            else
+                Response.Redirect("~/Account/CreatePlanFromUni.aspx");
         }
 
         protected void POLYCourseGridView_SelectedIndexChanging(object sender, EventArgs e)

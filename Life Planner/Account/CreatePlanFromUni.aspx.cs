@@ -19,9 +19,7 @@ namespace Life_Planner.Account
             if (IsPostBack)
                 return;
 
-            //to uncomment after done
-            //if (Session["newChildPlanPrimary"] != null) //can get newchildnric from Session["newChildPlanKindergarten"].ToString();
-            {
+           
                 DataTable ViewUniTable = new DataTable();
                 SqlConnection con = new DBManager().getConnection();
                 string sql = "SELECT school_name,zone_code, dgp_code,url_address FROM [CZ2006 - Life Planner].[dbo].[Schools] WHERE school_name LIKE '%UNIVERSITY%';";
@@ -32,7 +30,7 @@ namespace Life_Planner.Account
                 uniTable.DataSource = ViewUniTable;
                 uniTable.DataBind();
                 con.Close();
-            }
+            
         }
 
         protected void btnUniLocation(string area)
@@ -258,7 +256,7 @@ namespace Life_Planner.Account
                 cmd.Parameters.AddWithValue("@priSchID", priSchID);
                 cmd.Parameters.AddWithValue("@secSchID", secSchID);
                 cmd.Parameters.AddWithValue("@polyID", polyID);
-                cmd.Parameters.AddWithValue("@polyCourse", Session["PolyCourse"].ToString());
+                cmd.Parameters.AddWithValue("@polyCourse", polyCourse);
                 cmd.Parameters.AddWithValue("@jcID", jcID);
                 cmd.Parameters.AddWithValue("@ITEID", iteID);
                 cmd.Parameters.AddWithValue("@uniID", uniID);
@@ -271,7 +269,7 @@ namespace Life_Planner.Account
                 con.Close();
             }
             //redirect to view plan
-           // Response.Redirect("~/Account/ViewOwnPlan.aspx");
+           Response.Redirect("~/Account/ViewOwnPlan.aspx");
         }
     }
 }

@@ -21,21 +21,49 @@ namespace Life_Planner.Account
                 return;
 
             SqlConnection con = new DBManager().getConnection();
-            string sql = "SELECT moduleID, moduleName FROM [CZ2006 - Life Planner].[dbo].[Module];";
-            SqlCommand cmd = new SqlCommand(sql, con);
-            SqlDataAdapter dataAdapter = new SqlDataAdapter(cmd);
-            DataSet dataSet = new DataSet();
-
+            string sql2 = "SELECT COUNT(*) FROM dbo.PathPlan WHERE accountID=@accountID";
+            SqlCommand cmd2 = new SqlCommand(sql2, con);
+            cmd2.Parameters.AddWithValue("@accountID", Session["accountID"].ToString());
             con.Open();
 
-            dataAdapter.Fill(dataSet, "Module");
+            int result = int.Parse(cmd2.ExecuteScalar().ToString());
 
-            con.Close();
+            if (result > 0)
+            {
+                con.Close();
+                con.Dispose();
+                alert_placeholder.Visible = true;
+                alert_placeholder.Attributes["class"] = "alert alert-danger alert-dismissable";
+                alertText.Text = "Plan already exist! Redirecting to View Own Plan page...";
+                Response.AddHeader("REFRESH", "2;URL=ViewOwnPlan.aspx");
+                
+            }
 
-            //to insert moduleName values retrieved from Module table (from database) into dropdownlist
-            ddlCreatePlanChildCurrentEdLevel.DataSource = dataSet.Tables["Module"];
-            ddlCreatePlanChildCurrentEdLevel.DataTextField = "moduleName";
-            ddlCreatePlanChildCurrentEdLevel.DataBind();
+            else
+            {
+                con.Close();
+                cmd2.Dispose();
+
+
+
+
+                string sql = "SELECT moduleID, moduleName FROM [CZ2006 - Life Planner].[dbo].[Module];";
+                SqlCommand cmd = new SqlCommand(sql, con);
+                SqlDataAdapter dataAdapter = new SqlDataAdapter(cmd);
+                DataSet dataSet = new DataSet();
+
+                con.Open();
+
+                dataAdapter.Fill(dataSet, "Module");
+
+                con.Close();
+
+                //to insert moduleName values retrieved from Module table (from database) into dropdownlist
+                ddlCreatePlanChildCurrentEdLevel.DataSource = dataSet.Tables["Module"];
+                ddlCreatePlanChildCurrentEdLevel.DataTextField = "moduleName";
+                ddlCreatePlanChildCurrentEdLevel.DataBind();
+            }
+            
         }
 
         protected void clearBtn_Click(object sender, EventArgs e)
@@ -104,20 +132,20 @@ namespace Life_Planner.Account
                         Response.Redirect("~/Account/CreatePlanFromITEJCPOLY.aspx");
                     }
 
-                    else if (edLevel == "Junior College"||edLevel=="Polytechnic")
+                    else if (edLevel == "Junior College" || edLevel == "Polytechnic")
                     {
                         Response.Redirect("~/Account/CreatePlanFromUni.aspx");
                     }
 
                     else if (edLevel == "ITE" || edLevel == "Polytechnic")
                     {
-                        Response.Redirect("~/Account/CreatePlanFromJCPOLY.aspx");
+                        Response.Redirect("~/Account/CreatePlanFromPOLY.aspx");
                     }
 
 
                 }
 
-                else if (emailValid==0 && nricValid==1)
+                else if (emailValid == 0 && nricValid == 1)
                 {
                     alert_placeholder.Visible = true;
                     alert_placeholder.Attributes["class"] = "alert alert-danger alert-dismissable";

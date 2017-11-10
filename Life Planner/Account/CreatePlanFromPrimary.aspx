@@ -7,7 +7,7 @@
         <section id="createPlan">
             <h2></>Create Plan</h2>
 
-            <h5>Step 2: Filtering of Primary Schools</h5>
+            <h5>Step 2: Selecting a Primary School</h5>
 
 
             <div id="alert_placeholder" runat="server" visible="false">
@@ -16,9 +16,6 @@
 
             <div>
                 <div class="form-group">
-                    <asp:Label ID="lblSelectPriSch" runat="server" CssClass="col-md-4 control-label" Text="Please select planned Primary School path:"></asp:Label>
-                    <br />
-                    <br />
                     <asp:Label ID="lblPriSchFilterLoc" runat="server" CssClass="col-md-3 control-label" Text="Filter by Location:"></asp:Label>
                 </div>
             </div>

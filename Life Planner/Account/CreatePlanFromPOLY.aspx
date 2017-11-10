@@ -1,12 +1,11 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="CreatePlanFromITEJCPOLY.aspx.cs" Inherits="Life_Planner.Account.CreatePlanFromJCPOLY" %>
-
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="CreatePlanFromPOLY.aspx.cs" Inherits="Life_Planner.Account.CreatePlanFromJCPOLY1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-        <asp:Panel ID="Panel1" runat="server" Height="831px">
+    <asp:Panel ID="Panel1" runat="server" Height="831px">
 
             <section id="createPlan">
                 <h2></>Create Plan</h2>
 
-                <h5>Step 2: Selecting a ITE/Junior College/Polytechnic</h5>
+                <h5>Step 2: Selecting a Polytechnic</h5>
 
 
                 <div id="alert_placeholder" runat="server" visible="false">
@@ -15,37 +14,23 @@
                 <div>
 
                     <%--////2--%>
-                    <div>
-                        <div class="form-group">
-                            <asp:Label ID="lblSelectITEPolyJC" runat="server" CssClass="col-md-4 control-label" Text="Please select next path to enter:"></asp:Label>
-                            <br />
-                            <br />
-                            <asp:RadioButtonList ID="radioSelectITEPolyJC" RepeatLayout="Flow" RepeatDirection="Horizontal" runat="server" OnSelectedIndexChanged="radioSelectITEPolyJC_SelectedIndexChanged" AutoPostBack="true">
-                                <asp:ListItem class="radio-inline" Value="0" Text="ITE"></asp:ListItem>
-                                <asp:ListItem class="radio-inline" Value="1" Text="Junior College"></asp:ListItem>
-                                <asp:ListItem class="radio-inline" Value="2" Text="Polytechnic"></asp:ListItem>
-                            </asp:RadioButtonList>
-                            <br />
-                            <br />
-                            <asp:Label ID="lblITEJCPOLYSchFilterByLoc" runat="server" CssClass="col-md-3 control-label" Text="Filter by Location:" Visible="False"></asp:Label>
-                            <br />
-                        </div>
-                    </div>
-
                     <div class="form-group">
                         <div class="col-md-10">
+                            <asp:Label ID="lblITEJCPOLYSchFilterByLoc" runat="server" CssClass="col-md-3 control-label" Text="Filter by Location:"></asp:Label>
+                            <br />
+                            <br />
                             <table class="nav-justified" style="width: 79%">
                                 <tr>
                                     <td style="width: 88px">
-                                        <asp:Button ID="btnITEJCPOLYNorth" CssClass="btn btn-default" Text="North" runat="server" OnClick="btn_ITEJCPOLYNorth" CausesValidation="false" Visible="False"/>
+                                        <asp:Button ID="btnPOLYNorth" CssClass="btn btn-default" Text="North" runat="server" OnClick="btn_POLYNorth" CausesValidation="false"/>
                                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:Button ID="btnITEJCPOLYSouth" CssClass="btn btn-default" Text="South" runat="server" OnClick="btn_ITEJCPOLYSouth" CausesValidation="false" Visible="False"/>
+                                <asp:Button ID="btnPOLYSouth" CssClass="btn btn-default" Text="South" runat="server" OnClick="btn_POLYSouth" CausesValidation="false"/>
                                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:Button ID="btnITEJCPOLYEast" CssClass="btn btn-default" Text="East" runat="server" OnClick="btn_ITEJCPOLYEast" CausesValidation="false" Visible="False"/>
+                                <asp:Button ID="btnPOLYEast" CssClass="btn btn-default" Text="East" runat="server" OnClick="btn_POLYEast" CausesValidation="false"/>
                                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:Button ID="btnITEJCPOLYWest" CssClass="btn btn-default" Text="West" runat="server" OnClick="btn_ITEJCPOLYWest" CausesValidation="false" Visible="False"/>
+                                <asp:Button ID="btnPOLYWest" CssClass="btn btn-default" Text="West" runat="server" OnClick="btn_POLYWest" CausesValidation="false"/>
                                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:Button ID="btnITEJCPOLYNone" CssClass="btn btn-default" Text="None" runat="server" OnClick="btn_ITEJCPOLYNone" CausesValidation="false" Visible="False" />
+                                <asp:Button ID="btnPOLYNone" CssClass="btn btn-default" Text="None" runat="server" OnClick="btn_POLYNone" CausesValidation="false" />
                                         <br />
                                     </td>
                                 </tr>
@@ -57,7 +42,7 @@
                         <div style="width: 100%; height: 250px; overflow: auto">
                             <br />
                             <br />
-                            <asp:GridView ID="ITEJCPOLYTable" runat="server" AutoGenerateColumns="False" BackColor="White" CssClass="table table-striped table-hover" EnableTheming="False" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="3" Width="1166px" DataKeyNames="school_name" OnSelectedIndexChanged="ITEJCPOLYGridView_SelectedIndexChanging" AutoGenerateSelectButton="True">
+                            <asp:GridView ID="POLYTable" runat="server" AutoGenerateColumns="False" BackColor="White" CssClass="table table-striped table-hover" EnableTheming="False" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="3" Width="1166px" DataKeyNames="school_name" OnSelectedIndexChanged="POLYGridView_SelectedIndexChanging" AutoGenerateSelectButton="True">
                                 <FooterStyle BackColor="White" ForeColor="#000066" />
                                 <HeaderStyle BackColor="#006699" Font-Bold="True" ForeColor="White" />
                                 <PagerStyle BackColor="White" ForeColor="#000066" HorizontalAlign="Left" />
@@ -80,15 +65,11 @@
 
                 </div>
 
-                <div class="form-group">
-                    <div class="col-lg-10 col-lg-offset-10">
-                        <br />
-                        <asp:Button ID="btnITEJCPOLYCont" CssClass="btn btn-default" Text="Continue" runat="server" OnClick="btnITEJCPOLYContinuePlanning" CausesValidation="false" Width="93px" Visible="False" />
-                        &nbsp;
-                        <asp:Button ID="btnITEJCPOLYSubmit" CssClass="btn btn-primary" Text="End" runat="server" OnClick="btnITEJCPOLYSubmitPlan" Width="93px" Visible="False" />
-                    </div>
-                </div>
+                
+                <br />
+                <br />
 
+                
                 <%--******--%>
                 <div>
                     <div class="form-group">
@@ -119,9 +100,9 @@
                 <div class="form-group">
                     <div class="col-lg-10 col-lg-offset-10">
                         <br />
-                        <asp:Button ID="btnITEJCPOLYCont2" CssClass="btn btn-default" Text="Continue" runat="server" OnClick="btnITEJCPOLYContinuePlanning2" CausesValidation="false" Width="93px" Visible="False" />
+                        <asp:Button ID="btnPOLYCont2" CssClass="btn btn-default" Text="Continue" runat="server" OnClick="btnPOLYContinuePlanning2" CausesValidation="false" Width="93px" Visible="False" />
                         &nbsp;
-                        <asp:Button ID="btnITEJCPOLYSubmit2" CssClass="btn btn-primary" Text="End" runat="server" OnClick="btnITEJCPOLYSubmitPlan2" Width="93px" Visible="False" />
+                        <asp:Button ID="btnPOLYSubmit2" CssClass="btn btn-primary" Text="End" runat="server" OnClick="btnPOLYSubmitPlan2" Width="93px" Visible="False" />
                     </div>
                 </div>
 

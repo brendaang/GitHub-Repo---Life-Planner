@@ -10,7 +10,7 @@
 namespace Life_Planner.Account {
     
     
-    public partial class CreatePlanFromSecondary {
+    public partial class CreatePlanFromJCPOLY1 {
         
         /// <summary>
         /// Panel1 control.
@@ -31,84 +31,93 @@ namespace Life_Planner.Account {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl alert_placeholder;
         
         /// <summary>
-        /// lblSecSchFilterLoc control.
+        /// lblITEJCPOLYSchFilterByLoc control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblSecSchFilterLoc;
+        protected global::System.Web.UI.WebControls.Label lblITEJCPOLYSchFilterByLoc;
         
         /// <summary>
-        /// btnSecNorth control.
+        /// btnPOLYNorth control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSecNorth;
+        protected global::System.Web.UI.WebControls.Button btnPOLYNorth;
         
         /// <summary>
-        /// btnSecSouth control.
+        /// btnPOLYSouth control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSecSouth;
+        protected global::System.Web.UI.WebControls.Button btnPOLYSouth;
         
         /// <summary>
-        /// btnSecEast control.
+        /// btnPOLYEast control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSecEast;
+        protected global::System.Web.UI.WebControls.Button btnPOLYEast;
         
         /// <summary>
-        /// btnSecWest control.
+        /// btnPOLYWest control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSecWest;
+        protected global::System.Web.UI.WebControls.Button btnPOLYWest;
         
         /// <summary>
-        /// btnSecNone control.
+        /// btnPOLYNone control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSecNone;
+        protected global::System.Web.UI.WebControls.Button btnPOLYNone;
         
         /// <summary>
-        /// secSchTable control.
+        /// POLYTable control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView secSchTable;
+        protected global::System.Web.UI.WebControls.GridView POLYTable;
         
         /// <summary>
-        /// btnSecCont control.
+        /// PolyCoursesTable control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSecCont;
+        protected global::System.Web.UI.WebControls.GridView PolyCoursesTable;
         
         /// <summary>
-        /// btnSecSubmit control.
+        /// btnPOLYCont2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSecSubmit;
+        protected global::System.Web.UI.WebControls.Button btnPOLYCont2;
+        
+        /// <summary>
+        /// btnPOLYSubmit2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnPOLYSubmit2;
     }
 }

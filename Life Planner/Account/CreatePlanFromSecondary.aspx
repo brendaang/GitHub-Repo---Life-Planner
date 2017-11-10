@@ -6,20 +6,15 @@
         <section id="createPlan">
             <h2></>Create Plan</h2>
 
-            <h5>Step 2: Filtering of Secondary Schools</h5>
+            <h5>Step 2: Selecting a Secondary Schools</h5>
 
 
             <div id="alert_placeholder" runat="server" visible="false">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                <asp:Literal runat="server" ID="alertText" />
             </div>
             <hr />
 
             <div>
                 <div class="form-group">
-                    <asp:Label ID="lblSelectSecSch" runat="server" CssClass="col-md-4 control-label" Text="Please select planned Secondary School path:"></asp:Label>
-                    <br />
-                    <br />
                     <asp:Label ID="lblSecSchFilterLoc" runat="server" CssClass="col-md-3 control-label" Text="Filter by Location:"></asp:Label>
                 </div>
             </div>
@@ -28,7 +23,6 @@
             <div>
                 <div class="form-group">
                     <div class="col-md-10">
-                        <br />
                         <br />
                         <table class="nav-justified" style="width: 79%">
                             <tr>
@@ -42,6 +36,7 @@
                                 <asp:Button ID="btnSecWest" CssClass="btn btn-default" Text="West" runat="server" OnClick="btn_SecWest" CausesValidation="false"/>
                                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <asp:Button ID="btnSecNone" CssClass="btn btn-default" Text="None" runat="server" OnClick="btn_SecNone" CausesValidation="false" />
+                                    <br />
                                     <br />
                                 </td>
                             </tr>

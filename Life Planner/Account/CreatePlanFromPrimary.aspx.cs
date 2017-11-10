@@ -19,9 +19,7 @@ namespace Life_Planner.Account
             if (IsPostBack)
                 return;
 
-            //to uncomment after done
-            //if (Session["newChildPlanKindergarten"] != null) //can get newchildnric from Session["newChild"].ToString();
-            //{
+            
             DataTable ViewPriSchTable = new DataTable();
             SqlConnection con = new DBManager().getConnection();
             string sql = "SELECT school_name,zone_code, dgp_code,url_address FROM [CZ2006 - Life Planner].[dbo].[Schools] WHERE school_name LIKE '%PRIMARY SCHOOL%';";
@@ -32,7 +30,7 @@ namespace Life_Planner.Account
             priSchTable.DataSource = ViewPriSchTable;
             priSchTable.DataBind();
             con.Close();
-            //}
+           
 
         }
 
@@ -120,6 +118,7 @@ namespace Life_Planner.Account
                     sql += "NULL, ";
                 else
                     sql += "@priSchID, ";
+
                 sql += "@accountID);";
 
                 SqlCommand cmd = new SqlCommand(sql, con);

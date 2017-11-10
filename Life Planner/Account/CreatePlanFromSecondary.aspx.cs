@@ -19,9 +19,7 @@ namespace Life_Planner.Account
             if (IsPostBack)
                 return;
 
-            //to uncomment after done
-            //if (Session["newChildPlanPrimary"] != null) //can get newchildnric from Session["newChildPlanKindergarten"].ToString();
-            {
+            
                 DataTable ViewSecSchTable = new DataTable();
                 SqlConnection con = new DBManager().getConnection();
                 string sql = "SELECT school_name,zone_code, dgp_code,url_address FROM [CZ2006 - Life Planner].[dbo].[Schools] WHERE school_name LIKE '%SECONDARY SCHOOL%';";
@@ -32,7 +30,7 @@ namespace Life_Planner.Account
                 secSchTable.DataSource = ViewSecSchTable;
                 secSchTable.DataBind();
                 con.Close();
-            }
+            
         }
 
         protected void btnSecLocation(string area)

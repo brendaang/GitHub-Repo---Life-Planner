@@ -172,6 +172,7 @@
     <Content Include="Account\ChangeRole.aspx" />
     <Content Include="Account\CreatePlan.aspx" />
     <Content Include="Account\CreatePlanFromITEJCPOLY.aspx" />
+    <Content Include="Account\CreatePlanFromPOLY.aspx" />
     <Content Include="Account\CreatePlanFromPrimary.aspx" />
     <Content Include="Account\CreatePlanFromSecondary.aspx" />
     <Content Include="Account\CreatePlanFromUni.aspx" />
@@ -307,6 +308,13 @@
     </Compile>
     <Compile Include="Account\CreatePlanFromITEJCPOLY.aspx.designer.cs">
       <DependentUpon>CreatePlanFromITEJCPOLY.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\CreatePlanFromPOLY.aspx.cs">
+      <DependentUpon>CreatePlanFromPOLY.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\CreatePlanFromPOLY.aspx.designer.cs">
+      <DependentUpon>CreatePlanFromPOLY.aspx</DependentUpon>
     </Compile>
     <Compile Include="Account\CreatePlanFromPrimary.aspx.cs">
       <DependentUpon>CreatePlanFromPrimary.aspx</DependentUpon>

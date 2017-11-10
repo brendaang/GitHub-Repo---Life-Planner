@@ -40,7 +40,7 @@
         <section id="createPlan">
             <h2></>Create Plan</h2>
 
-            <h5>Step 1: Please enter your child's details</h5>
+            <h5>Step 1: Entering child&#39;s details</h5>
 
 
             <div id="alert_placeholder" runat="server" visible="false">
