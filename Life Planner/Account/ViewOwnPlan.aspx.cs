@@ -91,13 +91,22 @@ namespace Life_Planner.Account
             tb_uniName.Text = tb_uniCourse.Text = "Not Available"; //no uni data in db
 
 			int currentEdLevel = 0; //0 primary, 1 secondary, 2 jc, 3 poly, 4 polycourse, 5 uni, 6 uni course
-			for (int i = 6; i >= 0; i--) {
-				if(info[i] != "") {
-					currentEdLevel = i;
-					break;
-				}
-			}
-			currentEdLevel = currentEdLevel - 2;
+			//for (int i = 6; i >= 0; i--) {
+			//	if(info[i] != "") {
+			//		currentEdLevel = i;
+			//		break;
+			//	}
+			//}
+
+            for(int i = 0; i<7; i++)
+            {
+                if(info[i] == "")
+                {
+                    currentEdLevel = i;
+                    break;
+                }
+            }
+
 
 			int shortest = getShortestPath(info, currentEdLevel); //years
 			int longest = getLongestPath(info, currentEdLevel); //years
@@ -111,9 +120,9 @@ namespace Life_Planner.Account
 
 		protected int getShortestPath(string[] info, int curr) {
 			SqlConnection con = new DBManager().getConnection();
-			string sql = "SELECT shortest FROM dbo.Module WHERE moduleID < @curr ORDER BY moduleID";
+			string sql = "SELECT shortest FROM dbo.Module WHERE moduleID <= @curr ORDER BY moduleID";
 			SqlCommand cmd = new SqlCommand(sql, con);
-			cmd.Parameters.AddWithValue("@curr", curr);
+			cmd.Parameters.AddWithValue("@curr", curr+1);
 			con.Open();
 
 			SqlDataReader dr = cmd.ExecuteReader();
@@ -141,9 +150,9 @@ namespace Life_Planner.Account
 		}
 		protected int getLongestPath(string[] info, int curr) {
 			SqlConnection con = new DBManager().getConnection();
-			string sql = "SELECT longest FROM dbo.Module WHERE moduleID < @curr ORDER BY moduleID";
+			string sql = "SELECT longest FROM dbo.Module WHERE moduleID <= @curr ORDER BY moduleID";
 			SqlCommand cmd = new SqlCommand(sql, con);
-			cmd.Parameters.AddWithValue("@curr", curr);
+			cmd.Parameters.AddWithValue("@curr", curr+1);
 			con.Open();
 
 			SqlDataReader dr = cmd.ExecuteReader();
