@@ -13,7 +13,7 @@
             <div class="well well-sm">
                 <iframe width="520" height="600" src="https://data.gov.sg/dataset/enrolment-pre-university-by-level/resource/8b436e71-ef7d-4a92-86e5-dfdebdc25d8c/view/16d236b8-688c-463d-a664-ce67a8d4b3e4" frameborder="0"></iframe>
                 <p>Pre-U enrolment by level and course.
-<br />Since 2006, as part of a new broad-based JC education, students are required to do at least one subject outside their area of specialization.<br /> For example, a Science course student is required to take at least one Humanities subject and an Arts course student is required to take at least one Science subject.
+
 </p>
             </div>
         </div>
