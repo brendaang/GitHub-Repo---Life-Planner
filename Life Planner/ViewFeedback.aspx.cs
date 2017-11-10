@@ -77,12 +77,12 @@ namespace Life_Planner
         {
             if (e.CommandName == "viewFbkDetail")
             {
-                int rowIndex = Convert.ToInt32(e.CommandArgument);
+                int rowIndex = Convert.ToInt32(e.CommandArgument) % feedbackGridView.PageSize;
                 GridViewRow row = feedbackGridView.Rows[rowIndex];
 
                 string feedbackID = row.Cells[0].Text;
                 string feedbackStts = row.Cells[1].Text;
-                
+
                 Session["Feedback_ID"] = feedbackID;
                 Session["Feedback_Status"] = feedbackStts;
                 Response.Redirect("ResolveFeedback.aspx", false);
