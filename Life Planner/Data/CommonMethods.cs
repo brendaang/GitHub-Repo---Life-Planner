@@ -183,5 +183,18 @@ namespace Life_Planner.Data
             return threadID;
 
         }
+        public void updatePost(string postID, string postText)
+        {
+            SqlConnection con = new DBManager().getConnection();
+            string sql = "UPDATE [CZ2006 - Life Planner].[dbo].[Posts] SET postText=@postText WHERE postID=@postID;";
+            SqlCommand cmd = new SqlCommand(sql, con);
+
+            cmd.Parameters.AddWithValue("@postID", postID);
+            cmd.Parameters.AddWithValue("@postText", postText);
+            con.Open();
+            cmd.ExecuteNonQuery();
+            con.Close();
+
+        }
     }
 }
