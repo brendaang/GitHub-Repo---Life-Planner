@@ -51,6 +51,7 @@
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li><a runat="server" href="~/">Home</a></li>
+                        <li><a runat="server" href="~/viewConsolidatedData">View Statistics</a></li>
                         <%--                        <li><a runat="server" href="~/About">About</a></li>
                         <li><a runat="server" href="~/Contact">Contact</a></li>--%>
                         <%
@@ -89,6 +90,7 @@
                         %>
                         <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><% =(string)Session["username"] %> <span class="caret"></span></a>
                             <ul class="dropdown-menu">
+                                <li><a href="/Account/ViewOwnPlan.aspx">View Own Plan</a></li>
                                 <li><a href="/Account/ViewMyProfile.aspx?name=<%= Session["username"].ToString() %>">View Profile</a></li>
                                 <li><a href="/Account/EditProfile.aspx">Edit Profile</a></li>
                                 <li><a href="/Account/ChangePassword.aspx">Change Password</a></li>

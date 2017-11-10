@@ -176,7 +176,9 @@
     <Content Include="Account\CreatePlanFromSecondary.aspx" />
     <Content Include="Account\CreateThread.aspx" />
     <Content Include="Account\Editing-Posts.aspx" />
+    <Content Include="Account\EditPrimarySch.aspx" />
     <Content Include="Account\EditProfile.aspx" />
+    <Content Include="Account\EditSecSch.aspx" />
     <Content Include="Account\ForgetPassword.aspx" />
     <Content Include="Account\PostIssues.aspx" />
     <Content Include="Account\ReportPost.aspx" />
@@ -202,6 +204,7 @@
     <Content Include="Images\button_calendar.png" />
     <Content Include="Images\error.png" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="moreInformation.aspx" />
     <Content Include="OLevelCOP.aspx" />
     <Content Include="packages.config" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -213,6 +216,7 @@
     <Content Include="ResolveFeedback.aspx" />
     <Content Include="SendFeedback.aspx" />
     <Content Include="Test.aspx" />
+    <Content Include="viewConsolidatedData.aspx" />
     <Content Include="ViewFeedback.aspx" />
     <Content Include="WordList\WordList.txt" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
@@ -319,12 +323,26 @@
     <Compile Include="Account\Editing-Posts.aspx.designer.cs">
       <DependentUpon>Editing-Posts.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Account\EditPrimarySch.aspx.cs">
+      <DependentUpon>EditPrimarySch.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\EditPrimarySch.aspx.designer.cs">
+      <DependentUpon>EditPrimarySch.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Account\EditProfile.aspx.cs">
       <DependentUpon>EditProfile.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Account\EditProfile.aspx.designer.cs">
       <DependentUpon>EditProfile.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\EditSecSch.aspx.cs">
+      <DependentUpon>EditSecSch.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\EditSecSch.aspx.designer.cs">
+      <DependentUpon>EditSecSch.aspx</DependentUpon>
     </Compile>
     <Compile Include="Account\ForgetPassword.aspx.cs">
       <DependentUpon>ForgetPassword.aspx</DependentUpon>
@@ -476,6 +494,13 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="moreInformation.aspx.cs">
+      <DependentUpon>moreInformation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="moreInformation.aspx.designer.cs">
+      <DependentUpon>moreInformation.aspx</DependentUpon>
+    </Compile>
     <Compile Include="OLevelCOP.aspx.cs">
       <DependentUpon>OLevelCOP.aspx</DependentUpon>
     </Compile>
@@ -517,6 +542,12 @@
     </Compile>
     <Compile Include="Test.aspx.designer.cs">
       <DependentUpon>Test.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="viewConsolidatedData.aspx.cs">
+      <DependentUpon>viewConsolidatedData.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="viewConsolidatedData.aspx.designer.cs">
+      <DependentUpon>viewConsolidatedData.aspx</DependentUpon>
     </Compile>
     <Compile Include="ViewFeedback.aspx.cs">
       <DependentUpon>ViewFeedback.aspx</DependentUpon>
