@@ -19,7 +19,7 @@ namespace Life_Planner.Account
             string accID = Session["accountID"].ToString();
             SqlConnection con = new DBManager().getConnection();
             string sql = "SELECT * FROM dbo.PathPlan WHERE accountID=@accID";
-            string[] info = new string[8];
+            string[] info = new string[7];
 
             con.Open();
             SqlCommand cmd = new SqlCommand(sql, con);
@@ -35,9 +35,7 @@ namespace Life_Planner.Account
                 if (!dr.IsDBNull(dr.GetOrdinal("polyCourse")))
                     info[4] =(string)dr["polyCourse"];
                 info[5] = dr["uniID"].ToString();
-                if(!dr.IsDBNull(dr.GetOrdinal("uniCourse")))
-                    info[6] = (string)dr["uniCourse"];
-                info[7] = dr["ITEID"].ToString();
+                info[6] = dr["ITEID"].ToString();
             }
             dr.Close();
             con.Close();
@@ -55,6 +53,7 @@ namespace Life_Planner.Account
             btn_editSec.Visible = true;
             btn_editTertiary.Visible = true;
             btn_doneEdit.Visible = true;
+            btn_editUni.Visible = true;
             btn_editPlan.Visible = false;
         }
 
@@ -98,17 +97,7 @@ namespace Life_Planner.Account
             }
             
             tb_uniName.Text = getSchName(info[5]);
-            if(tb_uniName.Text == "Not Available")
-            {
-                tb_uniCourse.Text = "Not Available";
-            }
-            else
-            {
-                tb_uniCourse.Text = info[6];
-            }
-
-            tb_uniCourse.Text = "Not Available"; //no uni data in db
-            tb_iteName.Text = getSchName(info[7]);
+            tb_iteName.Text = getSchName(info[6]);
 
             //copy info[] to edlvl[] for looping 
             string[] edlvl = new string[6];
@@ -117,16 +106,21 @@ namespace Life_Planner.Account
             edlvl[2] = info[2]; //jc
             edlvl[3] = info[3]; //poly
             edlvl[4] = info[5]; //uni
-            edlvl[5] = info[7]; //ite
+            edlvl[5] = info[6]; //ite
+            
        
 
 			int currentEdLevel = 0; //0 primary, 1 secondary, 2 jc, 3 poly, 4 uni, 5 ite
-            for(int i=0; i<5; i++)
+            for(int i=0; i<6; i++)
             {
                 if(edlvl[i] == "")
                 {
                     currentEdLevel = i;
                     break;
+                }
+                if(i==5 && edlvl[i] != "") //ite not null
+                {
+                    currentEdLevel = i;
                 }
             }
             
@@ -154,10 +148,11 @@ namespace Life_Planner.Account
 			while (dr.Read()) {
 				//shortest[i] = (int) dr["shortest"];
 				shortestPath += (int)dr["shortest"];
-				i++;
+                i++;
 			}
+            
 
-			if (info[3] != "" && i<4)//poly
+            if (info[3] != "" && i<4)//poly
             {
 				shortestPath += 3;
 			}
@@ -167,7 +162,7 @@ namespace Life_Planner.Account
                 shortestPath += 4;
             }
 
-            if(info[5] != "" && i < 6)//ite
+            if(info[5] != "" && i <= 6)//ite
             {
                 shortestPath += 2;
             }
@@ -195,15 +190,15 @@ namespace Life_Planner.Account
 				longestPath += (int)dr["longest"];
 				i++;
 			}
-			if (info[3] != "" && i<4)
+			if (info[3] != "" && i<4)//poly
             {
 				longestPath += 5;
 			}
-			if (info[4] != "" && i<5)
+			if (info[4] != "" && i<5)//uni
             {
 				longestPath += 6;
 			}
-            if(info[5] != "" && i < 6)
+            if(info[5] != "" && i <= 6)//ite
             {
                 longestPath += 3;
             }
@@ -271,6 +266,10 @@ namespace Life_Planner.Account
             Response.Redirect("EditTertiary.aspx");
         }
 
+        protected void btn_editUni_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("EditUni.aspx");
+        }
         protected void btn_doneEdit_Click(object sender, EventArgs e)
         {
             btn_editPri.Visible = false;
@@ -278,6 +277,7 @@ namespace Life_Planner.Account
             btn_editTertiary.Visible = false;
             btn_doneEdit.Visible = false;
             btn_editPlan.Visible = true;
+            btn_editUni.Visible = false;
         }
 
         protected void setNA()
@@ -289,7 +289,6 @@ namespace Life_Planner.Account
             tb_polyName.Text = "";
             tb_polyCourse.Text = "";
             tb_uniName.Text = "";
-            tb_uniCourse.Text = "";
             tb_shortestTime.Text = "";
             tb_longestTime.Text = "";
         }

@@ -22,7 +22,7 @@
                         <asp:TextBox ID="tb_priName" CssClass="form-control" runat="server" Enabled="false"></asp:TextBox>
                     </div>
                     <div class="col-lg-4 col-lg-offset-4">
-                        <asp:Button ID="btn_editPri" runat="server" Text="Edit Primary" class="btn btn-primary" Width="100px" OnClick="btn_editPri_Click" Visible="false"/>
+                        <asp:Button ID="btn_editPri" runat="server" Text="Edit Primary" class="btn btn-primary" Width="150px" OnClick="btn_editPri_Click" Visible="false"/>
                     </div>
                 </div>
                 <div class="form-group">
@@ -57,22 +57,20 @@
                     <div class="col-lg-6">
                         <asp:TextBox ID="tb_polyCourse" CssClass="form-control" runat="server" Enabled="false"></asp:TextBox>
                     </div>
+                    <div class="col-lg-4 col-lg-offset-4">
+                        <asp:Button ID="btn_editTertiary" runat="server" Text="Edit Tertiary" class="btn btn-primary" Width="150px" OnClick="btn_editTertiary_Click" Visible="false" />
+                    </div>
                 </div>
                 <div class="form-group">
                     <asp:Label ID="lbl_uniName" CssClass="col-lg-4 control-label" runat="server">University:</asp:Label>
                     <div class="col-lg-6">
                         <asp:TextBox ID="tb_uniName" CssClass="form-control" runat="server" Enabled="false"></asp:TextBox>
                     </div>
-                </div>
-                <div class="form-group">
-                    <asp:Label ID="lbl_uniCourse" CssClass="col-lg-4 control-label" runat="server">University Course:</asp:Label>
-                    <div class="col-lg-6">
-                        <asp:TextBox ID="tb_uniCourse" CssClass="form-control" runat="server" Enabled="false"></asp:TextBox>
-                    </div>
                     <div class="col-lg-4 col-lg-offset-4">
-                       <asp:Button ID="btn_editTertiary" runat="server" Text="Edit Tertiary" class="btn btn-primary" Width="100px" OnClick="btn_editTertiary_Click" Visible="false"/>
+                        <asp:Button ID="btn_editUni" runat="server" Text="Edit University" class="btn btn-primary" Width="150px" OnClick="btn_editUni_Click" Visible="false" />
                     </div>
                 </div>
+             
                 <div class="form-group">
                     <asp:Label ID="lbl_shortestTime" CssClass="col-lg-4 control-label" runat="server">Shortest Time:</asp:Label>
                     <div class="col-lg-6">
