@@ -147,6 +147,7 @@ namespace Life_Planner.Account
 
         protected void btnPost_Click(object sender, EventArgs e)
         {
+            String file = Server.MapPath("/WordList/WordList.txt");
             //checking if textbox is empty.
             //if there is no post content, do not allow user to proceed.
             if (txtEditor.Text == "")
@@ -157,7 +158,8 @@ namespace Life_Planner.Account
 
             //pass content from rich textbox through the vulgarity checking method.
             //if post contains vulgarities, do not allow user to proceed.
-            else if (new CommonMethods().messageChecker(txtEditor.Text, getBadWordList()))
+            //get the path to the WordList file
+            else if (new CommonMethods().messageChecker(txtEditor.Text, new CommonMethods().getBadWordList(file)))
             {
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "Alert!", "alert('Please check your post contents. No vulgarities please.');", true);
                 return;
@@ -410,33 +412,6 @@ namespace Life_Planner.Account
         {
             LinkButton lb = (LinkButton)sender;
             string authorName = lb.Text;
-        }
-
-        //vulgarity filter, loading the txt file of vulgarities.
-        //and saving into list<string>
-        protected List<string> getBadWordList()
-        {
-            List<string> badWords = new List<string>();
-            //get the path to the WordList file
-            String file = Server.MapPath("/WordList/WordList.txt");
-
-            //Open text file for reading
-            using (TextReader reader = new StreamReader(file))
-            {
-                //Loop through each line in the file
-                string line;
-                while ((line = reader.ReadLine()) != null)
-                {
-                    //remove any whitespace and cast to lower case.
-                    string word = line.Trim().ToLower();
-
-                    //add to list in memory
-                    badWords.Add(word);
-                }
-            }
-            return badWords;
-        }
-
-        
+        }       
     }
 }

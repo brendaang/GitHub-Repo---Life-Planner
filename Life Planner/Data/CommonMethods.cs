@@ -5,6 +5,7 @@ using System.Web;
 using System.Configuration;
 using System.Data.SqlClient;
 using System.Text.RegularExpressions;
+using System.IO;
 
 namespace Life_Planner.Data
 {
@@ -118,8 +119,6 @@ namespace Life_Planner.Data
         //splitting the post word by word and reading through the array, comparing the words.
         public bool messageChecker(string post, List<string> BadWordList)
         {
-
-
             char delimiter = ' ';
             string[] words = post.Split(delimiter);
             string[] badWords = BadWordList.ToArray();
@@ -144,6 +143,45 @@ namespace Life_Planner.Data
                 }
             }
             return false;
+        }
+
+        //vulgarity filter, loading the txt file of vulgarities.
+        //and saving into list<string>
+        public List<string> getBadWordList(string file)
+        {
+            List<string> badWords = new List<string>();
+            
+            //Open text file for reading
+            using (TextReader reader = new StreamReader(file))
+            {
+                //Loop through each line in the file
+                string line;
+                while ((line = reader.ReadLine()) != null)
+                {
+                    //remove any whitespace and cast to lower case.
+                    string word = line.Trim().ToLower();
+
+                    //add to list in memory
+                    badWords.Add(word);
+                }
+            }
+            return badWords;
+        }
+
+        public string getThreadID(string postID)
+        {
+            string threadID;
+
+            SqlConnection con = new DBManager().getConnection();
+            string sql = "SELECT t.[threadID] FROM [CZ2006 - Life Planner].[dbo].[Threads] t INNER JOIN [CZ2006 - Life Planner].[dbo].[Posts] p ON t.threadID = p.threadID WHERE p.[postID] = @postID;";
+            SqlCommand cmd = new SqlCommand(sql, con);
+            cmd.Parameters.AddWithValue("@postID", postID);
+            con.Open();
+            threadID = cmd.ExecuteScalar().ToString();
+            con.Close();
+
+            return threadID;
+
         }
     }
 }
