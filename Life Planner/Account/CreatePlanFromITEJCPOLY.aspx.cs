@@ -411,7 +411,7 @@ namespace Life_Planner.Account
                 string sql = "INSERT INTO dbo.PathPlan(NRIC, priSchID, secSchID, polyID, polyCourse, accountID) VALUES (@NRIC, @priSchID, @secSchID, @polyID, @polyCourse, @accountID);";
                 SqlCommand cmd = new SqlCommand(sql, con);
                 //string trynull = null;
-                cmd.Parameters.AddWithValue("@NRIC", Session["newChild"] == null ? null : Session["newChild"]);
+                cmd.Parameters.AddWithValue("@NRIC", Session["newChild"]);
                 cmd.Parameters.AddWithValue("@secSchID", secSchID1);
                 cmd.Parameters.AddWithValue("@priSchID", priSchID1);
                 cmd.Parameters.AddWithValue("@polyID", polyID);

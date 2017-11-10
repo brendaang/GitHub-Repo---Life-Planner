@@ -219,7 +219,7 @@ namespace Life_Planner.Account
 
 		protected string getSchName(string schID)
         {
-            if(!string.IsNullOrEmpty(schID))
+            if(!string.IsNullOrEmpty(schID))    
             {
                 SqlConnection con = new DBManager().getConnection();
                 string sql = "SELECT school_name FROM dbo.Schools WHERE id=@id";

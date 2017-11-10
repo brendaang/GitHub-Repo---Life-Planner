@@ -97,7 +97,7 @@ namespace Life_Planner.Account
 
         protected void btnUniSubmitPlan(object sender, EventArgs e)
         {
-            string priSchID="", secSchID="", jcID="", iteID="", polyID="", uniID="";
+            string priSchID="", secSchID="", jcID="", iteID="", polyID="", polyCourse = "", uniID="";
             using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["CZ2006 - Life Planner"].ConnectionString))
             {
                 string sql2 = "SELECT id FROM Schools WHERE school_name=@schoolname;";
@@ -155,6 +155,20 @@ namespace Life_Planner.Account
                 polyID = "";
 
 
+            
+            if (Session["PolyCourse"] == null)
+            {
+                Response.Write("Session PolyCourse " + Session["PolyCourse"].ToString());
+                polyCourse = "";
+            }
+            else
+            {
+                Response.Write("notnull"+ Session["PolyCourse"].ToString());
+                polyCourse = Session["PolyCourse"].ToString();
+            }
+               
+
+
             if (Session["ITEName"] != null)
             {
                 using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["CZ2006 - Life Planner"].ConnectionString))
@@ -188,24 +202,66 @@ namespace Life_Planner.Account
 
             using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["CZ2006 - Life Planner"].ConnectionString))
             {
-                string sql = "INSERT INTO dbo.PathPlan(NRIC, priSchID, secSchID, jcID, polyID, ITEID, uniID, accountID) VALUES (@NRIC, @priSchID, @secSchID, @jcID, @polyID, @ITEID, @uniID, @accountID);";
+                //string sql = "INSERT INTO dbo.PathPlan(NRIC, priSchID, secSchID, jcID, polyID, ITEID, uniID, accountID) VALUES (@NRIC, @priSchID, @secSchID, @jcID, @polyID, @ITEID, @uniID, @accountID);";
+                string sql = "";
+                sql += "INSERT INTO dbo.PathPlan(NRIC, priSchID, secSchID, jcID, polyID, polyCourse, ITEID, uniID, accountID) VALUES (@NRIC, ";
+
+                if (priSchID == "")
+                    sql += "NULL, ";
+                else
+                    sql += "@priSchID, ";
+
+
+                if (secSchID == "")
+                    sql += "NULL, ";
+                else
+                    sql += "@secSchID, ";
+
+                if (jcID == "")
+                    sql += "NULL, ";
+                else
+                    sql += "@jcID, ";
+
+                if (polyID == "")
+                    sql += "NULL, ";
+                else
+                    sql += "@polyID, ";
+
+                if (polyCourse == "")
+                    sql += "NULL, ";
+                else
+                    sql += "@polyCourse, ";
+
+                
+
+                if (iteID == "")
+                    sql += "NULL, ";
+                else
+                    sql += "@ITEID, ";
+
+               
+                sql += "@uniID, @accountID);";
+                
+
                 SqlCommand cmd = new SqlCommand(sql, con);
-
-                cmd.Parameters.AddWithValue("@NRIC", Session["newChild"].ToString());
-                cmd.Parameters.AddWithValue("@secSchID", secSchID == "" ? "" : secSchID);
-                cmd.Parameters.AddWithValue("@priSchID", priSchID == "" ? "" : priSchID);
-                cmd.Parameters.AddWithValue("@jcID", jcID == "" ? "" : jcID);
-                cmd.Parameters.AddWithValue("@polyID", polyID == "" ? "" : polyID);
-                cmd.Parameters.AddWithValue("@ITEID", iteID == ""? "":iteID);
+                cmd.Parameters.AddWithValue("@NRIC", Session["newChild"]);
+                cmd.Parameters.AddWithValue("@priSchID", priSchID);
+                cmd.Parameters.AddWithValue("@secSchID", secSchID);
+                cmd.Parameters.AddWithValue("@polyID", polyID);
+                cmd.Parameters.AddWithValue("@polyCourse", Session["PolyCourse"].ToString());
+                cmd.Parameters.AddWithValue("@jcID", jcID);
+                cmd.Parameters.AddWithValue("@ITEID", iteID);
                 cmd.Parameters.AddWithValue("@uniID", uniID);
-
                 cmd.Parameters.AddWithValue("@accountID", Session["accountID"].ToString());
+
+
+
                 con.Open();
                 cmd.ExecuteNonQuery();
                 con.Close();
             }
             //redirect to view plan
-            Response.Redirect("~/Account/ViewOwnPlan.aspx");
+           // Response.Redirect("~/Account/ViewOwnPlan.aspx");
         }
     }
 }
