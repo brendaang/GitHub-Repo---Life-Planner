@@ -1,12 +1,26 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="juniorCollegeStats.aspx.cs" Inherits="Life_Planner.juniorCollegeStats" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-      <div class="container">
-    <h2>
-        Enrolment - Pre-University, By Age
-    </h2>
-    <iframe width="700" height="500" src="https://data.gov.sg/dataset/enrolment-preu-by-age/resource/c8f793e3-d141-4cbf-a307-a4ddbd79afe0/view/578b9c14-ac2e-45a9-b737-3dc9983bff90" frameBorder="0"> </iframe>
+ 
 
-<h2>Percentage of Students With at Least 3 'A'/'H2' Passes and Pass in GP or KI</h2>
-    <iframe width="700" height="500" src="https://data.gov.sg/dataset/percentage-of-students-with-at-least-3-a-h2-passes-and-pass-in-gp-or-ki/resource/4e97c9f9-c15b-4069-b5ce-0f06ed440e30/view/3a2ff728-4097-466c-8db8-2c8e28a67295" frameBorder="0"> </iframe>
+
+    
+    <div class="container">
+        <h2>JC Statistic
+        </h2>
+
+        <div class="col-md-6">
+            <h4>JC Enrolment - Pre-University, By Level and Course  </h4>
+            <div class="well well-sm">
+                <iframe width="520" height="600" src="https://data.gov.sg/dataset/enrolment-pre-university-by-level/resource/8b436e71-ef7d-4a92-86e5-dfdebdc25d8c/view/16d236b8-688c-463d-a664-ce67a8d4b3e4" frameborder="0"></iframe>
+
+            </div>
         </div>
+        <div class="col-md-6">
+
+            <h4>Enrolment - Pre-University, By Age</h4>
+            <div class="well well-sm">
+                <iframe width="520" height="400" src="https://data.gov.sg/dataset/enrolment-preu-by-age/resource/c8f793e3-d141-4cbf-a307-a4ddbd79afe0/view/578b9c14-ac2e-45a9-b737-3dc9983bff90" frameborder="0"></iframe>
+            </div>
+        </div>
+    </div>
 </asp:Content>

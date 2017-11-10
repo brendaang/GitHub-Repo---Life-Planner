@@ -103,6 +103,24 @@ namespace Life_Planner.Account {
         protected global::System.Web.UI.WebControls.TextBox tb_jcName;
         
         /// <summary>
+        /// lbl_iteName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_iteName;
+        
+        /// <summary>
+        /// tb_iteName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tb_iteName;
+        
+        /// <summary>
         /// lbl_polyName control.
         /// </summary>
         /// <remarks>
@@ -139,15 +157,6 @@ namespace Life_Planner.Account {
         protected global::System.Web.UI.WebControls.TextBox tb_polyCourse;
         
         /// <summary>
-        /// btn_editTertiary control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_editTertiary;
-        
-        /// <summary>
         /// lbl_uniName control.
         /// </summary>
         /// <remarks>
@@ -182,6 +191,15 @@ namespace Life_Planner.Account {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tb_uniCourse;
+        
+        /// <summary>
+        /// btn_editTertiary control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_editTertiary;
         
         /// <summary>
         /// lbl_shortestTime control.

@@ -18,10 +18,7 @@ namespace Life_Planner.Account
         {
             if (IsPostBack)
                 return;
-
-            //to uncomment after done
-            //if (Session["newChildPlanPrimary"] != null) //can get newchildnric from Session["newChildPlanKindergarten"].ToString();
-            //{
+           
             DataTable ViewSecSchTable = new DataTable();
             SqlConnection con = new DBManager().getConnection();
             string sql = "SELECT school_name,zone_code, dgp_code,url_address FROM [CZ2006 - Life Planner].[dbo].[Schools] WHERE school_name LIKE '%SECONDARY SCHOOL%';";
@@ -136,17 +133,5 @@ namespace Life_Planner.Account
             }
         }
 
-        //protected string getSchID(string priName)
-        //{
-        //    SqlConnection con = new DBManager().getConnection();
-        //    string sql = "SELECT id FROM dbo.Schools WHERE school_name=@school_name";
-        //    SqlCommand cmd = new SqlCommand(sql, con);
-        //    cmd.Parameters.AddWithValue("@school_name", priName);
-        //    con.Open();
-        //    string schID = cmd.ExecuteScalar().ToString();
-        //    con.Close();
-        //    return schID;
-
-        //}
     }
 }

@@ -19,7 +19,7 @@ namespace Life_Planner.Account
             string accID = Session["accountID"].ToString();
             SqlConnection con = new DBManager().getConnection();
             string sql = "SELECT * FROM dbo.PathPlan WHERE accountID=@accID";
-            string[] info = new string[7];
+            string[] info = new string[8];
 
             con.Open();
             SqlCommand cmd = new SqlCommand(sql, con);
@@ -34,10 +34,10 @@ namespace Life_Planner.Account
                 info[3] = dr["polyID"].ToString();
                 if (!dr.IsDBNull(dr.GetOrdinal("polyCourse")))
                     info[4] =(string)dr["polyCourse"];
-                //info[5] = dr["ITEID"].ToString();
                 info[5] = dr["uniID"].ToString();
                 if(!dr.IsDBNull(dr.GetOrdinal("uniCourse")))
                     info[6] = (string)dr["uniCourse"];
+                info[7] = dr["ITEID"].ToString();
             }
             dr.Close();
             con.Close();
@@ -87,23 +87,40 @@ namespace Life_Planner.Account
             tb_priName.Text = getSchName(info[0]);
             tb_secName.Text = getSchName(info[1]);
             tb_jcName.Text = getSchName(info[2]);
-            string[] polyinfo = getPolyInfo(info[3]);
-            tb_polyName.Text = polyinfo[0];
-            tb_polyCourse.Text = polyinfo[1];
-            //tb_uniName.Text = info[5];
-            //tb_uniCourse.Text = info[6];
-            tb_uniName.Text = tb_uniCourse.Text = "Not Available"; //no uni data in db
+            tb_polyName.Text = getSchName(info[3]);
+            if(tb_polyName.Text == "Not Available")
+            {
+                tb_polyCourse.Text = "Not Available";
+            }
+            else
+            {
+                tb_polyCourse.Text = info[4];
+            }
+            
+            tb_uniName.Text = getSchName(info[5]);
+            if(tb_uniName.Text == "Not Available")
+            {
+                tb_uniCourse.Text = "Not Available";
+            }
+            else
+            {
+                tb_uniCourse.Text = info[6];
+            }
+
+            tb_uniCourse.Text = "Not Available"; //no uni data in db
+            tb_iteName.Text = getSchName(info[7]);
 
             //copy info[] to edlvl[] for looping 
-            string[] edlvl = new string[5];
+            string[] edlvl = new string[6];
             edlvl[0] = info[0]; //primary
             edlvl[1] = info[1]; //secondary
             edlvl[2] = info[2]; //jc
             edlvl[3] = info[3]; //poly
             edlvl[4] = info[5]; //uni
+            edlvl[5] = info[7]; //ite
        
 
-			int currentEdLevel = 0; //0 primary, 1 secondary, 2 jc, 3 poly, 4 uni
+			int currentEdLevel = 0; //0 primary, 1 secondary, 2 jc, 3 poly, 4 uni, 5 ite
             for(int i=0; i<5; i++)
             {
                 if(edlvl[i] == "")
@@ -140,14 +157,19 @@ namespace Life_Planner.Account
 				i++;
 			}
 
-			if (info[3] != "" && i<4)
+			if (info[3] != "" && i<4)//poly
             {
 				shortestPath += 3;
 			}
 
-            if(info[4] != "" && i<5)
+            if(info[4] != "" && i<5)//uni
             {
                 shortestPath += 4;
+            }
+
+            if(info[5] != "" && i < 6)//ite
+            {
+                shortestPath += 2;
             }
 			shortestPath -= 2; //for kindergarten (since we do not show, we offset -2)
 
@@ -173,12 +195,19 @@ namespace Life_Planner.Account
 				longestPath += (int)dr["longest"];
 				i++;
 			}
-			if (info[3] != "" && i<4) {
+			if (info[3] != "" && i<4)
+            {
 				longestPath += 5;
 			}
-			if (info[4] != "" && i<5) {
+			if (info[4] != "" && i<5)
+            {
 				longestPath += 6;
 			}
+            if(info[5] != "" && i < 6)
+            {
+                longestPath += 3;
+            }
+
 			longestPath -= 3; //for kindergarten (since we do not show, we offset -3)
 
 
@@ -188,14 +217,14 @@ namespace Life_Planner.Account
 			return longestPath;
 		}
 
-		protected string getSchName(string priID)
+		protected string getSchName(string schID)
         {
-            if(!string.IsNullOrEmpty(priID))
+            if(!string.IsNullOrEmpty(schID))
             {
                 SqlConnection con = new DBManager().getConnection();
                 string sql = "SELECT school_name FROM dbo.Schools WHERE id=@id";
                 SqlCommand cmd = new SqlCommand(sql, con);
-                cmd.Parameters.AddWithValue("@id", priID);
+                cmd.Parameters.AddWithValue("@id", schID);
 
                 con.Open();
                 string schName = cmd.ExecuteScalar().ToString();
@@ -206,48 +235,25 @@ namespace Life_Planner.Account
             return "Not Available";
         }
 
-        protected string[] getPolyInfo(string polyID)
-        {
-            string[] polyinfo = new string[2];
-            if (!string.IsNullOrEmpty(polyID))
-            {
-                SqlConnection con = new DBManager().getConnection();
-                string sql = "SELECT * FROM dbo.OLevelCOP WHERE id=@id";
-                con.Open();
-                SqlCommand cmd = new SqlCommand(sql, con);
-                cmd.Parameters.AddWithValue("@id", polyID);
-                SqlDataReader dr = cmd.ExecuteReader();
-                
-                while (dr.Read())
-                {
-                    polyinfo[0] = (string)dr["school"];
-                    polyinfo[1] = (string)dr["course_name"];
-                }
-                con.Close();
-                con.Dispose();
-                return polyinfo;
-            }
-            polyinfo[0] = polyinfo[1] = "Not Available";
-            return polyinfo;
-        }
-
         protected void checkFields()
         {
             if(tb_priName.Text == tb_secName.Text)
                 if(tb_secName.Text == tb_jcName.Text)
                     if(tb_jcName.Text == tb_polyName.Text)
                         if(tb_polyName.Text == tb_polyCourse.Text)
-                            if(tb_polyCourse.Text == "Not Available")
-                            { //no plans
-                                //reset shortest/longest plan
-                                resetSL();
-                                btn_deletePlan.Visible = false;
-                                btn_editPlan.Visible = false;
-                                alert_placeholder.Visible = true;
-                                alert_placeholder.Attributes["class"] = "alert alert-warning alert-dismissable";
-                                alertText.Text = "No Existing Plan! Redirecting to Create Plan page...";
-                                Response.AddHeader("REFRESH", "3;URL=CreatePlan.aspx");
-                            }
+                            if(tb_polyCourse.Text == tb_iteName.Text)
+                                if(tb_iteName.Text == tb_uniName.Text)
+                                    if(tb_uniName.Text == "Not Available")
+                                    { //no plans
+                                      //reset shortest/longest plan
+                                        resetSL();
+                                        btn_deletePlan.Visible = false;
+                                        btn_editPlan.Visible = false;
+                                        alert_placeholder.Visible = true;
+                                        alert_placeholder.Attributes["class"] = "alert alert-warning alert-dismissable";
+                                        alertText.Text = "No Existing Plan! Redirecting to Create Plan page...";
+                                        Response.AddHeader("REFRESH", "3;URL=CreatePlan.aspx");
+                                    }
         }
 
         protected void btn_editPri_Click(object sender, EventArgs e)
@@ -279,6 +285,7 @@ namespace Life_Planner.Account
             tb_priName.Text = "";
             tb_secName.Text = "";
             tb_jcName.Text = "";
+            tb_iteName.Text = "";
             tb_polyName.Text = "";
             tb_polyCourse.Text = "";
             tb_uniName.Text = "";

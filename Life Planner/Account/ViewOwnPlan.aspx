@@ -40,6 +40,12 @@
                         <asp:TextBox ID="tb_jcName" CssClass="form-control" runat="server" Enabled="false"></asp:TextBox>
                     </div>
                 </div>
+                 <div class="form-group">
+                    <asp:Label ID="lbl_iteName" CssClass="col-lg-4 control-label" runat="server">ITE:</asp:Label>
+                    <div class="col-lg-6">
+                        <asp:TextBox ID="tb_iteName" CssClass="form-control" runat="server" Enabled="false"></asp:TextBox>
+                    </div>
+                </div>
                 <div class="form-group">
                     <asp:Label ID="lbl_polyName" CssClass="col-lg-4 control-label" runat="server">Polytechnic:</asp:Label>
                     <div class="col-lg-6">
@@ -50,9 +56,6 @@
                     <asp:Label ID="lbl_polyCourse" CssClass="col-lg-4 control-label" runat="server">Polytechnic Course:</asp:Label>
                     <div class="col-lg-6">
                         <asp:TextBox ID="tb_polyCourse" CssClass="form-control" runat="server" Enabled="false"></asp:TextBox>
-                    </div>
-                    <div class="col-lg-4 col-lg-offset-4">
-                       <asp:Button ID="btn_editTertiary" runat="server" Text="Edit Tertiary" class="btn btn-primary" Width="100px" OnClick="btn_editTertiary_Click" Visible="false"/>
                     </div>
                 </div>
                 <div class="form-group">
@@ -65,6 +68,9 @@
                     <asp:Label ID="lbl_uniCourse" CssClass="col-lg-4 control-label" runat="server">University Course:</asp:Label>
                     <div class="col-lg-6">
                         <asp:TextBox ID="tb_uniCourse" CssClass="form-control" runat="server" Enabled="false"></asp:TextBox>
+                    </div>
+                    <div class="col-lg-4 col-lg-offset-4">
+                       <asp:Button ID="btn_editTertiary" runat="server" Text="Edit Tertiary" class="btn btn-primary" Width="100px" OnClick="btn_editTertiary_Click" Visible="false"/>
                     </div>
                 </div>
                 <div class="form-group">

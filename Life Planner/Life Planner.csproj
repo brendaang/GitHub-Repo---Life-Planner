@@ -208,6 +208,7 @@
     <Content Include="Images\educationOverview.PNG" />
     <Content Include="Images\error.png" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="iteStats.aspx" />
     <Content Include="juniorCollegeStats.aspx" />
     <Content Include="moreInformation.aspx" />
     <Content Include="OLevelCOP.aspx" />
@@ -521,6 +522,13 @@
     </Compile>
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="iteStats.aspx.cs">
+      <DependentUpon>iteStats.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="iteStats.aspx.designer.cs">
+      <DependentUpon>iteStats.aspx</DependentUpon>
     </Compile>
     <Compile Include="juniorCollegeStats.aspx.cs">
       <DependentUpon>juniorCollegeStats.aspx</DependentUpon>
