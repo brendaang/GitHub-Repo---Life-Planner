@@ -171,7 +171,7 @@
     <Content Include="404.aspx" />
     <Content Include="Account\ChangeRole.aspx" />
     <Content Include="Account\CreatePlan.aspx" />
-    <Content Include="Account\CreatePlanFromJCPOLY.aspx" />
+    <Content Include="Account\CreatePlanFromITEJCPOLY.aspx" />
     <Content Include="Account\CreatePlanFromPrimary.aspx" />
     <Content Include="Account\CreatePlanFromSecondary.aspx" />
     <Content Include="Account\CreateThread.aspx" />
@@ -295,12 +295,12 @@
     <Compile Include="Account\CreatePlan.aspx.designer.cs">
       <DependentUpon>CreatePlan.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Account\CreatePlanFromJCPOLY.aspx.cs">
-      <DependentUpon>CreatePlanFromJCPOLY.aspx</DependentUpon>
+    <Compile Include="Account\CreatePlanFromITEJCPOLY.aspx.cs">
+      <DependentUpon>CreatePlanFromITEJCPOLY.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Account\CreatePlanFromJCPOLY.aspx.designer.cs">
-      <DependentUpon>CreatePlanFromJCPOLY.aspx</DependentUpon>
+    <Compile Include="Account\CreatePlanFromITEJCPOLY.aspx.designer.cs">
+      <DependentUpon>CreatePlanFromITEJCPOLY.aspx</DependentUpon>
     </Compile>
     <Compile Include="Account\CreatePlanFromPrimary.aspx.cs">
       <DependentUpon>CreatePlanFromPrimary.aspx</DependentUpon>
