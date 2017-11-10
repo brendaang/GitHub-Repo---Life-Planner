@@ -14,30 +14,9 @@ namespace Life_Planner.Account
 {
     public partial class CreateThread : System.Web.UI.Page
     {
-        protected string getAccID()
-        {
-            //hardcoded for now
-            String acctName = "tingle";
-
-            //String acctName = Session["username"].ToString();
-
-            String accID;
-            SqlConnection con1 = new DBManager().getConnection();
-            string sql1 = "SELECT [accountID] FROM[CZ2006 - Life Planner].[dbo].[AccCreds] WHERE username = @userName; ";
-            SqlCommand cmd1 = new SqlCommand(sql1, con1);
-            cmd1.Parameters.AddWithValue("@userName", acctName);
-            con1.Open();
-            accID = cmd1.ExecuteScalar().ToString();
-            cmd1.ExecuteNonQuery();
-            con1.Close();
-
-            return accID;
-        }
         protected void Page_Load(object sender, EventArgs e)
         {
-            //hardcoded for now
-            txtAuthor.Text = "tingle";
-            //txtAuthor.Text = Session["username"].ToString();
+            txtAuthor.Text = Session["username"].ToString();
             string today = DateTime.Now.ToString();
             txtDate.Text = today;
         }
@@ -48,7 +27,8 @@ namespace Life_Planner.Account
             String threadDesc = txtThreadDesc.Text;
             String acctName = txtAuthor.Text;
             DateTime dateTime = DateTime.Now;
-            String accID = getAccID();
+            String username = Session["username"].ToString();
+            String accID = new CommonMethods().getAccID(username);
 
 
             SqlConnection con3 = new DBManager().getConnection();

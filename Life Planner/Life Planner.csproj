@@ -416,6 +416,7 @@
     <Compile Include="Account\ViewOwnPlan.aspx.designer.cs">
       <DependentUpon>ViewOwnPlan.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Data\CommonMethods.cs" />
     <Compile Include="Error.aspx.cs">
       <DependentUpon>Error.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
