@@ -73,7 +73,7 @@
 
                 </div>
                 <div class="form-group col-lg-10 col-lg-offset-10">
-                         <asp:Button ID="btn_updateTertiary1" runat="server" Text="Update Tertiary" class="btn btn-primary" Width="150px" OnClick="btn_updateTertiary_Click" OnClientClick="return confirm('Do you want to update choice as selected Tertiary? ');" />
+                         <asp:Button ID="btn_updateTertiary1" runat="server" Text="Update Tertiary" Visible="false" class="btn btn-primary" Width="150px" OnClick="btn_updateTertiary_Click" OnClientClick="return confirm('Do you want to update choice as selected Tertiary? ');" />
                  </div>
 
                 <%--******--%>
@@ -101,7 +101,7 @@
                     </div>
                 </div>
                 <div class="form-group col-lg-10 col-lg-offset-10">
-                    <asp:Button ID="btn_updateTertiary2" runat="server" Text="Update Tertiary" class="btn btn-primary" Width="150px" OnClick="btn_updateTertiary_Click" OnClientClick="return confirm('Do you want to update choice as selected Tertiary? ');" />
+                    <asp:Button ID="btn_updateTertiary2" runat="server" Text="Update Tertiary" Visible="false" class="btn btn-primary" Width="150px" OnClick="btn_updateTertiary_Click" OnClientClick="return confirm('Do you want to update choice as selected Tertiary? ');" />
                 </div>
             </section>
        </asp:Panel>
