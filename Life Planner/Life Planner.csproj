@@ -183,6 +183,7 @@
     <Content Include="Account\PostIssues.aspx" />
     <Content Include="Account\ReportPost.aspx" />
     <Content Include="Account\ResetPassword.aspx" />
+    <Content Include="Account\ResolveIssue.aspx" />
     <Content Include="Account\SetAdmin.aspx" />
     <Content Include="Account\ViewMyProfile.aspx" />
     <Content Include="Account\ViewOtherProfile.aspx" />
@@ -202,6 +203,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Images\404.png" />
     <Content Include="Images\button_calendar.png" />
+    <Content Include="Images\educationOverview.PNG" />
     <Content Include="Images\error.png" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="moreInformation.aspx" />
@@ -371,6 +373,13 @@
     </Compile>
     <Compile Include="Account\ResetPassword.aspx.designer.cs">
       <DependentUpon>ResetPassword.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\ResolveIssue.aspx.cs">
+      <DependentUpon>ResolveIssue.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\ResolveIssue.aspx.designer.cs">
+      <DependentUpon>ResolveIssue.aspx</DependentUpon>
     </Compile>
     <Compile Include="Account\SetAdmin.aspx.cs">
       <DependentUpon>SetAdmin.aspx</DependentUpon>
