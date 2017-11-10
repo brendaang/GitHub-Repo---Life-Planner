@@ -157,7 +157,7 @@ namespace Life_Planner.Account
 
             //pass content from rich textbox through the vulgarity checking method.
             //if post contains vulgarities, do not allow user to proceed.
-            else if (messageChecker(txtEditor.Text))
+            else if (new CommonMethods().messageChecker(txtEditor.Text, getBadWordList()))
             {
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "Alert!", "alert('Please check your post contents. No vulgarities please.');", true);
                 return;
@@ -202,9 +202,6 @@ namespace Life_Planner.Account
 
                 if (votingChecker(authorName.Text))
                 {
-
-                    //int pointBalance;
-                    //string pointsBalance;
                     string accID = new CommonMethods().getAcc(postID.Text);
 
                     int voteCount = 1;
@@ -237,30 +234,10 @@ namespace Life_Planner.Account
                     cmd7.ExecuteNonQuery();
                     con7.Close();
 
-                    int numLikesBalance;
-
-                    //get numLikes balance
-                    SqlConnection con9 = new DBManager().getConnection();
-                    string sql9 = "SELECT [numLikes]  FROM [CZ2006 - Life Planner].[dbo].[Posts]  WHERE postID = @postID;";
-                    SqlCommand cmd9 = new SqlCommand(sql9, con9);
-                    cmd9.Parameters.AddWithValue("@postID", postID.Text);
-                    con9.Open();
-                    string stringNumLikesBalance = cmd9.ExecuteScalar().ToString();
-                    numLikesBalance = Convert.ToInt32(stringNumLikesBalance);
-                    con9.Close();
-
+                    int numLikesBalance = new CommonMethods().getNumLikesBalance(postID.Text);
                     int uponVote = 1;
                     int newNumLikesBalance = numLikesBalance + uponVote;
-
-                    SqlConnection con10 = new DBManager().getConnection();
-                    string sql10 = "UPDATE [CZ2006 - Life Planner].[dbo].[Posts] SET numLikes = @numLikes WHERE postID = @postID;";
-                    SqlCommand cmd10 = new SqlCommand(sql10, con10);
-                    cmd10.Parameters.AddWithValue("@postID", postID.Text);
-                    cmd10.Parameters.AddWithValue("@numLikes", newNumLikesBalance);
-                    con10.Open();
-                    cmd10.ExecuteNonQuery();
-                    con10.Close();
-
+                    new CommonMethods().updateNumLikesBalance(postID.Text, newNumLikesBalance);
 
                     Page.ClientScript.RegisterStartupScript(this.GetType(), "Alert!", "alert('You have liked this post! :)');", true);
                     return;
@@ -321,30 +298,10 @@ namespace Life_Planner.Account
                     con7.Open();
                     cmd7.ExecuteNonQuery();
                     con7.Close();
-
-                    int numDislikesBalance;
-
-                    //get numLikes balance
-                    SqlConnection con9 = new DBManager().getConnection();
-                    string sql9 = "SELECT [numDislikes]  FROM [CZ2006 - Life Planner].[dbo].[Posts]  WHERE postID = @postID;";
-                    SqlCommand cmd9 = new SqlCommand(sql9, con9);
-                    cmd9.Parameters.AddWithValue("@postID", postID.Text);
-                    con9.Open();
-                    string stringNumDislikesBalance = cmd9.ExecuteScalar().ToString();
-                    numDislikesBalance = Convert.ToInt32(stringNumDislikesBalance);
-                    con9.Close();
-
+                    int numDislikesBalance = new CommonMethods().getNumDislikesBalance(postID.Text);
                     int uponVote = 1;
                     int newNumDislikesBalance = numDislikesBalance + uponVote;
-
-                    SqlConnection con10 = new DBManager().getConnection();
-                    string sql10 = "UPDATE [CZ2006 - Life Planner].[dbo].[Posts] SET numDislikes = @numDislikes WHERE postID = @postID;";
-                    SqlCommand cmd10 = new SqlCommand(sql10, con10);
-                    cmd10.Parameters.AddWithValue("@postID", postID.Text);
-                    cmd10.Parameters.AddWithValue("@numDislikes", newNumDislikesBalance);
-                    con10.Open();
-                    cmd10.ExecuteNonQuery();
-                    con10.Close();
+                    new CommonMethods().updateNumLikesBalance(postID.Text, newNumDislikesBalance);
 
                     Page.ClientScript.RegisterStartupScript(this.GetType(), "Alert!", "alert('You have disliked this post ):');", true);
                     return;
@@ -394,7 +351,7 @@ namespace Life_Planner.Account
                 Label postID = pl.FindControl("postID") as Label;
 
                 string authorID = new CommonMethods().getAcc(postID.Text);
-                string quote = getQuote(postID.Text, authorID);
+                string quote = new CommonMethods().getQuote(postID.Text, authorID);
 
                 txtEditor.Text = "@ " + authorName.Text + ": " + quote + "\n\n";
                 btnPost.Focus();
@@ -449,13 +406,18 @@ namespace Life_Planner.Account
             getThreadPosts();
         }
 
+        protected void getAuthor(object sender, EventArgs e)
+        {
+            LinkButton lb = (LinkButton)sender;
+            string authorName = lb.Text;
+        }
+
         //vulgarity filter, loading the txt file of vulgarities.
         //and saving into list<string>
         protected List<string> getBadWordList()
         {
             List<string> badWords = new List<string>();
             //get the path to the WordList file
-            //string file = System.IO.File.ReadAllText(@"");
             String file = Server.MapPath("/WordList/WordList.txt");
 
             //Open text file for reading
@@ -475,56 +437,6 @@ namespace Life_Planner.Account
             return badWords;
         }
 
-        //splitting the post word by word and reading through the array, comparing the words.
-        protected bool messageChecker(string post)
-        {
-
-
-            char delimiter = ' ';
-            string[] words = post.Split(delimiter);
-            string[] badWords = getBadWordList().ToArray();
-
-            foreach (string word in words)
-            {
-                if (this.getBadWordList().Contains(word.ToLower()))
-                {
-                    //System.Diagnostics.Debug.WriteLine("Inside1");
-                    return true;
-                }
-
-            }
-            for (int j = 0; j < badWords.Count(); j++)
-            {
-                var regexItem1 = new Regex("(" + badWords[j] + ")");
-                for (int i = 0; i < words.Count(); i++)
-                {
-                    if (regexItem1.IsMatch(words[i]))
-                    {
-                        //System.Diagnostics.Debug.WriteLine("Inside2" );
-                        //System.Diagnostics.Debug.WriteLine(i);
-                        //System.Diagnostics.Debug.WriteLine(regexItem1);
-                        //System.Diagnostics.Debug.WriteLine(badWords.Count());
-                        //System.Diagnostics.Debug.WriteLine(words[i]);
-                        return true;
-                    }
-                }
-            }
-            return false;
-        }
-
-        protected string getQuote(string postID, string authorID)
-        {
-            SqlConnection con = new DBManager().getConnection();
-            string sql = "SELECT [postText] FROM [CZ2006 - Life Planner].[dbo].[Posts] WHERE [postID] = @postID AND [accID] = @accID;";
-            SqlCommand cmd = new SqlCommand(sql, con);
-            cmd.Parameters.AddWithValue("@postID", postID);
-            cmd.Parameters.AddWithValue("@accID", authorID);
-            con.Open();
-            string quote = cmd.ExecuteScalar().ToString();
-            con.Close();
-
-            return quote;
-
-        }
+        
     }
 }
