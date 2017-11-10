@@ -372,13 +372,13 @@ namespace Life_Planner.Account
 
                 using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["CZ2006 - Life Planner"].ConnectionString))
                 {
-                    string sql = "INSERT INTO dbo.PathPlan(NRIC, priSchID, secSchID, polyID, accountID) VALUES (@NRIC, @priSchID, @secSchID, @polyID, @accountID);";
+                    string sql = "INSERT INTO dbo.PathPlan(NRIC, priSchID, secSchID, polyID, accountID) VALUES (@NRIC, @priSchID, @secSchID, @ITEID, @accountID);";
                     SqlCommand cmd = new SqlCommand(sql, con);
 
                     cmd.Parameters.AddWithValue("@NRIC", Session["newChild"].ToString());
                     cmd.Parameters.AddWithValue("@secSchID", secSchID1);
                     cmd.Parameters.AddWithValue("@priSchID", priSchID1);
-                    //cmd.Parameters.AddWithValue("@polyID", polyID);
+                    cmd.Parameters.AddWithValue("@ITEID", iteID);
                     cmd.Parameters.AddWithValue("@accountID", Session["accountID"].ToString());
                     con.Open();
                     cmd.ExecuteNonQuery();
