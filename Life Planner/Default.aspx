@@ -22,7 +22,7 @@
             A design surface and hundreds of controls and components let you rapidly build sophisticated, powerful UI-driven sites with data access.--%>
             </p>
             <p>
-                <a class="btn btn-default" href="CreatePlan.aspx"> Your Life Planner start here &raquo;</a>
+                <a class="btn btn-default" href="~/Account/CreatePlan"> Your Life Planner start here! &raquo;</a>
             </p>
         </div>
         <div class="col-md-4">
