@@ -59,6 +59,7 @@
                                 <li><a runat="server" href="~/juniorCollegeStats.aspx">Junior College</a></li>
                                 <li><a runat="server" href="~/polytechnicStats.aspx">Polytechnic</a></li>
                                 <li><a runat="server" href="~/universityStats.aspx">University</a></li>
+                                <li><a runat="server" href="~/OLevelCOP.aspx">O Level COP</a></li>
                             </ul>
                         </li>
                         <%--                        <li><a runat="server" href="~/About">About</a></li>
