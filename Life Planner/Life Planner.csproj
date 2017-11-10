@@ -203,6 +203,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Images\404.png" />
     <Content Include="Images\button_calendar.png" />
+    <Content Include="Images\educationOverview.PNG" />
     <Content Include="Images\error.png" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="moreInformation.aspx" />
