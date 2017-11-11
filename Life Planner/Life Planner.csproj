@@ -206,6 +206,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Images\404.png" />
+    <Content Include="Images\banner.png" />
     <Content Include="Images\button_calendar.png" />
     <Content Include="Images\Capture.png" />
     <Content Include="Images\educationOverview.PNG" />
