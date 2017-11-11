@@ -174,7 +174,8 @@ namespace Life_Planner.Account
 			con.Dispose();
 			return shortestPath;
 		}
-		protected int getLongestPath(string[] info, int curr) {
+
+        protected int getLongestPath(string[] info, int curr) {
 			SqlConnection con = new DBManager().getConnection();
 			string sql = "SELECT longest FROM dbo.Module WHERE moduleID <= @curr ORDER BY moduleID";
 			SqlCommand cmd = new SqlCommand(sql, con);
