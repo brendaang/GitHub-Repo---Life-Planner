@@ -120,7 +120,7 @@
                 </div>
 
                 <div class="form-group">
-                    <asp:Label ID="lblCreatePlanEdLv" runat="server" CssClass="col-md-2 control-label" Text="Child's Current Education Level:"></asp:Label>
+                    <asp:Label ID="lblCreatePlanEdLv" runat="server" CssClass="col-md-2 control-label" Text="Current Education Level:"></asp:Label>
                     <div class="col-md-10">
                     </div>
                 </div>
