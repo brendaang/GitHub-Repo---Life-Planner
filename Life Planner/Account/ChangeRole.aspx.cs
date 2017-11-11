@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Collections;
 
 namespace Life_Planner.Account
 {
@@ -38,8 +39,18 @@ namespace Life_Planner.Account
         protected void btn_ChangeRole_Click(object sender, EventArgs e)
         {
             //change role
-            vu.changeRoleByID(tb_accId.Text);
-            Response.Redirect(Request.RawUrl);
+            if(Session["tb_SBUsername"].ToString() == "admin")
+            {
+                alert_placeholder.Visible = true;
+                alert_placeholder.Attributes["class"] = "alert alert-danger alert-dismissable";
+                alertText.Text = "Cannot change role for admin!";
+            }
+            else
+            {
+                vu.changeRoleByID(tb_accId.Text);
+                Response.Redirect(Request.RawUrl);
+            }
+           
         }
 
     }
