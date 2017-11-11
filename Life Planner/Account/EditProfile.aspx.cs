@@ -46,7 +46,7 @@ namespace Life_Planner.Account
                 alert_placeholder.Attributes["class"] = "alert alert-success alert-dismissable";
                 alertText.Text = "User account updated successfully created! You will be redirected to the home page shortly.";
 
-                Response.AddHeader("REFRESH", "0;URL=/Default.aspx");
+                Response.AddHeader("REFRESH", "1;URL=/Default.aspx");
             
 
 

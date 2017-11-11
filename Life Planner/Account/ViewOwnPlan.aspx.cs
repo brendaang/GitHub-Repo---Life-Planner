@@ -83,7 +83,7 @@ namespace Life_Planner.Account
             alert_placeholder.Visible = true;
             alert_placeholder.Attributes["class"] = "alert alert-success alert-dismissable";
             alertText.Text = "Successfully Deleted Plan! Redirecting to create plan page..";
-            Response.AddHeader("REFRESH", "0;URL=CreatePlan.aspx");
+            Response.AddHeader("REFRESH", "1;URL=CreatePlan.aspx");
 
 
         }
@@ -256,7 +256,7 @@ namespace Life_Planner.Account
                                         alert_placeholder.Visible = true;
                                         alert_placeholder.Attributes["class"] = "alert alert-warning alert-dismissable";
                                         alertText.Text = "No Existing Plan! Redirecting to Create Plan page...";
-                                        Response.AddHeader("REFRESH", "0;URL=CreatePlan.aspx");
+                                        Response.AddHeader("REFRESH", "1;URL=CreatePlan.aspx");
                                     }
         }
 
