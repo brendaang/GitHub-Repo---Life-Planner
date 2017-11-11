@@ -40,7 +40,7 @@
         <section id="createPlan" >
             <h2></>Create Plan</h2>
 
-            <h5>Step 1: Entering child&#39;s details</h5>
+            <h5>Step 1: Enter details</h5>
 
 
             <div id="alert_placeholder" runat="server" visible="false">
@@ -120,7 +120,7 @@
                 </div>
 
                 <div class="form-group">
-                    <asp:Label ID="lblCreatePlanEdLv" runat="server" CssClass="col-md-2 control-label" Text="Child's Current Education Level:"></asp:Label>
+                    <asp:Label ID="lblCreatePlanEdLv" runat="server" CssClass="col-md-2 control-label" Text="Current Education Level:"></asp:Label>
                     <div class="col-md-10">
                     </div>
                 </div>

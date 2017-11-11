@@ -157,6 +157,8 @@ namespace Life_Planner
             alert_placeholder.Visible = true;
             alert_placeholder.Attributes["class"] = "alert alert-success alert-dismissable";
             resolveACK.Text = "Your resolved to this feedback has been saved.";
+
+            Response.AddHeader("REFRESH", "1;URL=/ViewFeedback.aspx");
         }
     }
 }

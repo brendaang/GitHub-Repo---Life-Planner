@@ -44,7 +44,7 @@ namespace Life_Planner.Account
                             alertText.Text = "Successfully updated! Redirecting to login page...";
                             FormsAuthentication.SignOut();
                             Session.RemoveAll();
-                            Response.AddHeader("REFRESH", "3;URL=Login.aspx");
+                            Response.AddHeader("REFRESH", "0;URL=Login.aspx");
 
                         }
                         else

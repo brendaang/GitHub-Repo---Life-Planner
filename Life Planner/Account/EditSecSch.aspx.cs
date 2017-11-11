@@ -98,7 +98,7 @@ namespace Life_Planner.Account
 
         protected void secSchGridView_SelectedIndexChanging(object sender, EventArgs e)
         {
-
+            btn_updateSecondary.Visible = true;
             string secSchName = (string)secSchTable.DataKeys[secSchTable.SelectedIndex].Value;
             Session["secSchName"] = secSchName;
         }
@@ -121,7 +121,7 @@ namespace Life_Planner.Account
                 alert_placeholder.Visible = true;
                 alert_placeholder.Attributes["class"] = "alert alert-success alert-dismissable";
                 alertText.Text = "Successfully updated! Redirecting to View Own Plan page...";
-                Response.AddHeader("REFRESH", "2;URL=ViewOwnPlan.aspx");
+                Response.AddHeader("REFRESH", "0;URL=ViewOwnPlan.aspx");
                 con.Close();
                 con.Dispose();
             }

@@ -35,7 +35,7 @@ namespace Life_Planner.Account
                 alert_placeholder.Visible = true;
                 alert_placeholder.Attributes["class"] = "alert alert-danger alert-dismissable";
                 alertText.Text = "Plan already exist! Redirecting to View Own Plan page...";
-                Response.AddHeader("REFRESH", "2;URL=ViewOwnPlan.aspx");
+                Response.AddHeader("REFRESH", "0;URL=ViewOwnPlan.aspx");
                 
             }
 

@@ -59,14 +59,22 @@ namespace Life_Planner.Account
 
         protected void btn_deletePlan_Click(object sender, EventArgs e)
         {
-            //delete plan logic here
             SqlConnection con = new DBManager().getConnection();
+            string nric = getNRIC();
+
+            //delete plan logic here
+
             string sql = "DELETE FROM dbo.PathPlan WHERE accountID=@accountID";
             SqlCommand cmd = new SqlCommand(sql, con);
             cmd.Parameters.AddWithValue("@accountID", Session["accountID"].ToString());
             con.Open();
             cmd.ExecuteNonQuery();
             con.Close();
+            cmd.Dispose();
+
+            //delete child in childplan
+            deleteChild(nric);
+
             setNA();
             //reset shortest/longest plan
             resetSL();
@@ -75,7 +83,7 @@ namespace Life_Planner.Account
             alert_placeholder.Visible = true;
             alert_placeholder.Attributes["class"] = "alert alert-success alert-dismissable";
             alertText.Text = "Successfully Deleted Plan! Redirecting to create plan page..";
-            Response.AddHeader("REFRESH", "3;URL=CreatePlan.aspx");
+            Response.AddHeader("REFRESH", "0;URL=CreatePlan.aspx");
 
 
         }
@@ -174,7 +182,8 @@ namespace Life_Planner.Account
 			con.Dispose();
 			return shortestPath;
 		}
-		protected int getLongestPath(string[] info, int curr) {
+
+        protected int getLongestPath(string[] info, int curr) {
 			SqlConnection con = new DBManager().getConnection();
 			string sql = "SELECT longest FROM dbo.Module WHERE moduleID <= @curr ORDER BY moduleID";
 			SqlCommand cmd = new SqlCommand(sql, con);
@@ -247,7 +256,7 @@ namespace Life_Planner.Account
                                         alert_placeholder.Visible = true;
                                         alert_placeholder.Attributes["class"] = "alert alert-warning alert-dismissable";
                                         alertText.Text = "No Existing Plan! Redirecting to Create Plan page...";
-                                        Response.AddHeader("REFRESH", "3;URL=CreatePlan.aspx");
+                                        Response.AddHeader("REFRESH", "0;URL=CreatePlan.aspx");
                                     }
         }
 
@@ -297,6 +306,33 @@ namespace Life_Planner.Account
         {
             tb_shortestTime.Text = "Not Available";
             tb_longestTime.Text = "Not Available";
+        }
+
+        protected void deleteChild(string nric)
+        {
+            //delete child in childplan
+            SqlConnection con = new DBManager().getConnection();
+            string sql = "DELETE FROM dbo.Child WHERE NRIC=@NRIC";
+            SqlCommand cmd = new SqlCommand(sql, con);
+            cmd.Parameters.AddWithValue("@NRIC", nric);
+            con.Open();
+            cmd.ExecuteNonQuery();
+            con.Close();
+            cmd.Dispose();
+        }
+
+        protected string getNRIC()
+        {
+            SqlConnection con = new DBManager().getConnection();
+            //get nric of child plan
+            string sql = "SELECT NRIC FROM dbo.PathPlan WHERE accountID=@accountID";
+            SqlCommand cmd = new SqlCommand(sql, con);
+            cmd.Parameters.AddWithValue("@accountID", Session["accountID"].ToString());
+            con.Open();
+            string nric = cmd.ExecuteScalar().ToString();
+            con.Close();
+            cmd.Dispose();
+            return nric;
         }
     }
 }

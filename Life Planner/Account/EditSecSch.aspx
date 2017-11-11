@@ -59,7 +59,7 @@
                 </div>
             </div>
             <div class="form-group col-lg-10 col-lg-offset-10">
-                <asp:Button ID="btn_updateSecondary" runat="server" Text="Update Secondary" class="btn btn-primary" Width="150px" OnClick="btn_updateSecondary_Click" OnClientClick="return confirm('Do you want to update choice as selected Secondary School? ');" />
+                <asp:Button ID="btn_updateSecondary" runat="server" Text="Update Secondary" class="btn btn-primary" Visible="false" Width="150px" OnClick="btn_updateSecondary_Click" OnClientClick="return confirm('Do you want to update choice as selected Secondary School? ');" />
             </div>
 
         </section>
