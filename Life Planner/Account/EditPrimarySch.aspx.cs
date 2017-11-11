@@ -18,10 +18,7 @@ namespace Life_Planner.Account
         {
             if (IsPostBack)
                 return;
-
-            //to uncomment after done
-            //if (Session["newChildPlanKindergarten"] != null) //can get newchildnric from Session["newChildPlanKindergarten"].ToString();
-            //{
+            
             DataTable ViewPriSchTable = new DataTable();
             SqlConnection con = new DBManager().getConnection();
             string sql = "SELECT school_name,zone_code, dgp_code,url_address FROM [CZ2006 - Life Planner].[dbo].[Schools] WHERE school_name LIKE '%PRIMARY SCHOOL%';";
@@ -103,7 +100,7 @@ namespace Life_Planner.Account
 
         protected void priSchGridView_SelectedIndexChanging(object sender, EventArgs e)
         {
-
+            btn_updatePrimary.Visible = true;
             string priSchName = (string)priSchTable.DataKeys[priSchTable.SelectedIndex].Value;
             Session["priSchName"] = priSchName;
         }
@@ -126,7 +123,7 @@ namespace Life_Planner.Account
                 alert_placeholder.Visible = true;
                 alert_placeholder.Attributes["class"] = "alert alert-success alert-dismissable";
                 alertText.Text = "Successfully updated! Redirecting to View Own Plan page...";
-                Response.AddHeader("REFRESH", "2;URL=ViewOwnPlan.aspx");
+                Response.AddHeader("REFRESH", "0;URL=ViewOwnPlan.aspx");
                 con.Close();
                 con.Dispose();
             }

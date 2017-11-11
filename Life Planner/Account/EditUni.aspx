@@ -73,7 +73,7 @@
 
             <div class="form-group">
                 <div class="col-lg-10 col-lg-offset-10">
-                    <asp:Button ID="btn_updateUni" CssClass="btn btn-primary" Text="Update University" runat="server" Width="150px" OnClick="btn_updateUni_Click" OnClientClick="return confirm('Do you want to update choice as selected University? ');"/>
+                    <asp:Button ID="btn_updateUni" CssClass="btn btn-primary" Text="Update University" runat="server" Visible="false" Width="150px" OnClick="btn_updateUni_Click" OnClientClick="return confirm('Do you want to update choice as selected University? ');"/>
                 </div>
             </div>
 

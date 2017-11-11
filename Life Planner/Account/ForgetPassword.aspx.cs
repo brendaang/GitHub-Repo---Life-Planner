@@ -69,7 +69,7 @@ namespace Life_Planner.Account
                             alert_placeholder.Attributes["class"] = "alert alert-success alert-dismissable";
                             alertText.Text = "Please check email for new password.";
                             tb_UsernameOrEmail.Text = "";
-                            Response.AddHeader("REFRESH", "3;URL=ResetPassword.aspx");
+                            Response.AddHeader("REFRESH", "0;URL=ResetPassword.aspx");
                             //Response.Write("Go to change pw");
 
                         }
@@ -114,7 +114,7 @@ namespace Life_Planner.Account
                             alert_placeholder.Attributes["class"] = "alert alert-success alert-dismissable";
                             alertText.Text = "Please check email for new password.";
                             tb_UsernameOrEmail.Text = "";
-                            Response.AddHeader("REFRESH", "3;URL=ResetPassword.aspx");
+                            Response.AddHeader("REFRESH", "0;URL=ResetPassword.aspx");
                             //Response.Write("Go to change pw");
 
                         }

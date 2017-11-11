@@ -108,7 +108,9 @@ namespace Life_Planner.Account
 
         protected void ITEJCPOLYGridView_SelectedIndexChanging(object sender, EventArgs e)
         {
-            if(radioSelectITEPolyJC.SelectedItem.Text == "ITE" || radioSelectITEPolyJC.SelectedItem.Text == "Junior College")
+            btn_updateTertiary2.Visible = false;
+            btn_updateTertiary1.Visible = true;
+            if (radioSelectITEPolyJC.SelectedItem.Text == "ITE" || radioSelectITEPolyJC.SelectedItem.Text == "Junior College")
             {
                 btn_updateTertiary1.Visible = true;
                 btn_updateTertiary2.Visible = false;
@@ -145,6 +147,8 @@ namespace Life_Planner.Account
 
         protected void POLYCourseGridView_SelectedIndexChanging(object sender, EventArgs e)
         {
+            btn_updateTertiary2.Visible = true;
+            btn_updateTertiary1.Visible = false;
             string polyCourse = (string)PolyCoursesTable.DataKeys[PolyCoursesTable.SelectedIndex].Value;
             Session["PolyCourse"] = polyCourse;
 
@@ -171,7 +175,7 @@ namespace Life_Planner.Account
                     alert_placeholder.Visible = true;
                     alert_placeholder.Attributes["class"] = "alert alert-success alert-dismissable";
                     alertText.Text = "Successfully updated! Redirecting to View Own Plan page...";
-                    Response.AddHeader("REFRESH", "2;URL=ViewOwnPlan.aspx");
+                    Response.AddHeader("REFRESH", "0;URL=ViewOwnPlan.aspx");
                     con.Close();
                     con.Dispose();
                 }
@@ -200,7 +204,7 @@ namespace Life_Planner.Account
                     alert_placeholder.Visible = true;
                     alert_placeholder.Attributes["class"] = "alert alert-success alert-dismissable";
                     alertText.Text = "Successfully updated! Redirecting to View Own Plan page...";
-                    Response.AddHeader("REFRESH", "2;URL=ViewOwnPlan.aspx");
+                    Response.AddHeader("REFRESH", "0;URL=ViewOwnPlan.aspx");
                     con.Close();
                     con.Dispose();
                 }
@@ -227,7 +231,7 @@ namespace Life_Planner.Account
                     alert_placeholder.Visible = true;
                     alert_placeholder.Attributes["class"] = "alert alert-success alert-dismissable";
                     alertText.Text = "Successfully updated! Redirecting to View Own Plan page...";
-                    Response.AddHeader("REFRESH", "2;URL=ViewOwnPlan.aspx");
+                    Response.AddHeader("REFRESH", "0;URL=ViewOwnPlan.aspx");
                     con.Close();
                     con.Dispose();
                 }
@@ -245,7 +249,7 @@ namespace Life_Planner.Account
         {
             if (radioSelectITEPolyJC.SelectedItem.Text == "ITE" || radioSelectITEPolyJC.SelectedItem.Text == "Junior College")
             {
-                btn_updateTertiary1.Visible = true;
+                btn_updateTertiary1.Visible = false;
                 btn_updateTertiary2.Visible = false;
                 PolyCoursesTable.Visible = false;
             }
@@ -300,7 +304,6 @@ namespace Life_Planner.Account
             btnITEJCPOLYEast.Visible = true;
             btnITEJCPOLYSouth.Visible = true;
             btnITEJCPOLYNone.Visible = true;
-            btn_updateTertiary1.Visible = true;
         }
 
         protected void setFalse()
