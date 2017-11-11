@@ -140,7 +140,7 @@ namespace Life_Planner
                     cmd.ExecuteNonQuery();
                 }
                 con.Close();
-                //Response.AddHeader("REFRESH", "0;URL=/Account/Login.aspx");
+                //Response.AddHeader("REFRESH", "1;URL=/Account/Login.aspx");
             }
 
             //done

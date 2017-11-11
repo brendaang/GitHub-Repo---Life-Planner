@@ -35,7 +35,7 @@ namespace Life_Planner.Account
                 alert_placeholder.Visible = true;
                 alert_placeholder.Attributes["class"] = "alert alert-danger alert-dismissable";
                 alertText.Text = "Plan already exist! Redirecting to View Own Plan page...";
-                Response.AddHeader("REFRESH", "2;URL=ViewOwnPlan.aspx");
+                Response.AddHeader("REFRESH", "1;URL=ViewOwnPlan.aspx");
                 
             }
 
@@ -62,6 +62,8 @@ namespace Life_Planner.Account
                 ddlCreatePlanChildCurrentEdLevel.DataSource = dataSet.Tables["Module"];
                 ddlCreatePlanChildCurrentEdLevel.DataTextField = "moduleName";
                 ddlCreatePlanChildCurrentEdLevel.DataBind();
+
+                ddlCreatePlanChildCurrentEdLevel.Items.Remove(ddlCreatePlanChildCurrentEdLevel.Items.FindByValue("University"));
             }
             
         }
@@ -80,6 +82,11 @@ namespace Life_Planner.Account
 
         protected void submitFeedback_Click(object sender, EventArgs e)
         {
+
+            //Response.Write(emailValid);
+            //Response.Write(nricValid);
+            //Response.Write(ddlCreatePlanChildCurrentEdLevel.Text);
+
             if (Page.IsValid)
             {
                 int emailValid = EmailValid(txtCreatePlanEmail.Text);

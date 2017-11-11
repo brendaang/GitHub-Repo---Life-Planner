@@ -121,7 +121,7 @@ namespace Life_Planner.Account
                 alert_placeholder.Visible = true;
                 alert_placeholder.Attributes["class"] = "alert alert-success alert-dismissable";
                 alertText.Text = "Successfully updated! Redirecting to View Own Plan page...";
-                Response.AddHeader("REFRESH", "0;URL=ViewOwnPlan.aspx");
+                Response.AddHeader("REFRESH", "1;URL=ViewOwnPlan.aspx");
                 con.Close();
                 con.Dispose();
             }
