@@ -3,10 +3,10 @@
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
     <div class="jumbotron text-center" >
-        <h1>Life Planner</h1>
+  
       
        <div class="well">
-            <asp:Image ID="Image1" runat="server" ImageUrl="~/Images/banner.png" height="300" width="1300" CssClass="img-responsive center-block" />
+            <asp:Image ID="Image1" runat="server" ImageUrl="~/Images/banner.png" height="300" width="950" CssClass="img-responsive center-block" />
            
         </div>
         <p><a href="Account/Register.aspx" class="btn btn-primary btn-large ">Learn more by Registering! &raquo;</a></p>
