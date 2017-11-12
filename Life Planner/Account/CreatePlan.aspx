@@ -142,7 +142,7 @@
                         <br />
                         <asp:Button ID="btnClearChild" CssClass="btn btn-default" Text="Clear" runat="server" OnClick="clearBtn_Click" CausesValidation="false" />
                         &nbsp;
-                        <asp:Button ID="btnSubmitChild" CssClass="btn btn-primary" Text="Submit" runat="server" OnClick="submitFeedback_Click" />
+                        <asp:Button ID="btnSubmitChild" CssClass="btn btn-primary" Text="Submit" runat="server" OnClick="createPathPlan" />
                     </div>
                 </div>
             </div>

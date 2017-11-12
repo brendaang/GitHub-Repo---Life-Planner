@@ -80,7 +80,7 @@ namespace Life_Planner.Account
             alert_placeholder.Visible = false;
         }
 
-        protected void submitFeedback_Click(object sender, EventArgs e)
+        protected void createPathPlan(object sender, EventArgs e)
         {
 
             //Response.Write(emailValid);
