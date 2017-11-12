@@ -158,7 +158,16 @@ namespace Life_Planner.Account
 				shortestPath += (int)dr["shortest"];
                 i++;
 			}
+
+            if(info[1] != "" && i < 2)//sec
+            {
+                shortestPath += 4;
+            }
             
+            if(info[2] != "" && i < 3)//jc
+            {
+                shortestPath += 2;
+            }
 
             if (info[3] != "" && i<4)//poly
             {
@@ -199,7 +208,16 @@ namespace Life_Planner.Account
 				longestPath += (int)dr["longest"];
 				i++;
 			}
-			if (info[3] != "" && i<4)//poly
+            if (info[1] != "" && i < 2)//sec
+            {
+                longestPath += 5;
+            }
+
+            if (info[2] != "" && i < 3)//jc
+            {
+                longestPath += 3;
+            }
+            if (info[3] != "" && i<4)//poly
             {
 				longestPath += 5;
 			}
