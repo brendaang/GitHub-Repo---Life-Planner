@@ -14,7 +14,7 @@
         <div class="well">
             <fieldset class="form-horizontal">
                 <div class="row">
-                    <legend class="col-lg-offset-4 col-lg-5">Change your password:</legend>
+                    <legend class="col-lg-offset-4 col-lg-5">Change your password: </legend>
                 </div>
 
                 <div class="form-group">
