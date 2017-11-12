@@ -6,9 +6,9 @@
             <div class="container">
 
         <!-- Alert placeholder, alter attributes in CodeBehind -->
-        <div id="Div1" runat="server" visible="false">
+        <div id="alert_placeholder" runat="server" visible="false">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-            <asp:Literal runat="server" ID="Literal1" />
+            <asp:Literal runat="server" ID="alertText" />
         </div>
 
         <div class="well">

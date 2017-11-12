@@ -21,6 +21,7 @@ namespace Life_Planner.Account
 
         protected void btn_Change_Click(object sender, EventArgs e)
         {
+            Session["tb_SBUsername"] = tb_SBUsername.Text;
             if (vu.AuthenticateUsername(tb_SBUsername.Text))
             {
                 //valid username
